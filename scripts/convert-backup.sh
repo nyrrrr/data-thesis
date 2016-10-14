@@ -1,0 +1,1 @@
+dd if=backup.ab bs=24 skip=1|openssl zlib -d > $(date -d "today" +"%Y%m%d%H%M")_backup.tar
