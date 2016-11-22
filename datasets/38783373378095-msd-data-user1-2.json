@@ -1,0 +1,3602 @@
+[
+    {
+        "Timestamp": 38783373378095,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 3.3723602294921875,
+            "y": 0.261138916015625,
+            "z": 8.719802856445313
+        }
+    },
+    {
+        "Timestamp": 38783464015302,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 2.788116455078125,
+            "y": 0.941741943359375,
+            "z": 8.954315185546875
+        }
+    },
+    {
+        "Timestamp": 38783599971112,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 4.2315673828125,
+            "y": 1.166229248046875,
+            "z": 10.9788818359375
+        }
+    },
+    {
+        "Timestamp": 38783655360517,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": 286,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 4.1535186767578125,
+            "y": 1.1910552978515625,
+            "z": 8.518310546875
+        }
+    },
+    {
+        "Timestamp": 38783811457929,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 2.806121826171875,
+            "y": 0.7938690185546875,
+            "z": 8.384048461914063
+        }
+    },
+    {
+        "Timestamp": 38783881953534,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 3.18975830078125,
+            "y": 1.2470245361328125,
+            "z": 9.624008178710938
+        }
+    },
+    {
+        "Timestamp": 38784033015546,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": 288,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 3.0477447509765625,
+            "y": 0.9898223876953125,
+            "z": -5.0657196044921875
+        }
+    },
+    {
+        "Timestamp": 38784118617353,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 2.9390716552734375,
+            "y": 1.1930694580078125,
+            "z": 8.5252685546875
+        }
+    },
+    {
+        "Timestamp": 38784274714765,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 3.555999755859375,
+            "y": 1.4615478515625,
+            "z": 10.285049438476563
+        }
+    },
+    {
+        "Timestamp": 38784335139570,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 2.6759033203125,
+            "y": 0.587127685546875,
+            "z": 8.524627685546875
+        }
+    },
+    {
+        "Timestamp": 38784486201581,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 4.191375732421875,
+            "y": 0.70404052734375,
+            "z": 9.709228515625
+        }
+    },
+    {
+        "Timestamp": 38784516413984,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 3.2901458740234375,
+            "y": 0.8838653564453125,
+            "z": 8.833831787109375
+        }
+    },
+    {
+        "Timestamp": 38784702723798,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 4.609039306640625,
+            "y": 1.73394775390625,
+            "z": 11.512649536132813
+        }
+    },
+    {
+        "Timestamp": 38784778254804,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 2.3697052001953125,
+            "y": 0.3383026123046875,
+            "z": 9.1571044921875
+        }
+    },
+    {
+        "Timestamp": 38784934352216,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 2.7400970458984375,
+            "y": 0.2378387451171875,
+            "z": 7.8516387939453125
+        }
+    },
+    {
+        "Timestamp": 38785035060224,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 3.4340362548828125,
+            "y": 0.5975799560546875,
+            "z": 7.4171905517578125
+        }
+    },
+    {
+        "Timestamp": 38785231440839,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 4.082794189453125,
+            "y": 1.1735687255859375,
+            "z": 10.578231811523438
+        }
+    },
+    {
+        "Timestamp": 38785296901044,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 2.90765380859375,
+            "y": -0.08056640625,
+            "z": 8.86651611328125
+        }
+    },
+    {
+        "Timestamp": 38785473140058,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 2.4747467041015625,
+            "y": 0.15887451171875,
+            "z": 8.875778198242188
+        }
+    },
+    {
+        "Timestamp": 38785604060468,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": 278,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 4.10693359375,
+            "y": 0.59539794921875,
+            "z": 3.2890472412109375
+        }
+    },
+    {
+        "Timestamp": 38785709803876,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 2.2879180908203125,
+            "y": 0.466583251953125,
+            "z": 8.47735595703125
+        }
+    },
+    {
+        "Timestamp": 38785840724286,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 4.1055450439453125,
+            "y": 1.6553497314453125,
+            "z": 9.667999267578125
+        }
+    },
+    {
+        "Timestamp": 38785896113691,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 3.339447021484375,
+            "y": 0.6708526611328125,
+            "z": 9.338821411132813
+        }
+    },
+    {
+        "Timestamp": 38786107600507,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 2.868316650390625,
+            "y": 0.1452789306640625,
+            "z": 8.086318969726563
+        }
+    },
+    {
+        "Timestamp": 38786273768720,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 2.94873046875,
+            "y": 0.1437530517578125,
+            "z": 8.847915649414063
+        }
+    },
+    {
+        "Timestamp": 38786439936933,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 2.970428466796875,
+            "y": 0.7760162353515625,
+            "z": 9.025772094726563
+        }
+    },
+    {
+        "Timestamp": 38786575892743,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 3.935089111328125,
+            "y": 0.6186676025390625,
+            "z": 10.023696899414063
+        }
+    },
+    {
+        "Timestamp": 38786626246747,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 3.023040771484375,
+            "y": 0.43145751953125,
+            "z": 8.385391235351563
+        }
+    },
+    {
+        "Timestamp": 38786893122968,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 3.1688385009765625,
+            "y": 0.6348419189453125,
+            "z": 8.790603637695313
+        }
+    },
+    {
+        "Timestamp": 38786958583173,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 3.393707275390625,
+            "y": 0.674346923828125,
+            "z": 9.069305419921875
+        }
+    },
+    {
+        "Timestamp": 38787159999189,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 3.3392486572265625,
+            "y": 0.20098876953125,
+            "z": 9.955963134765625
+        }
+    },
+    {
+        "Timestamp": 38787376521405,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 3.1394500732421875,
+            "y": 0.1479339599609375,
+            "z": 9.762908935546875
+        }
+    },
+    {
+        "Timestamp": 38787537654218,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 2.57220458984375,
+            "y": 1.8618621826171875,
+            "z": 10.4052734375
+        }
+    },
+    {
+        "Timestamp": 38787638362226,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 2.7741241455078125,
+            "y": 0.1370086669921875,
+            "z": 9.421722412109375
+        }
+    },
+    {
+        "Timestamp": 38787759211835,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": 273,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 3.400543212890625,
+            "y": 0.1833953857421875,
+            "z": 5.623748779296875
+        }
+    },
+    {
+        "Timestamp": 38787864955243,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 2.6640472412109375,
+            "y": -0.7461395263671875,
+            "z": 8.99078369140625
+        }
+    },
+    {
+        "Timestamp": 38787990840253,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 3.15313720703125,
+            "y": 0.4358367919921875,
+            "z": 8.4560546875
+        }
+    },
+    {
+        "Timestamp": 38788106654462,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 3.3463592529296875,
+            "y": 0.2931671142578125,
+            "z": 8.640182495117188
+        }
+    },
+    {
+        "Timestamp": 38788308070478,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 3.618011474609375,
+            "y": 1.0164031982421875,
+            "z": 9.437744140625
+        }
+    },
+    {
+        "Timestamp": 38788393672284,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 3.2194976806640625,
+            "y": 0.3973388671875,
+            "z": 9.014541625976563
+        }
+    },
+    {
+        "Timestamp": 38788564875898,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 3.8240509033203125,
+            "y": 0.431427001953125,
+            "z": 9.407669067382813
+        }
+    },
+    {
+        "Timestamp": 38788625300702,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 3.2943267822265625,
+            "y": 0.4427490234375,
+            "z": 9.09283447265625
+        }
+    },
+    {
+        "Timestamp": 38788816645917,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": 277,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 3.726593017578125,
+            "y": 0.4726715087890625,
+            "z": 6.5558929443359375
+        }
+    },
+    {
+        "Timestamp": 38788917353925,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 2.7629241943359375,
+            "y": 0.2017059326171875,
+            "z": 7.755523681640625
+        }
+    },
+    {
+        "Timestamp": 38789058345136,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 2.8267364501953125,
+            "y": 1.37152099609375,
+            "z": 9.009292602539063
+        }
+    },
+    {
+        "Timestamp": 38789128840741,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 3.4620208740234375,
+            "y": 0.120086669921875,
+            "z": 8.790374755859375
+        }
+    },
+    {
+        "Timestamp": 38789360469159,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 2.936248779296875,
+            "y": -0.0294952392578125,
+            "z": 8.5830078125
+        }
+    },
+    {
+        "Timestamp": 38789496424970,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 3.6463165283203125,
+            "y": 0.8779144287109375,
+            "z": 7.707427978515625
+        }
+    },
+    {
+        "Timestamp": 38789602168378,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 3.2772064208984375,
+            "y": 0.237579345703125,
+            "z": 8.634521484375
+        }
+    },
+    {
+        "Timestamp": 38789793513593,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 2.9849395751953125,
+            "y": 0.23919677734375,
+            "z": 8.329315185546875
+        }
+    },
+    {
+        "Timestamp": 38789929469404,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 3.2294769287109375,
+            "y": 0.0722198486328125,
+            "z": 8.657806396484375
+        }
+    },
+    {
+        "Timestamp": 38790035212812,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 3.40576171875,
+            "y": 0.0563201904296875,
+            "z": 9.306304931640625
+        }
+    },
+    {
+        "Timestamp": 38790221522626,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 3.5441741943359375,
+            "y": 0.4444427490234375,
+            "z": 8.839340209960938
+        }
+    },
+    {
+        "Timestamp": 38790327266034,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 3.5269927978515625,
+            "y": 0.5624542236328125,
+            "z": 9.045272827148438
+        }
+    },
+    {
+        "Timestamp": 38790498469648,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 3.4315185546875,
+            "y": 0.173675537109375,
+            "z": 7.39276123046875
+        }
+    },
+    {
+        "Timestamp": 38790599177655,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 3.3955841064453125,
+            "y": 0.0866851806640625,
+            "z": 9.003158569335938
+        }
+    },
+    {
+        "Timestamp": 38790745204267,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 3.2433319091796875,
+            "y": 0.04925537109375,
+            "z": 8.03192138671875
+        }
+    },
+    {
+        "Timestamp": 38790861018476,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 3.8186187744140625,
+            "y": 0.0246429443359375,
+            "z": 8.869796752929688
+        }
+    },
+    {
+        "Timestamp": 38791092646894,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 3.928558349609375,
+            "y": 0.1247711181640625,
+            "z": 9.121566772460938
+        }
+    },
+    {
+        "Timestamp": 38791283992109,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 3.745086669921875,
+            "y": 0.3845672607421875,
+            "z": 9.268280029296875
+        }
+    },
+    {
+        "Timestamp": 38791475337323,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 3.3098907470703125,
+            "y": 0.1951904296875,
+            "z": 8.540298461914063
+        }
+    },
+    {
+        "Timestamp": 38791591151532,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 3.0773162841796875,
+            "y": -0.067779541015625,
+            "z": 8.370025634765625
+        }
+    },
+    {
+        "Timestamp": 38791717015782,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 3.4536895751953125,
+            "y": 0.0531768798828125,
+            "z": 8.87255859375
+        }
+    },
+    {
+        "Timestamp": 38791827794591,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 4.16815185546875,
+            "y": 0.9156341552734375,
+            "z": 8.880325317382813
+        }
+    },
+    {
+        "Timestamp": 38791978856602,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 3.3516998291015625,
+            "y": 0.7059326171875,
+            "z": 9.497756958007813
+        }
+    },
+    {
+        "Timestamp": 38792059423009,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 3.72406005859375,
+            "y": 0.3736114501953125,
+            "z": 8.904693603515625
+        }
+    },
+    {
+        "Timestamp": 38792205449620,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": 281,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 3.6412506103515625,
+            "y": 0.732940673828125,
+            "z": 7.1274566650390625
+        }
+    },
+    {
+        "Timestamp": 38792291051427,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 3.7983551025390625,
+            "y": 0.4176177978515625,
+            "z": 9.104934692382813
+        }
+    },
+    {
+        "Timestamp": 38792442113438,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 3.524383544921875,
+            "y": 0.389190673828125,
+            "z": 9.033279418945313
+        }
+    },
+    {
+        "Timestamp": 38792547856847,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 3.719573974609375,
+            "y": 0.3301239013671875,
+            "z": 8.785751342773438
+        }
+    },
+    {
+        "Timestamp": 38792698918858,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 3.2266387939453125,
+            "y": 1.101348876953125,
+            "z": 9.995956420898438
+        }
+    },
+    {
+        "Timestamp": 38792754308263,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 3.7012481689453125,
+            "y": 0.45953369140625,
+            "z": 9.3411865234375
+        }
+    },
+    {
+        "Timestamp": 38792970830479,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 3.5881500244140625,
+            "y": 0.1299896240234375,
+            "z": 9.060546875
+        }
+    },
+    {
+        "Timestamp": 38793162175694,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 2.882080078125,
+            "y": 1.7409820556640625,
+            "z": 9.543991088867188
+        }
+    },
+    {
+        "Timestamp": 38793257848302,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 3.3245391845703125,
+            "y": 0.38232421875,
+            "z": 8.018905639648438
+        }
+    },
+    {
+        "Timestamp": 38793393804112,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": 271,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 3.8930816650390625,
+            "y": 0.039794921875,
+            "z": 4.3019256591796875
+        }
+    },
+    {
+        "Timestamp": 38793469335118,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 3.6655731201171875,
+            "y": 0.367828369140625,
+            "z": 8.96490478515625
+        }
+    },
+    {
+        "Timestamp": 38793645574132,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 3.0317230224609375,
+            "y": 1.0464019775390625,
+            "z": 9.296905517578125
+        }
+    },
+    {
+        "Timestamp": 38793711034337,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 3.5327911376953125,
+            "y": 0.4636077880859375,
+            "z": 8.978927612304688
+        }
+    },
+    {
+        "Timestamp": 38793902379552,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": 282,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 4.35675048828125,
+            "y": 0.918243408203125,
+            "z": 8.718551635742188
+        }
+    },
+    {
+        "Timestamp": 38793977910558,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 3.3188323974609375,
+            "y": 0.156524658203125,
+            "z": 8.716796875
+        }
+    },
+    {
+        "Timestamp": 38794144078770,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 2.942840576171875,
+            "y": 1.518096923828125,
+            "z": 8.778823852539063
+        }
+    },
+    {
+        "Timestamp": 38794219609776,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 3.526641845703125,
+            "y": 0.441131591796875,
+            "z": 8.796279907226563
+        }
+    },
+    {
+        "Timestamp": 38794380742589,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 3.3257598876953125,
+            "y": 0.35345458984375,
+            "z": 7.6107025146484375
+        }
+    },
+    {
+        "Timestamp": 38794431096593,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 3.83392333984375,
+            "y": 0.617034912109375,
+            "z": 9.242141723632813
+        }
+    },
+    {
+        "Timestamp": 38794682866612,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 3.457763671875,
+            "y": -0.0166015625,
+            "z": 8.831512451171875
+        }
+    },
+    {
+        "Timestamp": 38794874211827,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 3.80914306640625,
+            "y": 0.350677490234375,
+            "z": 9.230010986328125
+        }
+    },
+    {
+        "Timestamp": 38795035344640,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 3.43804931640625,
+            "y": 0.89068603515625,
+            "z": 9.730133056640625
+        }
+    },
+    {
+        "Timestamp": 38795080663243,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 4.021270751953125,
+            "y": 1.108489990234375,
+            "z": 8.928756713867188
+        }
+    },
+    {
+        "Timestamp": 38795251866856,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 2.99908447265625,
+            "y": 0.64947509765625,
+            "z": 9.036331176757813
+        }
+    },
+    {
+        "Timestamp": 38795332433263,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 3.2964630126953125,
+            "y": 0.27801513671875,
+            "z": 8.597854614257813
+        }
+    },
+    {
+        "Timestamp": 38795463353673,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 3.3425140380859375,
+            "y": 0.044097900390625,
+            "z": 8.802398681640625
+        }
+    },
+    {
+        "Timestamp": 38795579167882,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 3.53179931640625,
+            "y": 0.143280029296875,
+            "z": 8.9879150390625
+        }
+    },
+    {
+        "Timestamp": 38795770513097,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 3.8390960693359375,
+            "y": 0.403411865234375,
+            "z": 9.068267822265625
+        }
+    },
+    {
+        "Timestamp": 38795992070714,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 3.392181396484375,
+            "y": 0.112579345703125,
+            "z": 8.98236083984375
+        }
+    },
+    {
+        "Timestamp": 38796188451329,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 3.7777862548828125,
+            "y": 0.5796661376953125,
+            "z": 9.062088012695313
+        }
+    },
+    {
+        "Timestamp": 38796364690343,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 3.524810791015625,
+            "y": 0.37603759765625,
+            "z": 8.869598388671875
+        }
+    },
+    {
+        "Timestamp": 38796450292149,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 3.5057830810546875,
+            "y": 0.2509613037109375,
+            "z": 9.057693481445313
+        }
+    },
+    {
+        "Timestamp": 38796611424962,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 3.2990264892578125,
+            "y": 0.589111328125,
+            "z": 9.6854248046875
+        }
+    },
+    {
+        "Timestamp": 38796681920567,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 3.6320343017578125,
+            "y": 0.363037109375,
+            "z": 8.7666015625
+        }
+    },
+    {
+        "Timestamp": 38796933690587,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 3.3695068359375,
+            "y": 0.394561767578125,
+            "z": 8.88873291015625
+        }
+    },
+    {
+        "Timestamp": 38797024327794,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 3.393829345703125,
+            "y": 0.2905731201171875,
+            "z": 8.775650024414063
+        }
+    },
+    {
+        "Timestamp": 38797150212804,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 3.774383544921875,
+            "y": 0.173095703125,
+            "z": 8.815460205078125
+        }
+    },
+    {
+        "Timestamp": 38797316381017,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 3.9229888916015625,
+            "y": 0.3531036376953125,
+            "z": 9.536590576171875
+        }
+    },
+    {
+        "Timestamp": 38797467443028,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": 269,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 3.6217041015625,
+            "y": -0.082000732421875,
+            "z": 3.6856842041015625
+        }
+    },
+    {
+        "Timestamp": 38797563115636,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 4.0495452880859375,
+            "y": 0.40997314453125,
+            "z": 8.973052978515625
+        }
+    },
+    {
+        "Timestamp": 38797699071446,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 3.6813201904296875,
+            "y": 0.3568267822265625,
+            "z": 8.48114013671875
+        }
+    },
+    {
+        "Timestamp": 38797809850255,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 3.4793548583984375,
+            "y": 0.04132080078125,
+            "z": 8.997467041015625
+        }
+    },
+    {
+        "Timestamp": 38797935735265,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 3.7322998046875,
+            "y": 0.506561279296875,
+            "z": 8.292373657226563
+        }
+    },
+    {
+        "Timestamp": 38798061620274,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 3.8180694580078125,
+            "y": 0.4241180419921875,
+            "z": 8.951339721679688
+        }
+    },
+    {
+        "Timestamp": 38798212682286,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 3.6601104736328125,
+            "y": 0.4225006103515625,
+            "z": 8.979629516601563
+        }
+    },
+    {
+        "Timestamp": 38798293248692,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 3.5969390869140625,
+            "y": 0.1813201904296875,
+            "z": 8.614852905273438
+        }
+    },
+    {
+        "Timestamp": 38798499700108,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 3.1266632080078125,
+            "y": 0.6508636474609375,
+            "z": 8.91705322265625
+        }
+    },
+    {
+        "Timestamp": 38798605443517,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 3.4045257568359375,
+            "y": 0.2738037109375,
+            "z": 8.5703125
+        }
+    },
+    {
+        "Timestamp": 38798781682530,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 3.4765777587890625,
+            "y": 1.0761871337890625,
+            "z": 8.164520263671875
+        }
+    },
+    {
+        "Timestamp": 38798892461339,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 3.247406005859375,
+            "y": 0.073394775390625,
+            "z": 7.9483642578125
+        }
+    },
+    {
+        "Timestamp": 38799033452550,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": 276,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 3.9403533935546875,
+            "y": 0.4400177001953125,
+            "z": 6.951873779296875
+        }
+    },
+    {
+        "Timestamp": 38799124089757,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 3.2388763427734375,
+            "y": -0.255950927734375,
+            "z": 8.255157470703125
+        }
+    },
+    {
+        "Timestamp": 38799255010167,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 3.6446533203125,
+            "y": 0.0506591796875,
+            "z": 8.6802978515625
+        }
+    },
+    {
+        "Timestamp": 38799360753575,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 3.6942596435546875,
+            "y": 0.2867889404296875,
+            "z": 8.749725341796875
+        }
+    },
+    {
+        "Timestamp": 38799516850987,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 3.4813385009765625,
+            "y": 0.0196533203125,
+            "z": 8.792083740234375
+        }
+    },
+    {
+        "Timestamp": 38799637700597,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 3.2125244140625,
+            "y": 0.2132415771484375,
+            "z": 8.654830932617188
+        }
+    },
+    {
+        "Timestamp": 38799758550206,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 3.4975738525390625,
+            "y": 0.0179595947265625,
+            "z": 7.33465576171875
+        }
+    },
+    {
+        "Timestamp": 38799869329015,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 3.45989990234375,
+            "y": 0.21563720703125,
+            "z": 8.87841796875
+        }
+    },
+    {
+        "Timestamp": 38800010320226,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 3.3880157470703125,
+            "y": 0.993255615234375,
+            "z": 9.681655883789063
+        }
+    },
+    {
+        "Timestamp": 38800090886632,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 3.5716705322265625,
+            "y": 0.1057281494140625,
+            "z": 8.849746704101563
+        }
+    },
+    {
+        "Timestamp": 38800307408849,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 3.6979522705078125,
+            "y": 0.2093048095703125,
+            "z": 9.349090576171875
+        }
+    },
+    {
+        "Timestamp": 38800332585851,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 3.5937347412109375,
+            "y": 0.4146575927734375,
+            "z": 9.002578735351563
+        }
+    },
+    {
+        "Timestamp": 38800513860265,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 3.6864013671875,
+            "y": 0.1355133056640625,
+            "z": 8.667694091796875
+        }
+    },
+    {
+        "Timestamp": 38800649816075,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 3.447021484375,
+            "y": 0.1270904541015625,
+            "z": 8.709701538085938
+        }
+    },
+    {
+        "Timestamp": 38800790807286,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 3.8035125732421875,
+            "y": 0.3766937255859375,
+            "z": 8.609222412109375
+        }
+    },
+    {
+        "Timestamp": 38800936833897,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 3.3015289306640625,
+            "y": 0.3098297119140625,
+            "z": 8.378005981445313
+        }
+    },
+    {
+        "Timestamp": 38801052648106,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 3.714202880859375,
+            "y": 0.1984405517578125,
+            "z": 8.683441162109375
+        }
+    },
+    {
+        "Timestamp": 38801173497716,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 3.396942138671875,
+            "y": 0.2101593017578125,
+            "z": 8.172332763671875
+        }
+    },
+    {
+        "Timestamp": 38801289311925,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 3.729583740234375,
+            "y": 0.1180877685546875,
+            "z": 8.68682861328125
+        }
+    },
+    {
+        "Timestamp": 38801465550938,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 3.725372314453125,
+            "y": 0.3686370849609375,
+            "z": 8.924484252929688
+        }
+    },
+    {
+        "Timestamp": 38801671995395,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 4.0059356689453125,
+            "y": 0.0305938720703125,
+            "z": 10.577896118164063
+        }
+    },
+    {
+        "Timestamp": 38801772703403,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 3.66241455078125,
+            "y": 0.4432373046875,
+            "z": 8.379592895507813
+        }
+    },
+    {
+        "Timestamp": 38801903623813,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 3.883331298828125,
+            "y": 0.4558258056640625,
+            "z": 9.0587158203125
+        }
+    },
+    {
+        "Timestamp": 38802049650425,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 3.6586761474609375,
+            "y": 0.2283477783203125,
+            "z": 8.55523681640625
+        }
+    },
+    {
+        "Timestamp": 38802155393833,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 3.6346893310546875,
+            "y": 0.282196044921875,
+            "z": 8.911788940429688
+        }
+    },
+    {
+        "Timestamp": 38802321562046,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 4.1570587158203125,
+            "y": 0.5038299560546875,
+            "z": 8.564743041992188
+        }
+    },
+    {
+        "Timestamp": 38802371916050,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 3.807373046875,
+            "y": 0.54168701171875,
+            "z": 8.794525146484375
+        }
+    },
+    {
+        "Timestamp": 38802563261265,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 3.656005859375,
+            "y": 0.225738525390625,
+            "z": 8.497573852539063
+        }
+    },
+    {
+        "Timestamp": 38802669004673,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 3.78900146484375,
+            "y": 0.48175048828125,
+            "z": 9.142837524414063
+        }
+    },
+    {
+        "Timestamp": 38802825102085,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 3.56982421875,
+            "y": 0.2297515869140625,
+            "z": 8.91351318359375
+        }
+    },
+    {
+        "Timestamp": 38802925810093,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 3.33013916015625,
+            "y": 0.1498565673828125,
+            "z": 8.01263427734375
+        }
+    },
+    {
+        "Timestamp": 38803061765903,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 3.5388336181640625,
+            "y": 0.275299072265625,
+            "z": 8.82000732421875
+        }
+    },
+    {
+        "Timestamp": 38803187650913,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 3.540679931640625,
+            "y": 0.0315704345703125,
+            "z": 8.427261352539063
+        }
+    },
+    {
+        "Timestamp": 38803368925327,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 3.7153778076171875,
+            "y": 0.267822265625,
+            "z": 8.753219604492188
+        }
+    },
+    {
+        "Timestamp": 38803545164341,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 3.483367919921875,
+            "y": 0.5835418701171875,
+            "z": 9.4261474609375
+        }
+    },
+    {
+        "Timestamp": 38803610624546,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 3.871917724609375,
+            "y": 0.354949951171875,
+            "z": 8.972442626953125
+        }
+    },
+    {
+        "Timestamp": 38803776792759,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 3.98004150390625,
+            "y": 1.668914794921875,
+            "z": 10.78717041015625
+        }
+    },
+    {
+        "Timestamp": 38803862394565,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 3.8735504150390625,
+            "y": 0.459716796875,
+            "z": 9.507034301757813
+        }
+    },
+    {
+        "Timestamp": 38804023527378,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 3.6133880615234375,
+            "y": 1.05206298828125,
+            "z": 10.095672607421875
+        }
+    },
+    {
+        "Timestamp": 38804073881382,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 3.837677001953125,
+            "y": 0.4255523681640625,
+            "z": 9.181869506835938
+        }
+    },
+    {
+        "Timestamp": 38804250120395,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_4",
+        "Values": {
+            "x": 3.5080108642578125,
+            "y": 0.1981048583984375,
+            "z": 8.4703369140625
+        }
+    },
+    {
+        "Timestamp": 38804330686802,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 3.8852386474609375,
+            "y": 0.5240478515625,
+            "z": 8.615142822265625
+        }
+    },
+    {
+        "Timestamp": 38804657987827,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 3.4189300537109375,
+            "y": 0.22930908203125,
+            "z": 7.9521636962890625
+        }
+    },
+    {
+        "Timestamp": 38804889616245,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 3.643798828125,
+            "y": 0.129486083984375,
+            "z": 8.364151000976563
+        }
+    },
+    {
+        "Timestamp": 38805010465854,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 3.68914794921875,
+            "y": 0.34332275390625,
+            "z": 8.540451049804688
+        }
+    },
+    {
+        "Timestamp": 38805111173862,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 3.9303436279296875,
+            "y": 0.7264251708984375,
+            "z": 8.859909057617188
+        }
+    },
+    {
+        "Timestamp": 38805252165073,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 3.755706787109375,
+            "y": 0.453887939453125,
+            "z": 8.606887817382813
+        }
+    },
+    {
+        "Timestamp": 38805378050083,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 3.838134765625,
+            "y": 0.4923553466796875,
+            "z": 8.467056274414063
+        }
+    },
+    {
+        "Timestamp": 38805604643101,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 3.8067474365234375,
+            "y": 0.280426025390625,
+            "z": 8.982574462890625
+        }
+    },
+    {
+        "Timestamp": 38805780882114,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 3.6733856201171875,
+            "y": 0.3202972412109375,
+            "z": 7.3821563720703125
+        }
+    },
+    {
+        "Timestamp": 38805891660923,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 3.6661224365234375,
+            "y": 0.305145263671875,
+            "z": 8.764633178710938
+        }
+    },
+    {
+        "Timestamp": 38806123289341,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 3.452545166015625,
+            "y": 0.261810302734375,
+            "z": 11.940521240234375
+        }
+    },
+    {
+        "Timestamp": 38806223997349,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 3.7208709716796875,
+            "y": 0.3244781494140625,
+            "z": 8.2791748046875
+        }
+    },
+    {
+        "Timestamp": 38806390165561,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 3.768768310546875,
+            "y": 0.4037322998046875,
+            "z": 8.5638427734375
+        }
+    },
+    {
+        "Timestamp": 38806682218784,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 3.144927978515625,
+            "y": 0.046051025390625,
+            "z": 7.992889404296875
+        }
+    },
+    {
+        "Timestamp": 38806944059604,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 3.92303466796875,
+            "y": 0.365447998046875,
+            "z": 9.324188232421875
+        }
+    },
+    {
+        "Timestamp": 38807105192417,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 3.7355194091796875,
+            "y": 0.6859893798828125,
+            "z": 8.7611083984375
+        }
+    },
+    {
+        "Timestamp": 38807221006626,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 3.627899169921875,
+            "y": -0.041717529296875,
+            "z": 8.591995239257813
+        }
+    },
+    {
+        "Timestamp": 38807372068638,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": 272,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 3.2980804443359375,
+            "y": 0.1346435546875,
+            "z": 6.2341766357421875
+        }
+    },
+    {
+        "Timestamp": 38807457670444,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 3.871368408203125,
+            "y": 0.1346893310546875,
+            "z": 8.9796142578125
+        }
+    },
+    {
+        "Timestamp": 38807623838657,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 3.743927001953125,
+            "y": 0.82940673828125,
+            "z": 7.8891754150390625
+        }
+    },
+    {
+        "Timestamp": 38807714475864,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 3.818389892578125,
+            "y": 0.32470703125,
+            "z": 8.447097778320313
+        }
+    },
+    {
+        "Timestamp": 38807925962681,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 3.5912017822265625,
+            "y": 0.2657318115234375,
+            "z": 8.762069702148438
+        }
+    },
+    {
+        "Timestamp": 38808137449497,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 3.3740997314453125,
+            "y": -0.0907440185546875,
+            "z": 8.654037475585938
+        }
+    },
+    {
+        "Timestamp": 38808394254917,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 3.1019287109375,
+            "y": -0.3244781494140625,
+            "z": 8.059051513671875
+        }
+    },
+    {
+        "Timestamp": 38808600706333,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 3.7578125,
+            "y": 0.472412109375,
+            "z": 8.70843505859375
+        }
+    },
+    {
+        "Timestamp": 38808822263950,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 3.5947418212890625,
+            "y": 0.1328125,
+            "z": 8.767379760742188
+        }
+    },
+    {
+        "Timestamp": 38808998502964,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 4.1600341796875,
+            "y": 0.5940399169921875,
+            "z": 8.586395263671875
+        }
+    },
+    {
+        "Timestamp": 38809089140171,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 3.2997283935546875,
+            "y": 0.0739593505859375,
+            "z": 8.256271362304688
+        }
+    },
+    {
+        "Timestamp": 38809225095981,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 3.825439453125,
+            "y": 0.5131683349609375,
+            "z": 9.473052978515625
+        }
+    },
+    {
+        "Timestamp": 38809305662388,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 3.66766357421875,
+            "y": 0.1569976806640625,
+            "z": 9.013275146484375
+        }
+    },
+    {
+        "Timestamp": 38809466795200,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 3.7162017822265625,
+            "y": 0.4279937744140625,
+            "z": 9.2242431640625
+        }
+    },
+    {
+        "Timestamp": 38809537290806,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 3.451080322265625,
+            "y": 0.1591339111328125,
+            "z": 8.699539184570313
+        }
+    },
+    {
+        "Timestamp": 38809748777622,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 3.9501800537109375,
+            "y": 0.2376251220703125,
+            "z": 8.814682006835938
+        }
+    },
+    {
+        "Timestamp": 38809985441440,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 3.759307861328125,
+            "y": 2.288818359375E-4,
+            "z": 8.798599243164063
+        }
+    },
+    {
+        "Timestamp": 38810262388462,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 3.6741485595703125,
+            "y": 0.10107421875,
+            "z": 8.684158325195313
+        }
+    },
+    {
+        "Timestamp": 38810312742466,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 3.63275146484375,
+            "y": 0.1230926513671875,
+            "z": 8.982330322265625
+        }
+    },
+    {
+        "Timestamp": 38810494016880,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 3.5850372314453125,
+            "y": 0.2557373046875,
+            "z": 8.634078979492188
+        }
+    },
+    {
+        "Timestamp": 38810700468296,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 3.608978271484375,
+            "y": 0.089508056640625,
+            "z": 8.682174682617188
+        }
+    },
+    {
+        "Timestamp": 38810866636509,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 3.8211517333984375,
+            "y": 0.2502899169921875,
+            "z": 8.483779907226563
+        }
+    },
+    {
+        "Timestamp": 38810977415317,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 3.4793853759765625,
+            "y": -0.06805419921875,
+            "z": 8.5665283203125
+        }
+    },
+    {
+        "Timestamp": 38811113371128,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 3.9227752685546875,
+            "y": 0.3776397705078125,
+            "z": 8.483123779296875
+        }
+    },
+    {
+        "Timestamp": 38811314787143,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 3.57598876953125,
+            "y": 0.358001708984375,
+            "z": 8.1490478515625
+        }
+    },
+    {
+        "Timestamp": 38811491026157,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 3.5860748291015625,
+            "y": 0.23876953125,
+            "z": 8.87249755859375
+        }
+    },
+    {
+        "Timestamp": 38811652173829,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 3.400238037109375,
+            "y": -0.198516845703125,
+            "z": 10.13916015625
+        }
+    },
+    {
+        "Timestamp": 38811767988038,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 3.911224365234375,
+            "y": 0.3983001708984375,
+            "z": 8.525009155273438
+        }
+    },
+    {
+        "Timestamp": 38811898908448,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 3.6553802490234375,
+            "y": -0.0104522705078125,
+            "z": 8.639572143554688
+        }
+    },
+    {
+        "Timestamp": 38812039899659,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": 270,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 3.496826171875,
+            "y": -0.0118408203125,
+            "z": 4.1280670166015625
+        }
+    },
+    {
+        "Timestamp": 38812155713868,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 3.446380615234375,
+            "y": 0.01531982421875,
+            "z": 8.552978515625
+        }
+    },
+    {
+        "Timestamp": 38812442731690,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 3.8240509033203125,
+            "y": 0.31085205078125,
+            "z": 8.881088256835938
+        }
+    },
+    {
+        "Timestamp": 38812699537110,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_8",
+        "Values": {
+            "x": 3.5357818603515625,
+            "y": 0.05126953125,
+            "z": 8.640960693359375
+        }
+    },
+    {
+        "Timestamp": 38812875776124,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 3.626495361328125,
+            "y": 0.220489501953125,
+            "z": 8.9649658203125
+        }
+    },
+    {
+        "Timestamp": 38812981519532,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 3.41522216796875,
+            "y": -0.016693115234375,
+            "z": 8.483734130859375
+        }
+    },
+    {
+        "Timestamp": 38813273572754,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 3.7314453125,
+            "y": 0.41522216796875,
+            "z": 12.847335815429688
+        }
+    },
+    {
+        "Timestamp": 38813379316163,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 3.570892333984375,
+            "y": 0.2137603759765625,
+            "z": 8.597015380859375
+        }
+    },
+    {
+        "Timestamp": 38813545484376,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 3.5694580078125,
+            "y": 0.1488494873046875,
+            "z": 8.746795654296875
+        }
+    },
+    {
+        "Timestamp": 38813706617188,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 3.741424560546875,
+            "y": 1.1345367431640625,
+            "z": 10.5811767578125
+        }
+    },
+    {
+        "Timestamp": 38813973493409,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 3.515472412109375,
+            "y": 0.7382049560546875,
+            "z": 9.833053588867188
+        }
+    },
+    {
+        "Timestamp": 38814054059815,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 3.892791748046875,
+            "y": 0.2407684326171875,
+            "z": 9.097946166992188
+        }
+    },
+    {
+        "Timestamp": 38814351148438,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 3.7120513916015625,
+            "y": -0.042236328125,
+            "z": 8.771835327148438
+        }
+    },
+    {
+        "Timestamp": 38814602918458,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 3.789031982421875,
+            "y": 0.298828125,
+            "z": 8.860427856445313
+        }
+    },
+    {
+        "Timestamp": 38814844617676,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 3.70941162109375,
+            "y": 0.203887939453125,
+            "z": 8.728469848632813
+        }
+    },
+    {
+        "Timestamp": 38815010785889,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 3.843597412109375,
+            "y": 0.4277801513671875,
+            "z": 8.559616088867188
+        }
+    },
+    {
+        "Timestamp": 38815126600098,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 3.646881103515625,
+            "y": -0.082733154296875,
+            "z": 8.705123901367188
+        }
+    },
+    {
+        "Timestamp": 38815333051514,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 3.7769775390625,
+            "y": 0.241058349609375,
+            "z": 8.605575561523438
+        }
+    },
+    {
+        "Timestamp": 38815650281739,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 3.8516387939453125,
+            "y": 0.4039306640625,
+            "z": 8.600326538085938
+        }
+    },
+    {
+        "Timestamp": 38815715741944,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 3.7262115478515625,
+            "y": 0.130859375,
+            "z": 8.751510620117188
+        }
+    },
+    {
+        "Timestamp": 38815952405762,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 3.832061767578125,
+            "y": 0.305511474609375,
+            "z": 8.832992553710938
+        }
+    },
+    {
+        "Timestamp": 38816737928223,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 3.550537109375,
+            "y": 0.1424102783203125,
+            "z": 8.531524658203125
+        }
+    },
+    {
+        "Timestamp": 38816924238038,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 3.89569091796875,
+            "y": 0.5177764892578125,
+            "z": 8.36767578125
+        }
+    },
+    {
+        "Timestamp": 38817004804444,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 3.4631500244140625,
+            "y": 0.25128173828125,
+            "z": 8.722854614257813
+        }
+    },
+    {
+        "Timestamp": 38817165937256,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 3.9997406005859375,
+            "y": 0.6529693603515625,
+            "z": 8.318252563476563
+        }
+    },
+    {
+        "Timestamp": 38817699689698,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 3.840789794921875,
+            "y": 0.044830322265625,
+            "z": 8.666885375976563
+        }
+    },
+    {
+        "Timestamp": 38817911176514,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 3.80596923828125,
+            "y": 0.552093505859375,
+            "z": 8.884735107421875
+        }
+    },
+    {
+        "Timestamp": 38818001813721,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 3.784912109375,
+            "y": 0.2610626220703125,
+            "z": 9.024581909179688
+        }
+    },
+    {
+        "Timestamp": 38818253583741,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_1",
+        "Values": {
+            "x": 3.68463134765625,
+            "y": 0.263702392578125,
+            "z": 8.804946899414063
+        }
+    },
+    {
+        "Timestamp": 38818470105958,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 3.7609100341796875,
+            "y": 0.4053497314453125,
+            "z": 8.704879760742188
+        }
+    },
+    {
+        "Timestamp": 38818797406983,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 3.5889739990234375,
+            "y": 0.3570556640625,
+            "z": 8.37158203125
+        }
+    },
+    {
+        "Timestamp": 38819109601807,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 3.61376953125,
+            "y": 0.299957275390625,
+            "z": 8.529342651367188
+        }
+    },
+    {
+        "Timestamp": 38819290876221,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 3.594879150390625,
+            "y": 0.12518310546875,
+            "z": 8.712509155273438
+        }
+    },
+    {
+        "Timestamp": 38819457044434,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 3.4218292236328125,
+            "y": 0.0617218017578125,
+            "z": 8.752059936523438
+        }
+    },
+    {
+        "Timestamp": 38819633283448,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 3.7447357177734375,
+            "y": 0.1889495849609375,
+            "z": 9.033721923828125
+        }
+    },
+    {
+        "Timestamp": 38819824628663,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 3.5770721435546875,
+            "y": 0.28668212890625,
+            "z": 8.790145874023438
+        }
+    },
+    {
+        "Timestamp": 38820096540284,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 3.6263580322265625,
+            "y": 0.282684326171875,
+            "z": 8.659164428710938
+        }
+    },
+    {
+        "Timestamp": 38820328168702,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 3.933929443359375,
+            "y": -0.0218963623046875,
+            "z": 9.186248779296875
+        }
+    },
+    {
+        "Timestamp": 38820564832520,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 3.934417724609375,
+            "y": 0.4685821533203125,
+            "z": 8.928680419921875
+        }
+    },
+    {
+        "Timestamp": 38820690717530,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 3.933868408203125,
+            "y": -0.1297454833984375,
+            "z": 9.213714599609375
+        }
+    },
+    {
+        "Timestamp": 38820771283936,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 3.789642333984375,
+            "y": 0.438720703125,
+            "z": 7.824371337890625
+        }
+    },
+    {
+        "Timestamp": 38820972699952,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 3.7411346435546875,
+            "y": 0.0631866455078125,
+            "z": 8.654632568359375
+        }
+    },
+    {
+        "Timestamp": 38821169080567,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 3.6058349609375,
+            "y": 0.094329833984375,
+            "z": 8.579238891601563
+        }
+    },
+    {
+        "Timestamp": 38821395673585,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 3.0760345458984375,
+            "y": -0.27618408203125,
+            "z": 9.366455078125
+        }
+    },
+    {
+        "Timestamp": 38821652467278,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 3.6458892822265625,
+            "y": 0.0845489501953125,
+            "z": 11.5447998046875
+        }
+    },
+    {
+        "Timestamp": 38821874024896,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 3.17132568359375,
+            "y": -0.1410980224609375,
+            "z": 7.7288360595703125
+        }
+    },
+    {
+        "Timestamp": 38822090547112,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 3.769561767578125,
+            "y": 0.3354339599609375,
+            "z": 8.60498046875
+        }
+    },
+    {
+        "Timestamp": 38822312104730,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 3.4718780517578125,
+            "y": 0.100494384765625,
+            "z": 8.231948852539063
+        }
+    },
+    {
+        "Timestamp": 38822543733148,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_6",
+        "Values": {
+            "x": 3.54461669921875,
+            "y": 0.1662750244140625,
+            "z": 8.468109130859375
+        }
+    },
+    {
+        "Timestamp": 38822785432366,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 3.186370849609375,
+            "y": -0.0828857421875,
+            "z": 8.33929443359375
+        }
+    },
+    {
+        "Timestamp": 38823450105218,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 3.7183990478515625,
+            "y": 0.1297149658203125,
+            "z": 8.885482788085938
+        }
+    },
+    {
+        "Timestamp": 38823581025628,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 3.51995849609375,
+            "y": 0.120574951171875,
+            "z": 8.658599853515625
+        }
+    },
+    {
+        "Timestamp": 38823722016839,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 3.654266357421875,
+            "y": 0.29168701171875,
+            "z": 8.940185546875
+        }
+    },
+    {
+        "Timestamp": 38823847901849,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 3.5897369384765625,
+            "y": 0.0792083740234375,
+            "z": 8.687545776367188
+        }
+    },
+    {
+        "Timestamp": 38824774415521,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 3.587432861328125,
+            "y": 0.3745269775390625,
+            "z": 8.761337280273438
+        }
+    },
+    {
+        "Timestamp": 38825600221185,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_5",
+        "Values": {
+            "x": 3.4459228515625,
+            "y": 0.0102691650390625,
+            "z": 8.773345947265625
+        }
+    },
+    {
+        "Timestamp": 38825862062005,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 3.474029541015625,
+            "y": -0.064453125,
+            "z": 8.63372802734375
+        }
+    },
+    {
+        "Timestamp": 38826103761224,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 3.7137451171875,
+            "y": 0.2628936767578125,
+            "z": 8.796829223632813
+        }
+    },
+    {
+        "Timestamp": 38826466310052,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 3.653564453125,
+            "y": 0.1996002197265625,
+            "z": 8.796005249023438
+        }
+    },
+    {
+        "Timestamp": 38827327363519,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 3.7662200927734375,
+            "y": 0.062469482421875,
+            "z": 8.615936279296875
+        }
+    },
+    {
+        "Timestamp": 38827629487542,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 3.88897705078125,
+            "y": 0.3869476318359375,
+            "z": 8.490158081054688
+        }
+    },
+    {
+        "Timestamp": 38827755372552,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 3.8312530517578125,
+            "y": -0.0979156494140625,
+            "z": 9.322891235351563
+        }
+    },
+    {
+        "Timestamp": 38827846009759,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 3.912994384765625,
+            "y": 0.2429656982421875,
+            "z": 8.33709716796875
+        }
+    },
+    {
+        "Timestamp": 38828047425775,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 3.465423583984375,
+            "y": -0.0728607177734375,
+            "z": 8.168258666992188
+        }
+    },
+    {
+        "Timestamp": 38828868196038,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 3.5455474853515625,
+            "y": -0.1143798828125,
+            "z": 9.008590698242188
+        }
+    },
+    {
+        "Timestamp": 38829125001458,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 3.80462646484375,
+            "y": 0.2885589599609375,
+            "z": 8.940902709960938
+        }
+    },
+    {
+        "Timestamp": 38829381806878,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 3.7808380126953125,
+            "y": 0.18939208984375,
+            "z": 8.9400634765625
+        }
+    },
+    {
+        "Timestamp": 38829668824700,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 3.330230712890625,
+            "y": 0.315887451171875,
+            "z": 8.508010864257813
+        }
+    },
+    {
+        "Timestamp": 38830877320794,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 3.5471649169921875,
+            "y": 0.035125732421875,
+            "z": 8.773269653320313
+        }
+    },
+    {
+        "Timestamp": 38831345613030,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 3.447021484375,
+            "y": 0.4345703125,
+            "z": 8.7845458984375
+        }
+    },
+    {
+        "Timestamp": 38831526887444,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 3.7539520263671875,
+            "y": 0.365203857421875,
+            "z": 9.0677490234375
+        }
+    },
+    {
+        "Timestamp": 38831753493924,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 3.61627197265625,
+            "y": 0.2973785400390625,
+            "z": 8.945037841796875
+        }
+    },
+    {
+        "Timestamp": 38832015334744,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 3.4380645751953125,
+            "y": 0.3220672607421875,
+            "z": 8.824447631835938
+        }
+    },
+    {
+        "Timestamp": 38832206679959,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_7",
+        "Values": {
+            "x": 3.8382415771484375,
+            "y": 0.4457855224609375,
+            "z": 8.411972045898438
+        }
+    },
+    {
+        "Timestamp": 38832826034207,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 3.401275634765625,
+            "y": 0.12506103515625,
+            "z": 8.730255126953125
+        }
+    },
+    {
+        "Timestamp": 38833077804227,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 3.425018310546875,
+            "y": 0.1316070556640625,
+            "z": 8.683746337890625
+        }
+    },
+    {
+        "Timestamp": 38834115096707,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 3.684417724609375,
+            "y": 0.0798797607421875,
+            "z": 8.921737670898438
+        }
+    },
+    {
+        "Timestamp": 38834321548123,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 3.5846099853515625,
+            "y": 0.156982421875,
+            "z": 8.822113037109375
+        }
+    },
+    {
+        "Timestamp": 38835519973416,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_2",
+        "Values": {
+            "x": 3.7617645263671875,
+            "y": 0.5991363525390625,
+            "z": 9.021484375
+        }
+    },
+    {
+        "Timestamp": 38835776778836,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_3",
+        "Values": {
+            "x": 3.512939453125,
+            "y": 0.279541015625,
+            "z": 8.41046142578125
+        }
+    },
+    {
+        "Timestamp": 38837211867947,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 3.6676025390625,
+            "y": -0.008636474609375,
+            "z": 8.75823974609375
+        }
+    },
+    {
+        "Timestamp": 38837433425565,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 3.5653076171875,
+            "y": 0.1074066162109375,
+            "z": 8.609939575195313
+        }
+    },
+    {
+        "Timestamp": 38837654983182,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 3.6162567138671875,
+            "y": 0.0054931640625,
+            "z": 8.757858276367188
+        }
+    },
+    {
+        "Timestamp": 38838344833035,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 3.707977294921875,
+            "y": 0.153900146484375,
+            "z": 8.867477416992188
+        }
+    },
+    {
+        "Timestamp": 38838521072049,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 3.571929931640625,
+            "y": -0.1056365966796875,
+            "z": 8.749679565429688
+        }
+    },
+    {
+        "Timestamp": 38839739638944,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 3.5484619140625,
+            "y": -0.172515869140625,
+            "z": 10.301254272460938
+        }
+    },
+    {
+        "Timestamp": 38839941054959,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 3.701568603515625,
+            "y": 0.2768402099609375,
+            "z": 9.267181396484375
+        }
+    },
+    {
+        "Timestamp": 38845782100994,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 3.5394439697265625,
+            "y": 0.2894439697265625,
+            "z": 8.589828491210938
+        }
+    },
+    {
+        "Timestamp": 38846174862225,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 3.548614501953125,
+            "y": 0.4192047119140625,
+            "z": 8.47198486328125
+        }
+    },
+    {
+        "Timestamp": 38847076198895,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 3.5699310302734375,
+            "y": 0.2830047607421875,
+            "z": 8.454635620117188
+        }
+    },
+    {
+        "Timestamp": 38847333004315,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 3.436737060546875,
+            "y": 0.0276947021484375,
+            "z": 8.8211669921875
+        }
+    },
+    {
+        "Timestamp": 38850057155926,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_0",
+        "Values": {
+            "x": 3.4975433349609375,
+            "y": 0.255615234375,
+            "z": 8.5703125
+        }
+    },
+    {
+        "Timestamp": 38850812465985,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 3.4108734130859375,
+            "y": 0.0542755126953125,
+            "z": 8.528457641601563
+        }
+    },
+    {
+        "Timestamp": 38851064236004,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 3.4323883056640625,
+            "y": 0.1204986572265625,
+            "z": 8.512924194335938
+        }
+    },
+    {
+        "Timestamp": 38856542788292,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 3.7198333740234375,
+            "y": 0.2750244140625,
+            "z": 8.652984619140625
+        }
+    },
+    {
+        "Timestamp": 38856849947716,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 3.47210693359375,
+            "y": 0.0242919921875,
+            "z": 8.685821533203125
+        }
+    },
+    {
+        "Timestamp": 38860903445030,
+        "Sensor": "android.sensor.accelerometer",
+        "Accuracy": 2,
+        "Orientation": -1,
+        "Key": "KEYCODE_9",
+        "Values": {
+            "x": 3.4257659912109375,
+            "y": -0.0446929931640625,
+            "z": 8.523956298828125
+        }
+    }
+]
