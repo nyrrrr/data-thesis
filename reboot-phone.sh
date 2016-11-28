@@ -1,0 +1,1 @@
+adb -s 0cfe15ed1408a080 shell am broadcast -a android.intent.action.BOOT_COMPLETED
