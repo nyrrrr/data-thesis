@@ -1,6 +1,10 @@
 # Android
 *.ab
 
+# csv
+new-r.csv
+new-java.csv
+
 # History files
 .Rhistory
 .Rapp.history
