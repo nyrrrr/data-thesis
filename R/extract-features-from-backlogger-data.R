@@ -187,5 +187,5 @@ for (i in 1:nrow(rawdata)) {
   i <- i + wJumper
 }
 write.csv(fsd,
-          "C:\\git\\data-thesis\\R\\datasets\\new-r.csv",
+          "C:\\git\\data-thesis\\R\\datasets\\16122100-sensor-feature-set.csv",
           row.names = FALSE)
