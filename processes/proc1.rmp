@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="7.3.001">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="7.3.001" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <operator activated="true" class="retrieve" compatibility="7.3.001" expanded="true" height="68" name="Retrieve 16122100-training-set-REPLACED" width="90" x="45" y="34">
+        <parameter key="repository_entry" value="//Local Repository/data/16122100-training-set-REPLACED"/>
+      </operator>
+      <operator activated="false" class="subprocess" compatibility="7.3.001" expanded="true" height="82" name="Create Featureset" width="90" x="45" y="187">
+        <process expanded="true">
+          <operator activated="true" class="retrieve" compatibility="7.3.001" expanded="true" height="68" name="Retrieve 16122100-sensor-dataset-training-raw" width="90" x="112" y="34">
+            <parameter key="repository_entry" value="../data/16122100-sensor-dataset-training-raw"/>
+          </operator>
+          <operator activated="true" class="retrieve" compatibility="7.3.001" expanded="true" height="68" name="Retrieve 16122100-key-dataset-training-raw" width="90" x="112" y="136">
+            <parameter key="repository_entry" value="../data/16122100-key-dataset-training-raw"/>
+          </operator>
+          <operator activated="true" class="r_scripting:execute_r" compatibility="7.2.000" expanded="true" height="103" name="Execute R" width="90" x="246" y="34">
+            <parameter key="script" value="# rm_main is a mandatory function, &#10;# the number of arguments has to be the number of input ports (can be none)&#10;rm_main = function(sensordata, keydata)&#10;{&#10;# feature data set;&#10;fsd &lt;- keydata;&#10;&#10;for (i in 1:nrow(keydata)) {&#10;  &#10;  tmpRawXWindow &lt;- sensordata$x[sensordata$Timestamp &gt;= keydata$DownTime[i] &amp; sensordata$Timestamp &lt;= keydata$EventTime[i]];&#10;  tmpRawYWindow &lt;- sensordata$y[sensordata$Timestamp &gt;= keydata$DownTime[i] &amp; sensordata$Timestamp &lt;= keydata$EventTime[i]];&#10;  tmpRawZWindow &lt;- sensordata$z[sensordata$Timestamp &gt;= keydata$DownTime[i] &amp; sensordata$Timestamp &lt;= keydata$EventTime[i]];&#10;  tmpRawAWindow &lt;- sensordata$a[sensordata$Timestamp &gt;= keydata$DownTime[i] &amp; sensordata$Timestamp &lt;= keydata$EventTime[i]];&#10;  tmpRawBWindow &lt;- sensordata$b[sensordata$Timestamp &gt;= keydata$DownTime[i] &amp; sensordata$Timestamp &lt;= keydata$EventTime[i]];&#10;  tmpRawCWindow &lt;- sensordata$c[sensordata$Timestamp &gt;= keydata$DownTime[i] &amp; sensordata$Timestamp &lt;= keydata$EventTime[i]];&#10;  tmpRawAlphaWindow &lt;- sensordata$alpha[sensordata$Timestamp &gt;= keydata$DownTime[i] &amp; sensordata$Timestamp &lt;= keydata$EventTime[i]];&#10;  tmpRawBetaWindow &lt;- sensordata$beta[sensordata$Timestamp &gt;= keydata$DownTime[i] &amp; sensordata$Timestamp &lt;= keydata$EventTime[i]];&#10;  tmpRawGammaWindow &lt;- sensordata$gamma[sensordata$Timestamp &gt;= keydata$DownTime[i] &amp; sensordata$Timestamp &lt;= keydata$EventTime[i]];&#10;  &#10;  fsd$WindowSize[i] &lt;- length(tmpRawXWindow);&#10;  &#10;  wSize &lt;- fsd$WindowSize[i];&#10;  &#10;  # Min (x) Accelerometer&#10;  fsd$XminA[i] &lt;- min(tmpRawXWindow);&#10;  # Min (y) Accelerometer&#10;  fsd$YminA[i] &lt;- min(tmpRawYWindow);&#10;  # Min (z) Accelerometer&#10;  fsd$ZminA[i] &lt;- min(tmpRawZWindow);&#10;  # Min (x) Gyroscope&#10;  fsd$XminG[i] &lt;- min(tmpRawAWindow);&#10;  # Min (y) Gyroscope&#10;  fsd$YminG[i] &lt;- min(tmpRawBWindow);&#10;  # Min (z) Gyroscope&#10;  fsd$ZminG[i] &lt;- min(tmpRawCWindow);&#10;  # Min (x) Orientation&#10;  fsd$XminO[i] &lt;- min(tmpRawAlphaWindow);&#10;  # Min (y) Orientation&#10;  fsd$YminO[i] &lt;- min(tmpRawBetaWindow);&#10;  # Min (z) Orientation&#10;  fsd$ZminO[i] &lt;- min(tmpRawGammaWindow);&#10;  # Max (x) Accelerometer&#10;  fsd$XmaxA[i] &lt;- max(tmpRawXWindow);&#10;  # Max (y) Accelerometer&#10;  fsd$YmaxA[i] &lt;- max(tmpRawYWindow);&#10;  # Max (z) Accelerometer&#10;  fsd$ZmaxA[i] &lt;- max(tmpRawZWindow);&#10;  # Max (x) Gyroscope&#10;  fsd$XmaxG[i] &lt;- max(tmpRawAWindow);&#10;  # Max (y) Gyroscope&#10;  fsd$YmaxG[i] &lt;- max(tmpRawBWindow);&#10;  # Max (z) Gyroscope&#10;  fsd$ZmaxG[i] &lt;- max(tmpRawCWindow);&#10;  # Max (x) Orientation&#10;  fsd$XmaxO[i] &lt;- max(tmpRawAlphaWindow);&#10;  # Max (y) Orientation&#10;  fsd$YmaxO[i] &lt;- max(tmpRawBetaWindow);&#10;  # Max (z) Orientation&#10;  fsd$ZmaxO[i] &lt;- max(tmpRawGammaWindow);&#10;  # Mean (x) Accelerometer&#10;  fsd$XmeanA[i] &lt;- mean(tmpRawXWindow);&#10;  # Mean (y) Accelerometer&#10;  fsd$YmeanA[i] &lt;- mean(tmpRawYWindow);&#10;  # Mean (z) Accelerometer&#10;  fsd$ZmeanA[i] &lt;- mean(tmpRawZWindow);&#10;  # Mean (x) Gyroscope&#10;  fsd$XmeanG[i] &lt;- mean(tmpRawAWindow);&#10;  # Mean (y) Gyroscope&#10;  fsd$YmeanG[i] &lt;- mean(tmpRawBWindow);&#10;  # Mean (z) Gyroscope&#10;  fsd$ZmeanG[i] &lt;- mean(tmpRawCWindow);&#10;  # Mean (x) Orientation&#10;  fsd$XmeanO[i] &lt;- mean(tmpRawAlphaWindow);&#10;  # Mean (y) Orientation&#10;  fsd$YmeanO[i] &lt;- mean(tmpRawBetaWindow);&#10;  # Mean (z) Orientation&#10;  fsd$ZmeanO[i] &lt;- mean(tmpRawGammaWindow);&#10;  # Median (x) Accelerometer&#10;  fsd$XmedianA[i] &lt;- median(tmpRawXWindow);&#10;  # Median (y) Accelerometer&#10;  fsd$YmedianA[i] &lt;- median(tmpRawYWindow);&#10;  # Median (z) Accelerometer&#10;  fsd$ZmedianA[i] &lt;- median(tmpRawZWindow);&#10;  # Median (x) Gyroscope&#10;  fsd$XmedianG[i] &lt;- median(tmpRawAWindow);&#10;  # Median (y) Gyroscope&#10;  fsd$YmedianG[i] &lt;- median(tmpRawBWindow);&#10;  # Median (z) Gyroscope&#10;  fsd$ZmedianG[i] &lt;- median(tmpRawCWindow);&#10;  # Median (x) Orientation&#10;  fsd$XmedianO[i] &lt;- median(tmpRawAlphaWindow);&#10;  # Median (y) Orientation&#10;  fsd$YmedianO[i] &lt;- median(tmpRawBetaWindow);&#10;  # Median (z) Orientation&#10;  fsd$ZmedianO[i] &lt;- median(tmpRawGammaWindow);&#10;  # Standard Deviation (x) Accelerometer&#10;  fsd$XsdA[i] &lt;- sd(tmpRawXWindow);&#10;  # Standard Deviation (y) Accelerometer&#10;  fsd$YsdA[i] &lt;- sd(tmpRawYWindow);&#10;  # Standard Deviation (z) Accelerometer&#10;  fsd$ZsdA[i] &lt;- sd(tmpRawZWindow);&#10;  # Standard Deviation (x) Gyroscope&#10;  fsd$XsdG[i] &lt;- sd(tmpRawAWindow);&#10;  # Standard Deviation (y) Gyroscope&#10;  fsd$YsdG[i] &lt;- sd(tmpRawBWindow);&#10;  # Standard Deviation (z) Gyroscope&#10;  fsd$ZsdG[i] &lt;- sd(tmpRawCWindow);&#10;  # Standard Deviation (x) Orientation&#10;  fsd$XsdO[i] &lt;- sd(tmpRawAlphaWindow);&#10;  # Standard Deviation (y) Orientation&#10;  fsd$YsdO[i] &lt;- sd(tmpRawBetaWindow);&#10;  # Standard Deviation (z) Orientation&#10;  fsd$ZsdO[i] &lt;- sd(tmpRawGammaWindow);&#10;  # Variance (x) Accelerometer&#10;  fsd$XvarA[i] &lt;- var(tmpRawXWindow);&#10;  # Variance (y) Accelerometer&#10;  fsd$YvarA[i] &lt;- var(tmpRawYWindow);&#10;  # Variance (z) Accelerometer&#10;  fsd$ZvarA[i] &lt;- var(tmpRawZWindow);&#10;  # Variance (x) Gyroscope&#10;  fsd$XvarG[i] &lt;- var(tmpRawAWindow);&#10;  # Variance (y) Gyroscope&#10;  fsd$YvarG[i] &lt;- var(tmpRawBWindow);&#10;  # Variance (z) Gyroscope&#10;  fsd$ZvarG[i] &lt;- var(tmpRawCWindow);&#10;  # Variance (x) Orientation&#10;  fsd$XvarO[i] &lt;- var(tmpRawAlphaWindow);&#10;  # Variance (y) Orientation&#10;  fsd$YvarO[i] &lt;- var(tmpRawBetaWindow);&#10;  # Variance (z) Orientation&#10;  fsd$ZvarO[i] &lt;- var(tmpRawGammaWindow);&#10;  # Skewness (x) Accelerometer&#10;  fsd$XskewA[i] &lt;- 3 * (fsd$XmeanA[i] - fsd$XmedianA[i])/fsd$XsdA[i]&#10;  # Skewness (y) Accelerometer&#10;  fsd$YskewA[i] &lt;- 3 * (fsd$YmeanA[i] - fsd$YmedianA[i])/fsd$YsdA[i]&#10;  # Skewness (z) Accelerometer&#10;  fsd$ZskewA[i] &lt;- 3 * (fsd$ZmeanA[i] - fsd$ZmedianA[i])/fsd$ZsdA[i]&#10;  # Skewness (x) Gyroscope&#10;  fsd$XskewG[i] &lt;- 3 * (fsd$XmeanG[i] - fsd$XmedianG[i])/fsd$XsdG[i]&#10;  # Skewness (y) Gyroscope&#10;  fsd$YskewG[i] &lt;- 3 * (fsd$YmeanG[i] - fsd$YmedianG[i])/fsd$YsdG[i]&#10;  # Skewness (z) Gyroscope&#10;  fsd$ZskewG[i] &lt;- 3 * (fsd$ZmeanG[i] - fsd$ZmedianG[i])/fsd$ZsdG[i]&#10;  # Skewness (x) Orientation&#10;  fsd$XskewO[i] &lt;- 3 * (fsd$XmeanO[i] - fsd$XmedianO[i])/fsd$XsdO[i]&#10;  # Skewness (y) Orientation&#10;  fsd$YskewO[i] &lt;- 3 * (fsd$YmeanO[i] - fsd$YmedianO[i])/fsd$YsdO[i]&#10;  # Skewness (z) Orientation&#10;  fsd$ZskewO[i] &lt;- 3 * (fsd$ZmeanO[i] - fsd$ZmedianO[i])/fsd$ZsdO[i]&#10;  # RMS (x) Accelerometer&#10;  fsd$XrmsA[i] &lt;- sqrt(sum((tmpRawXWindow) ^ 2) / wSize)&#10;  # RMS (y) Accelerometer&#10;  fsd$YrmsA[i] &lt;- sqrt(sum((tmpRawYWindow) ^ 2) / wSize)&#10;  # RMS (z) Accelerometer&#10;  fsd$ZrmsA[i] &lt;- sqrt(sum((tmpRawZWindow) ^ 2) / wSize)&#10;  # RMS (x) Gyroscope&#10;  fsd$XrmsG[i] &lt;- sqrt(sum((tmpRawAWindow) ^ 2) / wSize)&#10;  # RMS (y) Gyroscope&#10;  fsd$YrmsG[i] &lt;- sqrt(sum((tmpRawBWindow) ^ 2) / wSize)&#10;  # RMS (z) Gyroscope&#10;  fsd$ZrmsG[i] &lt;- sqrt(sum((tmpRawCWindow) ^ 2) / wSize)&#10;  # RMS (x) Orientation&#10;  fsd$XvarO[i] &lt;- sqrt(sum((tmpRawAlphaWindow) ^ 2) / wSize);&#10;  # RMS (y) Orientation&#10;  fsd$YvarO[i] &lt;- sqrt(sum((tmpRawBetaWindow) ^ 2) / wSize);&#10;  # RMS (z) Orientation&#10;  fsd$ZvarO[i] &lt;- sqrt(sum((tmpRawGammaWindow) ^ 2) / wSize);&#10;  # Root Mean Square of the magnitude of the Accelerometer vector&#10;  fsd$MagnRmsA[i] &lt;- sqrt((sum((tmpRawXWindow) ^ 2) + sum((tmpRawYWindow) ^ 2) + sum((tmpRawZWindow) ^ 2)) / wSize)&#10;  # Root Mean Square of the magnitude of the Gyroscope vector&#10;  fsd$MagnRmsG[i] &lt;- sqrt((sum((tmpRawAWindow) ^ 2) + sum((tmpRawBWindow) ^ 2) + sum((tmpRawCWindow) ^ 2)) / wSize) &#10;  # Root Mean Square of the magnitude of the Orientation vector&#10;  fsd$MagnRmsO[i] &lt;- sqrt((sum((tmpRawAlphaWindow) ^ 2) + sum((tmpRawBetaWindow) ^ 2) + sum((tmpRawGammaWindow) ^ 2)) / wSize) &#10;  # time of window&#10;  fsd$TotalTime[i] &lt;- keydata$EventTime[i] - keydata$DownTime[i];&#10;  # number of samples in window&#10;}&#10;write.csv(fsd,&#10;          &quot;C:\\git\\data-thesis\\R\\datasets\\16122100-combined-sensorkeys-feature-set.csv&quot;,&#10;          row.names = FALSE)&#10;    return(list(fsd,sensordata,keydata))&#10;}&#10;"/>
+          </operator>
+          <operator activated="true" class="set_role" compatibility="7.3.001" expanded="true" height="82" name="Set Role" width="90" x="380" y="34">
+            <parameter key="attribute_name" value="Keypress"/>
+            <parameter key="target_role" value="label"/>
+            <list key="set_additional_roles"/>
+          </operator>
+          <connect from_op="Retrieve 16122100-sensor-dataset-training-raw" from_port="output" to_op="Execute R" to_port="input 1"/>
+          <connect from_op="Retrieve 16122100-key-dataset-training-raw" from_port="output" to_op="Execute R" to_port="input 2"/>
+          <connect from_op="Execute R" from_port="output 1" to_op="Set Role" to_port="example set input"/>
+          <connect from_op="Set Role" from_port="example set output" to_port="out 1"/>
+          <portSpacing port="source_in 1" spacing="0"/>
+          <portSpacing port="sink_out 1" spacing="0"/>
+          <portSpacing port="sink_out 2" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="filter_examples" compatibility="7.3.001" expanded="true" height="103" name="Filter Examples" width="90" x="179" y="34">
+        <parameter key="parameter_expression" value=""/>
+        <parameter key="condition_class" value="no_missing_attributes"/>
+        <parameter key="invert_filter" value="false"/>
+        <list key="filters_list"/>
+        <parameter key="filters_logic_and" value="true"/>
+        <parameter key="filters_check_metadata" value="true"/>
+      </operator>
+      <operator activated="true" class="detect_outlier_cof" compatibility="7.3.001" expanded="true" height="82" name="Detect Outlier (COF)" width="90" x="313" y="34">
+        <parameter key="number_of_neighbors" value="15"/>
+        <parameter key="number_of_class_outliers" value="20"/>
+        <parameter key="measure_types" value="MixedMeasures"/>
+        <parameter key="mixed_measure" value="MixedEuclideanDistance"/>
+        <parameter key="nominal_measure" value="NominalDistance"/>
+        <parameter key="numerical_measure" value="DynamicTimeWarpingDistance"/>
+        <parameter key="divergence" value="GeneralizedIDivergence"/>
+        <parameter key="kernel_type" value="radial"/>
+        <parameter key="kernel_gamma" value="1.0"/>
+        <parameter key="kernel_sigma1" value="1.0"/>
+        <parameter key="kernel_sigma2" value="0.0"/>
+        <parameter key="kernel_sigma3" value="2.0"/>
+        <parameter key="kernel_degree" value="3.0"/>
+        <parameter key="kernel_shift" value="1.0"/>
+        <parameter key="kernel_a" value="1.0"/>
+        <parameter key="kernel_b" value="0.0"/>
+      </operator>
+      <operator activated="true" class="filter_examples" compatibility="7.3.001" expanded="true" height="103" name="Filter Examples (2)" width="90" x="447" y="34">
+        <parameter key="parameter_string" value="outlier=true"/>
+        <parameter key="parameter_expression" value=""/>
+        <parameter key="condition_class" value="attribute_value_filter"/>
+        <parameter key="invert_filter" value="true"/>
+        <list key="filters_list"/>
+        <parameter key="filters_logic_and" value="true"/>
+        <parameter key="filters_check_metadata" value="true"/>
+      </operator>
+      <operator activated="true" class="split_validation" compatibility="7.3.001" expanded="true" height="124" name="Validation" width="90" x="916" y="34">
+        <parameter key="create_complete_model" value="false"/>
+        <parameter key="split" value="relative"/>
+        <parameter key="split_ratio" value="0.8"/>
+        <parameter key="training_set_size" value="100"/>
+        <parameter key="test_set_size" value="-1"/>
+        <parameter key="sampling_type" value="stratified sampling"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+        <process expanded="true">
+          <operator activated="true" class="bagging" compatibility="7.3.001" expanded="true" height="82" name="Bagging" width="90" x="246" y="34">
+            <parameter key="sample_ratio" value="0.9"/>
+            <parameter key="iterations" value="10"/>
+            <parameter key="average_confidences" value="true"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1337"/>
+            <process expanded="true">
+              <operator activated="false" class="naive_bayes" compatibility="7.3.001" expanded="true" height="82" name="Naive Bayes" width="90" x="179" y="187">
+                <parameter key="laplace_correction" value="true"/>
+              </operator>
+              <operator activated="false" class="parallel_decision_tree" compatibility="7.3.001" expanded="true" height="82" name="Decision Tree" width="90" x="380" y="187">
+                <parameter key="criterion" value="accuracy"/>
+                <parameter key="maximal_depth" value="50"/>
+                <parameter key="apply_pruning" value="false"/>
+                <parameter key="confidence" value="0.25"/>
+                <parameter key="apply_prepruning" value="true"/>
+                <parameter key="minimal_gain" value="0.1"/>
+                <parameter key="minimal_leaf_size" value="2"/>
+                <parameter key="minimal_size_for_split" value="79"/>
+                <parameter key="number_of_prepruning_alternatives" value="3"/>
+              </operator>
+              <operator activated="false" class="weka:W-J48" compatibility="7.3.000" expanded="true" height="82" name="W-J48" width="90" x="581" y="187">
+                <parameter key="U" value="false"/>
+                <parameter key="C" value="0.25"/>
+                <parameter key="M" value="2.0"/>
+                <parameter key="R" value="true"/>
+                <parameter key="N" value="6"/>
+                <parameter key="B" value="false"/>
+                <parameter key="S" value="false"/>
+                <parameter key="L" value="false"/>
+                <parameter key="A" value="false"/>
+              </operator>
+              <operator activated="true" class="neural_net" compatibility="7.3.001" expanded="true" height="82" name="Neural Net" width="90" x="380" y="34">
+                <list key="hidden_layers"/>
+                <parameter key="training_cycles" value="500"/>
+                <parameter key="learning_rate" value="0.3"/>
+                <parameter key="momentum" value="0.2"/>
+                <parameter key="decay" value="false"/>
+                <parameter key="shuffle" value="true"/>
+                <parameter key="normalize" value="true"/>
+                <parameter key="error_epsilon" value="1.0E-5"/>
+                <parameter key="use_local_random_seed" value="false"/>
+                <parameter key="local_random_seed" value="1992"/>
+              </operator>
+              <connect from_port="training set" to_op="Neural Net" to_port="training set"/>
+              <connect from_op="Neural Net" from_port="model" to_port="model"/>
+              <portSpacing port="source_training set" spacing="0"/>
+              <portSpacing port="sink_model" spacing="0"/>
+            </process>
+          </operator>
+          <operator activated="false" class="bagging" compatibility="7.3.001" expanded="true" height="82" name="Bagging (2)" width="90" x="246" y="136">
+            <parameter key="sample_ratio" value="0.9"/>
+            <parameter key="iterations" value="6"/>
+            <parameter key="average_confidences" value="true"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1337"/>
+            <process expanded="true">
+              <operator activated="false" class="naive_bayes" compatibility="7.3.001" expanded="true" height="82" name="Naive Bayes (2)" width="90" x="179" y="34">
+                <parameter key="laplace_correction" value="true"/>
+              </operator>
+              <operator activated="true" class="parallel_decision_tree" compatibility="7.3.001" expanded="true" height="82" name="Decision Tree (2)" width="90" x="380" y="34">
+                <parameter key="criterion" value="accuracy"/>
+                <parameter key="maximal_depth" value="10"/>
+                <parameter key="apply_pruning" value="true"/>
+                <parameter key="confidence" value="0.25"/>
+                <parameter key="apply_prepruning" value="true"/>
+                <parameter key="minimal_gain" value="0.1"/>
+                <parameter key="minimal_leaf_size" value="2"/>
+                <parameter key="minimal_size_for_split" value="64"/>
+                <parameter key="number_of_prepruning_alternatives" value="3"/>
+              </operator>
+              <connect from_port="training set" to_op="Decision Tree (2)" to_port="training set"/>
+              <connect from_op="Decision Tree (2)" from_port="model" to_port="model"/>
+              <portSpacing port="source_training set" spacing="0"/>
+              <portSpacing port="sink_model" spacing="0"/>
+            </process>
+          </operator>
+          <connect from_port="training" to_op="Bagging" to_port="training set"/>
+          <connect from_op="Bagging" from_port="model" to_port="model"/>
+          <portSpacing port="source_training" spacing="0"/>
+          <portSpacing port="sink_model" spacing="0"/>
+          <portSpacing port="sink_through 1" spacing="0"/>
+        </process>
+        <process expanded="true">
+          <operator activated="true" class="apply_model" compatibility="7.3.001" expanded="true" height="82" name="Apply Model" width="90" x="112" y="34">
+            <list key="application_parameters"/>
+            <parameter key="create_view" value="false"/>
+          </operator>
+          <operator activated="true" class="performance_classification" compatibility="7.3.001" expanded="true" height="82" name="Performance" width="90" x="246" y="34">
+            <parameter key="main_criterion" value="first"/>
+            <parameter key="accuracy" value="true"/>
+            <parameter key="classification_error" value="false"/>
+            <parameter key="kappa" value="false"/>
+            <parameter key="weighted_mean_recall" value="false"/>
+            <parameter key="weighted_mean_precision" value="false"/>
+            <parameter key="spearman_rho" value="false"/>
+            <parameter key="kendall_tau" value="false"/>
+            <parameter key="absolute_error" value="false"/>
+            <parameter key="relative_error" value="false"/>
+            <parameter key="relative_error_lenient" value="false"/>
+            <parameter key="relative_error_strict" value="false"/>
+            <parameter key="normalized_absolute_error" value="false"/>
+            <parameter key="root_mean_squared_error" value="false"/>
+            <parameter key="root_relative_squared_error" value="false"/>
+            <parameter key="squared_error" value="false"/>
+            <parameter key="correlation" value="false"/>
+            <parameter key="squared_correlation" value="false"/>
+            <parameter key="cross-entropy" value="false"/>
+            <parameter key="margin" value="false"/>
+            <parameter key="soft_margin_loss" value="false"/>
+            <parameter key="logistic_loss" value="false"/>
+            <parameter key="skip_undefined_labels" value="true"/>
+            <parameter key="use_example_weights" value="true"/>
+            <list key="class_weights"/>
+          </operator>
+          <connect from_port="model" to_op="Apply Model" to_port="model"/>
+          <connect from_port="test set" to_op="Apply Model" to_port="unlabelled data"/>
+          <connect from_op="Apply Model" from_port="labelled data" to_op="Performance" to_port="labelled data"/>
+          <connect from_op="Performance" from_port="performance" to_port="averagable 1"/>
+          <portSpacing port="source_model" spacing="0"/>
+          <portSpacing port="source_test set" spacing="0"/>
+          <portSpacing port="source_through 1" spacing="0"/>
+          <portSpacing port="sink_averagable 1" spacing="0"/>
+          <portSpacing port="sink_averagable 2" spacing="0"/>
+        </process>
+      </operator>
+      <connect from_op="Retrieve 16122100-training-set-REPLACED" from_port="output" to_op="Filter Examples" to_port="example set input"/>
+      <connect from_op="Filter Examples" from_port="example set output" to_op="Detect Outlier (COF)" to_port="example set input"/>
+      <connect from_op="Detect Outlier (COF)" from_port="example set output" to_op="Filter Examples (2)" to_port="example set input"/>
+      <connect from_op="Filter Examples (2)" from_port="example set output" to_op="Validation" to_port="training"/>
+      <connect from_op="Validation" from_port="averagable 1" to_port="result 1"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <portSpacing port="sink_result 2" spacing="0"/>
+    </process>
+  </operator>
+</process>
