@@ -1,12 +1,12 @@
 sensordata <-
   read.csv(
-    "C:\\git\\data-thesis\\R\\datasets\\16122100-sensor-dataset-test-raw.csv",
+    "C:\\git\\data-thesis\\R\\datasets\\transferred-16122802-victim-data.csv",
     header = TRUE
   )
 
 keydata <-
   read.csv(
-    "C:\\git\\data-thesis\\R\\datasets\\16122100-key-dataset-test-raw.csv",
+    "C:\\git\\data-thesis\\R\\datasets\\16122802-key-dataset-test-raw.csv",
     header = TRUE
   )
 # feature data set;
@@ -179,9 +179,11 @@ for (i in 1:nrow(keydata)) {
   # Root Mean Square of the magnitude of the Orientation vector
   fsd$MagnRmsO[i] <- sqrt((sum((tmpRawAlphaWindow) ^ 2) + sum((tmpRawBetaWindow) ^ 2) + sum((tmpRawGammaWindow) ^ 2)) / wSize) 
   # time of window
-  fsd$TotalTime[i] <- keydata$EventTime[i] - keydata$DownTime[i];
-  # number of samples in window
+  fsd$TotalTime[i] <- (keydata$EventTime[i] - keydata$DownTime[i])/1000000;
+  
+  fsd$DownTime <- fsd$DownTime / 1000000;
+  fsd$EventTime <- fsd$EventTime / 1000000;
 }
 write.csv(fsd,
-          "C:\\git\\data-thesis\\R\\datasets\\16122100-combined-sensorkeys-feature-set.csv",
+          "C:\\git\\data-thesis\\R\\datasets\\1612802-dataset-fake-training.csv",
           row.names = FALSE)

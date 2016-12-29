@@ -1,12 +1,12 @@
 rawdata <-
   read.csv(
-    "C:\\git\\data-thesis\\R\\datasets\\16122100-sensor-dataset-test-raw.csv",
+    "C:\\git\\data-thesis\\R\\datasets\\transferred-16122802-victim-data.csv",
     header = TRUE
   )
 # feature data set;
 fsd <- NULL
 # window size
-wSize <- 5
+wSize <- 27
 # helper vars
 wIndex <- 0
 wJumper <- as.integer(wSize / 2)
@@ -187,5 +187,5 @@ for (i in 1:nrow(rawdata)) {
   i <- i + wJumper
 }
 write.csv(fsd,
-          "C:\\git\\data-thesis\\R\\datasets\\16122100-sensor-feature-set.csv",
+          "C:\\git\\data-thesis\\R\\datasets\\16122802-dataset-test-wsize-27.csv",
           row.names = FALSE)

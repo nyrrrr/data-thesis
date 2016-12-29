@@ -75,7 +75,7 @@
         <parameter key="filters_logic_and" value="true"/>
         <parameter key="filters_check_metadata" value="true"/>
       </operator>
-      <operator activated="true" class="split_validation" compatibility="7.3.001" expanded="true" height="124" name="Validation" width="90" x="916" y="34">
+      <operator activated="true" class="split_validation" compatibility="7.3.001" expanded="true" height="124" name="Validation" width="90" x="782" y="34">
         <parameter key="create_complete_model" value="false"/>
         <parameter key="split" value="relative"/>
         <parameter key="split_ratio" value="0.8"/>
@@ -106,7 +106,7 @@
                 <parameter key="minimal_size_for_split" value="79"/>
                 <parameter key="number_of_prepruning_alternatives" value="3"/>
               </operator>
-              <operator activated="false" class="weka:W-J48" compatibility="7.3.000" expanded="true" height="82" name="W-J48" width="90" x="581" y="187">
+              <operator activated="false" class="weka:W-J48" compatibility="7.3.000" expanded="true" height="82" name="W-J48" width="90" x="514" y="187">
                 <parameter key="U" value="false"/>
                 <parameter key="C" value="0.25"/>
                 <parameter key="M" value="2.0"/>
@@ -117,9 +117,9 @@
                 <parameter key="L" value="false"/>
                 <parameter key="A" value="false"/>
               </operator>
-              <operator activated="true" class="neural_net" compatibility="7.3.001" expanded="true" height="82" name="Neural Net" width="90" x="380" y="34">
+              <operator activated="true" class="neural_net" compatibility="7.3.001" expanded="true" height="82" name="Neural Net" width="90" x="514" y="34">
                 <list key="hidden_layers"/>
-                <parameter key="training_cycles" value="500"/>
+                <parameter key="training_cycles" value="1000"/>
                 <parameter key="learning_rate" value="0.3"/>
                 <parameter key="momentum" value="0.2"/>
                 <parameter key="decay" value="false"/>
@@ -128,6 +128,126 @@
                 <parameter key="error_epsilon" value="1.0E-5"/>
                 <parameter key="use_local_random_seed" value="false"/>
                 <parameter key="local_random_seed" value="1992"/>
+              </operator>
+              <operator activated="false" class="support_vector_machine_libsvm" compatibility="7.3.001" expanded="true" height="82" name="SVM" width="90" x="313" y="493">
+                <parameter key="svm_type" value="C-SVC"/>
+                <parameter key="kernel_type" value="rbf"/>
+                <parameter key="degree" value="3"/>
+                <parameter key="gamma" value="0.0"/>
+                <parameter key="coef0" value="0.0"/>
+                <parameter key="C" value="0.0"/>
+                <parameter key="nu" value="0.5"/>
+                <parameter key="cache_size" value="80"/>
+                <parameter key="epsilon" value="0.001"/>
+                <parameter key="p" value="0.1"/>
+                <list key="class_weights"/>
+                <parameter key="shrinking" value="true"/>
+                <parameter key="calculate_confidences" value="false"/>
+                <parameter key="confidence_for_multiclass" value="true"/>
+              </operator>
+              <operator activated="false" class="weka:W-LWL" compatibility="7.3.000" expanded="true" height="82" name="W-LWL" width="90" x="447" y="493">
+                <parameter key="A" value="weka.core.neighboursearch.LinearNNSearch -A &quot;weka.core.EuclideanDistance -R first-last&quot;"/>
+                <parameter key="K" value="-1.0"/>
+                <parameter key="U" value="0.0"/>
+                <parameter key="D" value="false"/>
+                <parameter key="W" value="weka.classifiers.trees.DecisionStump"/>
+              </operator>
+              <operator activated="false" class="weka:W-RandomForest" compatibility="7.3.000" expanded="true" height="82" name="W-RandomForest" width="90" x="715" y="493">
+                <parameter key="I" value="10.0"/>
+                <parameter key="K" value="0.0"/>
+                <parameter key="S" value="1.0"/>
+                <parameter key="D" value="false"/>
+              </operator>
+              <operator activated="false" class="group_models" compatibility="7.3.001" expanded="true" height="68" name="Group Models" width="90" x="581" y="544"/>
+              <operator activated="false" class="stacking" compatibility="7.3.001" expanded="true" height="68" name="Stacking" width="90" x="179" y="493">
+                <parameter key="keep_all_attributes" value="true"/>
+                <process expanded="true">
+                  <portSpacing port="source_training set 1" spacing="0"/>
+                  <portSpacing port="sink_base model 1" spacing="0"/>
+                </process>
+                <process expanded="true">
+                  <portSpacing port="source_stacking examples" spacing="0"/>
+                  <portSpacing port="sink_stacking model" spacing="0"/>
+                </process>
+              </operator>
+              <operator activated="false" class="hierarchical_multi_class_classification" compatibility="7.3.001" expanded="true" height="82" name="Hierarchical Classification" width="90" x="648" y="187">
+                <list key="hierarchy">
+                  <parameter key="KEYCODE_147" value="KEYCODE_1"/>
+                  <parameter key="KEYCODE_147" value="KEYCODE_4"/>
+                  <parameter key="KEYCODE_147" value="KEYCODE_7"/>
+                  <parameter key="KEYCODE_2580" value="KEYCODE_2"/>
+                  <parameter key="KEYCODE_2580" value="KEYCODE_5"/>
+                  <parameter key="KEYCODE_2580" value="KEYCODE_8"/>
+                  <parameter key="KEYCODE_2580" value="KEYCODE_0"/>
+                  <parameter key="KEYCODE_369" value="KEYCODE_3"/>
+                  <parameter key="KEYCODE_369" value="KEYCODE_6"/>
+                  <parameter key="KEYCODE_369" value="KEYCODE_9"/>
+                  <parameter key="KEYCODE_1234567890" value="KEYCODE_369"/>
+                  <parameter key="KEYCODE_1234567890" value="KEYCODE_2580"/>
+                  <parameter key="KEYCODE_1234567890" value="KEYCODE_147"/>
+                </list>
+                <parameter key="use_local_random_seed" value="false"/>
+                <parameter key="local_random_seed" value="1992"/>
+                <process expanded="true">
+                  <operator activated="false" class="naive_bayes" compatibility="7.3.001" expanded="true" height="82" name="Naive Bayes (3)" width="90" x="313" y="187">
+                    <parameter key="laplace_correction" value="true"/>
+                  </operator>
+                  <operator activated="false" class="parallel_decision_tree" compatibility="7.3.001" expanded="true" height="82" name="Decision Tree (3)" width="90" x="514" y="187">
+                    <parameter key="criterion" value="accuracy"/>
+                    <parameter key="maximal_depth" value="50"/>
+                    <parameter key="apply_pruning" value="false"/>
+                    <parameter key="confidence" value="0.25"/>
+                    <parameter key="apply_prepruning" value="true"/>
+                    <parameter key="minimal_gain" value="0.1"/>
+                    <parameter key="minimal_leaf_size" value="2"/>
+                    <parameter key="minimal_size_for_split" value="79"/>
+                    <parameter key="number_of_prepruning_alternatives" value="3"/>
+                  </operator>
+                  <operator activated="false" class="weka:W-J48" compatibility="7.3.000" expanded="true" height="82" name="W-J48 (2)" width="90" x="648" y="187">
+                    <parameter key="U" value="false"/>
+                    <parameter key="C" value="0.25"/>
+                    <parameter key="M" value="2.0"/>
+                    <parameter key="R" value="true"/>
+                    <parameter key="N" value="6"/>
+                    <parameter key="B" value="false"/>
+                    <parameter key="S" value="false"/>
+                    <parameter key="L" value="false"/>
+                    <parameter key="A" value="false"/>
+                  </operator>
+                  <operator activated="true" class="neural_net" compatibility="7.3.001" expanded="true" height="82" name="Neural Net (2)" width="90" x="380" y="34">
+                    <list key="hidden_layers"/>
+                    <parameter key="training_cycles" value="1000"/>
+                    <parameter key="learning_rate" value="0.3"/>
+                    <parameter key="momentum" value="0.2"/>
+                    <parameter key="decay" value="false"/>
+                    <parameter key="shuffle" value="true"/>
+                    <parameter key="normalize" value="true"/>
+                    <parameter key="error_epsilon" value="1.0E-5"/>
+                    <parameter key="use_local_random_seed" value="false"/>
+                    <parameter key="local_random_seed" value="1992"/>
+                  </operator>
+                  <operator activated="false" class="parallel_random_forest" compatibility="7.3.001" expanded="true" height="82" name="Random Forest" width="90" x="849" y="187">
+                    <parameter key="number_of_trees" value="200"/>
+                    <parameter key="criterion" value="accuracy"/>
+                    <parameter key="maximal_depth" value="50"/>
+                    <parameter key="apply_pruning" value="true"/>
+                    <parameter key="confidence" value="0.25"/>
+                    <parameter key="apply_prepruning" value="true"/>
+                    <parameter key="minimal_gain" value="0.1"/>
+                    <parameter key="minimal_leaf_size" value="2"/>
+                    <parameter key="minimal_size_for_split" value="4"/>
+                    <parameter key="number_of_prepruning_alternatives" value="3"/>
+                    <parameter key="guess_subset_ratio" value="true"/>
+                    <parameter key="subset_ratio" value="0.2"/>
+                    <parameter key="voting_strategy" value="confidence vote"/>
+                    <parameter key="use_local_random_seed" value="false"/>
+                    <parameter key="local_random_seed" value="1992"/>
+                  </operator>
+                  <connect from_port="training set" to_op="Neural Net (2)" to_port="training set"/>
+                  <connect from_op="Neural Net (2)" from_port="model" to_port="model"/>
+                  <portSpacing port="source_training set" spacing="0"/>
+                  <portSpacing port="sink_model" spacing="0"/>
+                </process>
               </operator>
               <connect from_port="training set" to_op="Neural Net" to_port="training set"/>
               <connect from_op="Neural Net" from_port="model" to_port="model"/>
