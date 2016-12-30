@@ -165,11 +165,11 @@ for (i in 1:nrow(rawdata)) {
     # RMS (z) Gyroscope
     fsd$ZrmsG[wIndex] <- sqrt(sum((tmpRawCWindow) ^ 2) / wSize)
     # RMS (x) Orientation
-    fsd$XvarO[wIndex] <- sqrt(sum((tmpRawAlphaWindow) ^ 2) / wSize);
+    fsd$XrmsO[wIndex] <- sqrt(sum((tmpRawAlphaWindow) ^ 2) / wSize);
     # RMS (y) Orientation
-    fsd$YvarO[wIndex] <- sqrt(sum((tmpRawBetaWindow) ^ 2) / wSize);
+    fsd$YrmsO[wIndex] <- sqrt(sum((tmpRawBetaWindow) ^ 2) / wSize);
     # RMS (z) Orientation
-    fsd$ZvarO[wIndex] <- sqrt(sum((tmpRawGammaWindow) ^ 2) / wSize);
+    fsd$ZrmsO[wIndex] <- sqrt(sum((tmpRawGammaWindow) ^ 2) / wSize);
     # Root Mean Square of the magnitude of the Accelerometer vector
     fsd$MagnRmsA[wIndex] <- sqrt((sum((tmpRawXWindow) ^ 2) + sum((tmpRawYWindow) ^ 2) + sum((tmpRawZWindow) ^ 2)) / wSize)
     # Root Mean Square of the magnitude of the Gyroscope vector

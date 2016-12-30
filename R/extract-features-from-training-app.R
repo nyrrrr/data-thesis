@@ -167,11 +167,11 @@ for (i in 1:nrow(keydata)) {
     # RMS (z) Gyroscope
     fsd$ZrmsG[i] <- sqrt(sum((tmpRawCWindow) ^ 2) / wSize)
     # RMS (x) Orientation
-    fsd$XvarO[i] <- sqrt(sum((tmpRawAlphaWindow) ^ 2) / wSize);
+    fsd$XrmsO[i] <- sqrt(sum((tmpRawAlphaWindow) ^ 2) / wSize);
     # RMS (y) Orientation
-    fsd$YvarO[i] <- sqrt(sum((tmpRawBetaWindow) ^ 2) / wSize);
+    fsd$YrmsO[i] <- sqrt(sum((tmpRawBetaWindow) ^ 2) / wSize);
     # RMS (z) Orientation
-    fsd$ZvarO[i] <- sqrt(sum((tmpRawGammaWindow) ^ 2) / wSize);
+    fsd$ZrmsO[i] <- sqrt(sum((tmpRawGammaWindow) ^ 2) / wSize);
     # Root Mean Square of the magnitude of the Accelerometer vector
     fsd$MagnRmsA[i] <- sqrt((sum((tmpRawXWindow) ^ 2) + sum((tmpRawYWindow) ^ 2) + sum((tmpRawZWindow) ^ 2)) / wSize)
     # Root Mean Square of the magnitude of the Gyroscope vector
@@ -180,7 +180,11 @@ for (i in 1:nrow(keydata)) {
     fsd$MagnRmsO[i] <- sqrt((sum((tmpRawAlphaWindow) ^ 2) + sum((tmpRawBetaWindow) ^ 2) + sum((tmpRawGammaWindow) ^ 2)) / wSize) 
     # time of window
     fsd$TotalTime[i] <- (keydata$EventTime[i] - keydata$DownTime[i])/1000000;
+    
+    fsd$DownTime[i] <- fsd$DownTime[i]/1000000;
+    fsd$EventTime[i] <- fsd$EventTime[i]/1000000;
 }
+fsd$Keypress <- gsub("KEYCODE_", "", fsd$Keypress);
 write.csv(fsd,
           "C:\\git\\data-thesis\\R\\datasets\\16122802-dataset-training.csv",
           row.names = FALSE)
