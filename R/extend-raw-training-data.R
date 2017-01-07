@@ -16,6 +16,7 @@ for (i in seq_along(sdata$Timestamp)) {
     sqrt(sdata$x[i] ^ 2 + sdata$y[i] ^ 2 + sdata$z[i] ^
            2)
   sdata$magnG[i] <- sqrt(sdata$a[i]^2 + sdata$b[i]^2 + sdata$c[i]^2)
+  sdata$magnO[i] <- sqrt(sdata$alpha[i]^2 + sdata$beta[i]^2 + sdata$gamma[i]^2)
   
 }
 sdata$belongsToKey <- FALSE;
@@ -26,15 +27,6 @@ for (i in seq_along(fsd$DownTime)) {
     sdata$belongsToKey[sdata$Timestamp == j] <- TRUE
   }
 }
-# sdata$x <- NULL
-# sdata$y <- NULL
-# sdata$z <- NULL
-# sdata$a <- NULL
-# sdata$b <- NULL
-# sdata$c <- NULL
-sdata$alpha <- NULL
-sdata$beta <- NULL
-sdata$gamma <- NULL
 
 write.csv(sdata,
           "C:\\git\\data-thesis\\R\\datasets\\magn.csv",
