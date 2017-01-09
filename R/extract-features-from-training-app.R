@@ -12,13 +12,9 @@ keydata <-
 
 
 for (i in seq_along(sensordata$Timestamp)) {
-  sensordata$SqSumA[i] <-
-    sensordata$x[i] ^ 2 + sensordata$y[i] ^ 2 + sensordata$z[i] ^ 2
-  sensordata$SqSumG[i] <-
-    sensordata$a[i] ^ 2 + sensordata$b[i] ^ 2 + sensordata$c[i] ^ 2
-  sensordata$SqSumO[i] <-
-    sensordata$alpha[i] ^ 2 + sensordata$beta[i] ^ 2 + sensordata$gamma[i] ^
-    2
+  sensordata$SqSumA[i] <- sensordata$x[i] ^ 2 + sensordata$y[i] ^ 2 + sensordata$z[i] ^ 2
+  sensordata$SqSumG[i] <- sensordata$a[i] ^ 2 + sensordata$b[i] ^ 2 + sensordata$c[i] ^ 2
+  sensordata$SqSumO[i] <- sensordata$alpha[i] ^ 2 + sensordata$beta[i] ^ 2 + sensordata$gamma[i] ^ 2
   
   sensordata$magnA[i] <- sqrt(sensordata$SqSumA[i])
   sensordata$magnG[i] <- sqrt(sensordata$SqSumG[i])
@@ -31,6 +27,7 @@ fsd <- keydata
 
 
 for (i in seq_along(keydata$DownTime)) {
+  
   tmpRawXWindow <-
     sensordata$x[sensordata$Timestamp >= keydata$DownTime[i] &
                    sensordata$Timestamp <= keydata$EventTime[i]]
@@ -388,11 +385,11 @@ for (i in seq_along(keydata$DownTime)) {
   
   # time gap between sqsum peak and through
   fsd$SqSumTimeGapA[i] <-
-    tmpTimestampWindowMaxA - tmpTimestampWindowMinA
+    abs(tmpTimestampWindowMaxA - tmpTimestampWindowMinA)
   fsd$SqSumTimeGapG[i] <-
-    tmpTimestampWindowMaxG - tmpTimestampWindowMinG
+    abs(tmpTimestampWindowMaxG - tmpTimestampWindowMinG)
   fsd$SqSumTimeGapO[i] <-
-    tmpTimestampWindowMaxO - tmpTimestampWindowMinO
+    abs(tmpTimestampWindowMaxO - tmpTimestampWindowMinO)
   
   #sd of magnitude
   fsd$MsdA[i] <- sd(tmpRawMagnAWindow)
