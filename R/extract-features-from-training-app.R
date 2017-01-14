@@ -363,6 +363,10 @@ ftrain$MskewA <- 3 * (ftrain$MmeanA - ftrain$MmedianA) / ftrain$MsdA
 ftrain$MskewG <- 3 * (ftrain$MmeanG - ftrain$MmedianG) / ftrain$MsdG
 ftrain$MskewO <- 3 * (ftrain$MmeanO - ftrain$MmedianO) / ftrain$MsdO
 
+#fix timestamps pt. 2
+ftrain$DownTime <- varDownTime
+ftrain$EventTime <- varEventTime
+
 # time of window
 ftrain$DownTime <- floor(ftrain$DownTime / 1000000)
 ftrain$EventTime <- ftrain$EventTime / 1000000
@@ -370,9 +374,6 @@ ftrain$TotalTime <- (ftrain$EventTime - ftrain$DownTime)
 
 ftrain$Keypress <- gsub("KEYCODE_", "KEY_", ftrain$Keypress)
 
-#fix timestamps pt. 2
-ftrain$DownTime <- varDownTime
-ftrain$EventTime <- varEventTime
 # fix keys
 ftrain$IsKey <- ftrain$Keypress != "NONE"
 
