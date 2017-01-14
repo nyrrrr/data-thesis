@@ -1,18 +1,18 @@
 sensortrain <-
   read.csv(
-    "C:\\git\\data-thesis\\R\\datasets\\17011020-sensor-dataset-training-raw.csv",
+    "C:\\git\\data-thesis\\R\\datasets\\17011417-sensor-dataset-training-raw.csv",
     header = TRUE,
     stringsAsFactors=FALSE
   )
 
 keytrain <-
   read.csv(
-    "C:\\git\\data-thesis\\R\\datasets\\17011020-key-dataset-training-raw.csv",
+    "C:\\git\\data-thesis\\R\\datasets\\17011417-key-dataset-training-raw.csv",
     header = TRUE,
     stringsAsFactors=FALSE
   )
 
-options(digits=16)
+options(digits=20)
 # --- preprocessing
 
 # rename vars
@@ -152,7 +152,7 @@ sensortrain$MagnLpG <- sqrt(sensortrain$XlpG^2 + sensortrain$YlpG^2 + sensortrai
 sensortrain$MagnLpO <- sqrt(sensortrain$XlpO^2 + sensortrain$YlpO^2 + sensortrain$ZlpO^2)
 
 write.csv(sensortrain,
-          "C:\\git\\data-thesis\\R\\datasets\\17011020-sensor-dataset-training-preprocessed.csv",
+          "C:\\git\\data-thesis\\R\\datasets\\17011417-sensor-dataset-training-preprocessed.csv",
           row.names = FALSE)
 
 # --- feature extraction
@@ -183,6 +183,11 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
     
     varEventTime[i] <- ftrain$DownTime[i] - 1
   }
+  
+  ftrain$WindowSize[i] <- length(tmpWindowCopy$Timestamp)
+  wSize <- ftrain$WindowSize[i]
+  
+  # tmpWindowCopy <- tmpWindowCopy[,c(4:length(tmpWindowCopy)-1)]
   
   tmpRawXWindow <- tmpWindowCopy$xA
   tmpRawYWindow <- tmpWindowCopy$yA
@@ -244,8 +249,8 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
     ftrain$PreZdeltaMaxO[i] <- 0
   }
   else {
-    tmpPreWindow <- sensortrain[sensortrain$id < (tmpWindowCopy$id[1]-1) & sensortrain$id < (tmpWindowCopy$id[1]-9),]
-  
+    tmpPreWindow <- sensortrain[sensortrain$id < (tmpWindowCopy$id[1]) & sensortrain$id >= (tmpWindowCopy$id[1]-9),]
+    
     # some stats of the 9 entries before the actual window
     ftrain$PreXminA[i] <- min(tmpPreWindow$xA)
     ftrain$PreYminA[i] <- min(tmpPreWindow$yA)
@@ -286,10 +291,12 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
     ftrain$PreXdeltaMaxO[i] <- max(tmpPreWindow$XdeltaO)
     ftrain$PreYdeltaMaxO[i] <- max(tmpPreWindow$YdeltaO)
     ftrain$PreZdeltaMaxO[i] <- max(tmpPreWindow$ZdeltaO)
+    
+    #sd of SquareSUm of pre window
+    ftrain$PreSqSumSdA[i] <- sd(tmpPreWindow$xA^2 + tmpPreWindow$yA^2 + tmpPreWindow$zA^2)
+    ftrain$PreSqSumSdG[i] <- sd(tmpPreWindow$xG^2 + tmpPreWindow$yG^2 + tmpPreWindow$zG^2)
+    ftrain$PreSqSumSdO[i] <- sd(tmpPreWindow$alpha^2 + tmpPreWindow$beta^2 + tmpPreWindow$gamma^2)
   }
-  
-  ftrain$WindowSize[i] <- length(tmpRawXWindow)
-  wSize <- ftrain$WindowSize[i]
   
   # Min Accelerometer
   ftrain$XminA[i] <- min(tmpRawXWindow)
@@ -387,7 +394,6 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   ftrain$MvarG[i] <- var(tmpRawMagnGWindow)
   ftrain$MvarO[i] <- var(tmpRawMagnOWindow)
 
-
   # RMS  Accelerometer
   ftrain$XrmsA[i] <- sqrt(sum((tmpRawXWindow) ^ 2) / wSize)
   ftrain$YrmsA[i] <- sqrt(sum((tmpRawYWindow) ^ 2) / wSize)
@@ -408,6 +414,11 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   ftrain$SqSumRmsA[i] <- sqrt((sum((tmpRawSqSumAWindow) ^ 2)) / wSize)
   ftrain$SqSumRmsG[i] <- sqrt((sum((tmpRawSqSumGWindow) ^ 2)) / wSize)
   ftrain$SqSumRmsO[i] <- sqrt((sum((tmpRawSqSumOWindow) ^ 2)) / wSize)
+  
+  #sd of SquareSUm
+  ftrain$SqSumSdA[i] <- sd(tmpRawSqSumAWindow)
+  ftrain$SqSumSdG[i] <- sd(tmpRawSqSumGWindow)
+  ftrain$SqSumSdO[i] <- sd(tmpRawSqSumOWindow)
 }
 
 # Skewness 
@@ -441,6 +452,6 @@ ftrain$Keypress <- gsub("KEYCODE_", "KEY_", ftrain$Keypress)
 
 write.csv(
   ftrain,
-  "C:\\git\\data-thesis\\R\\datasets\\17011020-dataset-training.csv",
+  "C:\\git\\data-thesis\\R\\datasets\\17011417-dataset-training.csv",
   row.names = FALSE
 )
