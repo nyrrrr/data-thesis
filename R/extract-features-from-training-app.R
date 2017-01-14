@@ -202,49 +202,91 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   
   # tmpPreWindowX <- sensortrain$xA[c(0, ftrain$DownTime[i-1])]
   
-  if(i == 1) next()
-  else tmpPreWindow <- sensortrain[sensortrain$id < (tmpWindowCopy$id[1]-1) & sensortrain$id < (tmpWindowCopy$id[1]-9),]
+  if(i == 1) {
+    ftrain$PreXminA[i] <- 0
+    ftrain$PreYminA[i] <- 0
+    ftrain$PreZminA[i] <- 0
+    ftrain$PreXminG[i] <- 0
+    ftrain$PreYminG[i] <- 0
+    ftrain$PreZminG[i] <- 0
+    ftrain$PreXminO[i] <- 0
+    ftrain$PreYminO[i] <- 0
+    ftrain$PreZminO[i] <- 0
+    
+    ftrain$PreXmaxA[i] <- 0
+    ftrain$PreYmaxA[i] <- 0
+    ftrain$PreZmaxA[i] <- 0
+    ftrain$PreXmaxG[i] <- 0
+    ftrain$PreYmaxG[i] <- 0
+    ftrain$PreZmaxG[i] <- 0
+    ftrain$PreXmaxO[i] <- 0
+    ftrain$PreYmaxO[i] <- 0
+    ftrain$PreZmaxO[i] <- 0
+    
+    ftrain$PreXdeltaMinA[i] <- 0
+    ftrain$PreYdeltaMinA[i] <- 0
+    ftrain$PreZdeltaMinA[i] <- 0
+    ftrain$PreXdeltaMinG[i] <- 0
+    ftrain$PreZdeltaMinG[i] <- 0
+    ftrain$PreYdeltaMinG[i] <- 0
+    ftrain$PreXdeltaMinO[i] <- 0
+    ftrain$PreYdeltaMinO[i] <- 0
+    ftrain$PreZdeltaMinO[i] <- 0
+    
+    ftrain$PreXdeltaMaxA[i] <- 0
+    ftrain$PreYdeltaMaxA[i] <- 0
+    ftrain$PreZdeltaMaxA[i] <- 0
+    ftrain$PreXdeltaMaxG[i] <- 0
+    ftrain$PreYdeltaMaxG[i] <- 0
+    ftrain$PreZdeltaMaxG[i] <- 0
+    ftrain$PreXdeltaMaxO[i] <- 0
+    ftrain$PreYdeltaMaxO[i] <- 0
+    ftrain$PreZdeltaMaxO[i] <- 0
+  }
+  else {
+    tmpPreWindow <- sensortrain[sensortrain$id < (tmpWindowCopy$id[1]-1) & sensortrain$id < (tmpWindowCopy$id[1]-9),]
   
-  # some stats of the 9 entries before the actual window
-  ftrain$PreXminA[i] <- min(tmpPreWindow$xA)
-  ftrain$PreYminA[i] <- min(tmpPreWindow$yA)
-  ftrain$PreZminA[i] <- min(tmpPreWindow$zA)
-  ftrain$PreXminG[i] <- min(tmpPreWindow$xG)
-  ftrain$PreYminG[i] <- min(tmpPreWindow$yG)
-  ftrain$PreZminG[i] <- min(tmpPreWindow$zG)
-  ftrain$PreXminO[i] <- min(tmpPreWindow$alpha)
-  ftrain$PreYminO[i] <- min(tmpPreWindow$beta)
-  ftrain$PreZminO[i] <- min(tmpPreWindow$gamma)
-  
-  ftrain$PreXmaxA[i] <- max(tmpPreWindow$xA)
-  ftrain$PreYmaxA[i] <- max(tmpPreWindow$yA)
-  ftrain$PreZmaxA[i] <- max(tmpPreWindow$zA)
-  ftrain$PreXmaxG[i] <- max(tmpPreWindow$xG)
-  ftrain$PreYmaxG[i] <- max(tmpPreWindow$yG)
-  ftrain$PreZmaxG[i] <- max(tmpPreWindow$zG)
-  ftrain$PreXmaxO[i] <- max(tmpPreWindow$alpha)
-  ftrain$PreYmaxO[i] <- max(tmpPreWindow$beta)
-  ftrain$PreZmaxO[i] <- max(tmpPreWindow$gamma)
-  
-  ftrain$PreXdeltaMinA[i] <- min(tmpPreWindow$XdeltaA)
-  ftrain$PreYdeltaMinA[i] <- min(tmpPreWindow$YdeltaA)
-  ftrain$PreZdeltaMinA[i] <- min(tmpPreWindow$ZdeltaA)
-  ftrain$PreXdeltaMinG[i] <- min(tmpPreWindow$XdeltaG)
-  ftrain$PreYdeltaMinG[i] <- min(tmpPreWindow$XdeltaG)
-  ftrain$PreZdeltaMinG[i] <- min(tmpPreWindow$ZdeltaG)
-  ftrain$PreXdeltaMinO[i] <- min(tmpPreWindow$XdeltaO)
-  ftrain$PreYdeltaMinO[i] <- min(tmpPreWindow$YdeltaO)
-  ftrain$PreZdeltaMinO[i] <- min(tmpPreWindow$ZdeltaO)
-  
-  ftrain$PreXdeltaMaxA[i] <- max(tmpPreWindow$XdeltaA)
-  ftrain$PreYdeltaMaxA[i] <- max(tmpPreWindow$YdeltaA)
-  ftrain$PreZdeltaMaxA[i] <- max(tmpPreWindow$ZdeltaA)
-  ftrain$PreXdeltaMaxG[i] <- max(tmpPreWindow$XdeltaG)
-  ftrain$PreYdeltaMaxG[i] <- max(tmpPreWindow$XdeltaG)
-  ftrain$PreZdeltaMaxG[i] <- max(tmpPreWindow$ZdeltaG)
-  ftrain$PreXdeltaMaxO[i] <- max(tmpPreWindow$XdeltaO)
-  ftrain$PreYdeltaMaxO[i] <- max(tmpPreWindow$YdeltaO)
-  ftrain$PreZdeltaMaxO[i] <- max(tmpPreWindow$ZdeltaO)
+    # some stats of the 9 entries before the actual window
+    ftrain$PreXminA[i] <- min(tmpPreWindow$xA)
+    ftrain$PreYminA[i] <- min(tmpPreWindow$yA)
+    ftrain$PreZminA[i] <- min(tmpPreWindow$zA)
+    ftrain$PreXminG[i] <- min(tmpPreWindow$xG)
+    ftrain$PreYminG[i] <- min(tmpPreWindow$yG)
+    ftrain$PreZminG[i] <- min(tmpPreWindow$zG)
+    ftrain$PreXminO[i] <- min(tmpPreWindow$alpha)
+    ftrain$PreYminO[i] <- min(tmpPreWindow$beta)
+    ftrain$PreZminO[i] <- min(tmpPreWindow$gamma)
+    
+    ftrain$PreXmaxA[i] <- max(tmpPreWindow$xA)
+    ftrain$PreYmaxA[i] <- max(tmpPreWindow$yA)
+    ftrain$PreZmaxA[i] <- max(tmpPreWindow$zA)
+    ftrain$PreXmaxG[i] <- max(tmpPreWindow$xG)
+    ftrain$PreYmaxG[i] <- max(tmpPreWindow$yG)
+    ftrain$PreZmaxG[i] <- max(tmpPreWindow$zG)
+    ftrain$PreXmaxO[i] <- max(tmpPreWindow$alpha)
+    ftrain$PreYmaxO[i] <- max(tmpPreWindow$beta)
+    ftrain$PreZmaxO[i] <- max(tmpPreWindow$gamma)
+    
+    ftrain$PreXdeltaMinA[i] <- min(tmpPreWindow$XdeltaA)
+    ftrain$PreYdeltaMinA[i] <- min(tmpPreWindow$YdeltaA)
+    ftrain$PreZdeltaMinA[i] <- min(tmpPreWindow$ZdeltaA)
+    ftrain$PreXdeltaMinG[i] <- min(tmpPreWindow$XdeltaG)
+    ftrain$PreYdeltaMinG[i] <- min(tmpPreWindow$XdeltaG)
+    ftrain$PreZdeltaMinG[i] <- min(tmpPreWindow$ZdeltaG)
+    ftrain$PreXdeltaMinO[i] <- min(tmpPreWindow$XdeltaO)
+    ftrain$PreYdeltaMinO[i] <- min(tmpPreWindow$YdeltaO)
+    ftrain$PreZdeltaMinO[i] <- min(tmpPreWindow$ZdeltaO)
+    
+    ftrain$PreXdeltaMaxA[i] <- max(tmpPreWindow$XdeltaA)
+    ftrain$PreYdeltaMaxA[i] <- max(tmpPreWindow$YdeltaA)
+    ftrain$PreZdeltaMaxA[i] <- max(tmpPreWindow$ZdeltaA)
+    ftrain$PreXdeltaMaxG[i] <- max(tmpPreWindow$XdeltaG)
+    ftrain$PreYdeltaMaxG[i] <- max(tmpPreWindow$XdeltaG)
+    ftrain$PreZdeltaMaxG[i] <- max(tmpPreWindow$ZdeltaG)
+    ftrain$PreXdeltaMaxO[i] <- max(tmpPreWindow$XdeltaO)
+    ftrain$PreYdeltaMaxO[i] <- max(tmpPreWindow$YdeltaO)
+    ftrain$PreZdeltaMaxO[i] <- max(tmpPreWindow$ZdeltaO)
+  }
   
   ftrain$WindowSize[i] <- length(tmpRawXWindow)
   wSize <- ftrain$WindowSize[i]
@@ -387,15 +429,15 @@ ftrain$MskewO <- 3 * (ftrain$MmeanO - ftrain$MmedianO) / ftrain$MsdO
 ftrain$DownTime <- varDownTime
 ftrain$EventTime <- varEventTime
 
+# fix keys
+ftrain$IsKey <- ftrain$Keypress != "NONE"
+
 # time of window
-# ftrain$DownTime <- floor(ftrain$DownTime / 1000000)
-# ftrain$EventTime <- floor(ftrain$EventTime / 1000000)
+ftrain$DownTime <- floor(ftrain$DownTime / 1000000)
+ftrain$EventTime <- floor(ftrain$EventTime / 1000000)
 ftrain$TotalTime <- (ftrain$EventTime - ftrain$DownTime)
 
 ftrain$Keypress <- gsub("KEYCODE_", "KEY_", ftrain$Keypress)
-
-# fix keys
-ftrain$IsKey <- ftrain$Keypress != "NONE"
 
 write.csv(
   ftrain,
