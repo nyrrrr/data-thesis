@@ -84,7 +84,7 @@ sensortrain$ZnormMagnO <- sensortrain$zG/sensortrain$MagnO
 # norm vector values
 sensortrain$XnormMeanA <- sensortrain$xA - mean(sensortrain$xA)
 sensortrain$YnormMeanA <- sensortrain$yA - mean(sensortrain$yA)
-sensortrain$ZnormMeanA <-sensortrain$zA - mean(sensortrain$zA)
+sensortrain$ZnormMeanA <- sensortrain$zA - mean(sensortrain$zA)
 sensortrain$XnormMeanG <- sensortrain$xG - mean(sensortrain$xG)
 sensortrain$YnormMeanG <- sensortrain$yG - mean(sensortrain$yG)
 sensortrain$ZnormMeanG <- sensortrain$zG - mean(sensortrain$zG)
@@ -144,6 +144,7 @@ for(i in seq_along(sensortrain$xA)) {
     sensortrain$YlpO[i] <- sensortrain$YlpO[i-1] + filterfactor * sensortrain$YdeltaO[i]
     sensortrain$ZlpO[i] <- sensortrain$ZlpO[i-1] + filterfactor * sensortrain$ZdeltaO[i]
   }
+  sensortrain$id[i] <- i
 }
 # magnitude of low pass filtered values
 sensortrain$MagnLpA <- sqrt(sensortrain$XlpA^2 + sensortrain$YlpA^2 + sensortrain$ZlpA^2)
@@ -168,63 +169,82 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   
   # create windows for aggregation over keys
   if(i %% 2 == 0) {
-    tmpRawXWindow <- sensortrain$xA[sensortrain$Timestamp >= ftrain$DownTime[i] &
-                      sensortrain$Timestamp <= ftrain$EventTime[i]]
-    tmpRawYWindow <- sensortrain$xA[sensortrain$Timestamp >= ftrain$DownTime[i] &
-                      sensortrain$Timestamp <= ftrain$EventTime[i]]
-    tmpRawZWindow <- sensortrain$xA[sensortrain$Timestamp >= ftrain$DownTime[i] &
-                      sensortrain$Timestamp <= ftrain$EventTime[i]]
-    tmpRawAWindow <- sensortrain$xA[sensortrain$Timestamp >= ftrain$DownTime[i] &
-                      sensortrain$Timestamp <= ftrain$EventTime[i]]
-    tmpRawBWindow <- sensortrain$xA[sensortrain$Timestamp >= ftrain$DownTime[i] &
-                      sensortrain$Timestamp <= ftrain$EventTime[i]]
-    tmpRawCWindow <- sensortrain$xA[sensortrain$Timestamp >= ftrain$DownTime[i] &
-                      sensortrain$Timestamp <= ftrain$EventTime[i]]
-    tmpRawAlphaWindow <- sensortrain$xA[sensortrain$Timestamp >= ftrain$DownTime[i] &
-                      sensortrain$Timestamp <= ftrain$EventTime[i]]
-    tmpRawBetaWindow <- sensortrain$xA[sensortrain$Timestamp >= ftrain$DownTime[i] &
-                      sensortrain$Timestamp <= ftrain$EventTime[i]]
-    tmpRawGammaWindow <- sensortrain$xA[sensortrain$Timestamp >= ftrain$DownTime[i] &
-                      sensortrain$Timestamp <= ftrain$EventTime[i]]
-    tmpRawMagnAWindow <- sensortrain$xA[sensortrain$Timestamp >= ftrain$DownTime[i] &
-                      sensortrain$Timestamp <= ftrain$EventTime[i]]
-    tmpRawMagnGWindow <- sensortrain$xA[sensortrain$Timestamp >= ftrain$DownTime[i] &
-                      sensortrain$Timestamp <= ftrain$EventTime[i]]
-    tmpRawMagnOWindow <- sensortrain$xA[sensortrain$Timestamp >= ftrain$DownTime[i] &
-                      sensortrain$Timestamp <= ftrain$EventTime[i]]
-    tmpRawSqSumAWindow <- sensortrain$xA[sensortrain$Timestamp >= ftrain$DownTime[i] &
-                      sensortrain$Timestamp <= ftrain$EventTime[i]]
-    tmpRawSqSumGWindow <- sensortrain$xA[sensortrain$Timestamp >= ftrain$DownTime[i] &
-                      sensortrain$Timestamp <= ftrain$EventTime[i]]
-    tmpRawSqSumOWindow <- sensortrain$xA[sensortrain$Timestamp >= ftrain$DownTime[i] &
-                      sensortrain$Timestamp <= ftrain$EventTime[i]]
+    tmpWindowCopy <- sensortrain[sensortrain$Timestamp >= ftrain$DownTime[i] & sensortrain$Timestamp <= ftrain$EventTime[i],]
   } else {
-  # create windows for aggregation over the sensor data between two key presses
-    tmpRawXWindow <- sensortrain$xA[sensortrain$Timestamp < ftrain$DownTime[i] & sensortrain$Timestamp > c(0, ftrain$DownTime)[i]]
-    tmpRawYWindow <- sensortrain$yA[sensortrain$Timestamp < ftrain$DownTime[i] & sensortrain$Timestamp > c(0, ftrain$DownTime)[i]]
-    tmpRawZWindow <- sensortrain$zA[sensortrain$Timestamp < ftrain$DownTime[i] & sensortrain$Timestamp > c(0, ftrain$DownTime)[i]]
-    tmpRawAWindow <- sensortrain$xG[sensortrain$Timestamp < ftrain$DownTime[i] & sensortrain$Timestamp > c(0, ftrain$DownTime)[i]]
-    tmpRawBWindow <- sensortrain$yG[sensortrain$Timestamp < ftrain$DownTime[i] & sensortrain$Timestamp > c(0, ftrain$DownTime)[i]]
-    tmpRawCWindow <- sensortrain$zG[sensortrain$Timestamp < ftrain$DownTime[i] & sensortrain$Timestamp > c(0, ftrain$DownTime)[i]]
-    tmpRawAlphaWindow <- sensortrain$alpha[sensortrain$Timestamp < ftrain$DownTime[i] & sensortrain$Timestamp > c(0, ftrain$DownTime)[i]]
-    tmpRawBetaWindow <- sensortrain$beta[sensortrain$Timestamp < ftrain$DownTime[i] & sensortrain$Timestamp > c(0, ftrain$DownTime)[i]]
-    tmpRawGammaWindow <- sensortrain$gamma[sensortrain$Timestamp < ftrain$DownTime[i] & sensortrain$Timestamp > c(0, ftrain$DownTime)[i]]
-    tmpRawMagnAWindow <- sensortrain$MagnA[sensortrain$Timestamp < ftrain$DownTime[i] & sensortrain$Timestamp > c(0, ftrain$DownTime)[i]]
-    tmpRawMagnGWindow <- sensortrain$MagnG[sensortrain$Timestamp < ftrain$DownTime[i] & sensortrain$Timestamp > c(0, ftrain$DownTime)[i]]
-    tmpRawMagnOWindow <- sensortrain$MagnO[sensortrain$Timestamp < ftrain$DownTime[i] & sensortrain$Timestamp > c(0, ftrain$DownTime)[i]]
-    tmpRawSqSumAWindow <- sensortrain$SqSumA[sensortrain$Timestamp < ftrain$DownTime[i] & sensortrain$Timestamp > c(0, ftrain$DownTime)[i]]
-    tmpRawSqSumGWindow <- sensortrain$SqSumG[sensortrain$Timestamp < ftrain$DownTime[i] & sensortrain$Timestamp > c(0, ftrain$DownTime)[i]]
-    tmpRawSqSumOWindow <- sensortrain$SqSumO[sensortrain$Timestamp < ftrain$DownTime[i] & sensortrain$Timestamp > c(0, ftrain$DownTime)[i]]
-    
+    # create windows for aggregation over the sensor data between two key presses
+    tmpWindowCopy <- sensortrain[sensortrain$Timestamp < ftrain$DownTime[i] & sensortrain$Timestamp > c(0, ftrain$DownTime)[i],]
+  
     #fix label
     ftrain$Keypress[i] <- "NONE"
     
     # fix timestamps
-    if(i == 1) varDownTime[1] <- sensortrain$Timestamp[1]
+    if(i == 1) varDownTime[1] <- tmpWindowCopy$Timestamp[1]
     else varDownTime[i] <- ftrain$EventTime[i-1] + 1
     
     varEventTime[i] <- ftrain$DownTime[i] - 1
   }
+  
+  tmpRawXWindow <- tmpWindowCopy$xA
+  tmpRawYWindow <- tmpWindowCopy$yA
+  tmpRawZWindow <- tmpWindowCopy$zA
+  tmpRawAWindow <- tmpWindowCopy$xG
+  tmpRawBWindow <- tmpWindowCopy$yG
+  tmpRawCWindow <- tmpWindowCopy$zG
+  tmpRawAlphaWindow <- tmpWindowCopy$alpha
+  tmpRawBetaWindow <- tmpWindowCopy$beta
+  tmpRawGammaWindow <- tmpWindowCopy$gamma
+  tmpRawMagnAWindow <- tmpWindowCopy$MagnA
+  tmpRawMagnGWindow <- tmpWindowCopy$MagnG
+  tmpRawMagnOWindow <- tmpWindowCopy$MagnO
+  tmpRawSqSumAWindow <- tmpWindowCopy$SqSumA
+  tmpRawSqSumGWindow <- tmpWindowCopy$SqSumG
+  tmpRawSqSumOWindow <- tmpWindowCopy$SqSumO
+  
+  # tmpPreWindowX <- sensortrain$xA[c(0, ftrain$DownTime[i-1])]
+  
+  if(i == 1) next()
+  else tmpPreWindow <- sensortrain[sensortrain$id < (tmpWindowCopy$id[1]-1) & sensortrain$id < (tmpWindowCopy$id[1]-9),]
+  
+  # some stats of the 9 entries before the actual window
+  ftrain$PreXminA[i] <- min(tmpPreWindow$xA)
+  ftrain$PreYminA[i] <- min(tmpPreWindow$yA)
+  ftrain$PreZminA[i] <- min(tmpPreWindow$zA)
+  ftrain$PreXminG[i] <- min(tmpPreWindow$xG)
+  ftrain$PreYminG[i] <- min(tmpPreWindow$yG)
+  ftrain$PreZminG[i] <- min(tmpPreWindow$zG)
+  ftrain$PreXminO[i] <- min(tmpPreWindow$alpha)
+  ftrain$PreYminO[i] <- min(tmpPreWindow$beta)
+  ftrain$PreZminO[i] <- min(tmpPreWindow$gamma)
+  
+  ftrain$PreXmaxA[i] <- max(tmpPreWindow$xA)
+  ftrain$PreYmaxA[i] <- max(tmpPreWindow$yA)
+  ftrain$PreZmaxA[i] <- max(tmpPreWindow$zA)
+  ftrain$PreXmaxG[i] <- max(tmpPreWindow$xG)
+  ftrain$PreYmaxG[i] <- max(tmpPreWindow$yG)
+  ftrain$PreZmaxG[i] <- max(tmpPreWindow$zG)
+  ftrain$PreXmaxO[i] <- max(tmpPreWindow$alpha)
+  ftrain$PreYmaxO[i] <- max(tmpPreWindow$beta)
+  ftrain$PreZmaxO[i] <- max(tmpPreWindow$gamma)
+  
+  ftrain$PreXdeltaMinA[i] <- min(tmpPreWindow$XdeltaA)
+  ftrain$PreYdeltaMinA[i] <- min(tmpPreWindow$YdeltaA)
+  ftrain$PreZdeltaMinA[i] <- min(tmpPreWindow$ZdeltaA)
+  ftrain$PreXdeltaMinG[i] <- min(tmpPreWindow$XdeltaG)
+  ftrain$PreYdeltaMinG[i] <- min(tmpPreWindow$XdeltaG)
+  ftrain$PreZdeltaMinG[i] <- min(tmpPreWindow$ZdeltaG)
+  ftrain$PreXdeltaMinO[i] <- min(tmpPreWindow$XdeltaO)
+  ftrain$PreYdeltaMinO[i] <- min(tmpPreWindow$YdeltaO)
+  ftrain$PreZdeltaMinO[i] <- min(tmpPreWindow$ZdeltaO)
+  
+  ftrain$PreXdeltaMaxA[i] <- max(tmpPreWindow$XdeltaA)
+  ftrain$PreYdeltaMaxA[i] <- max(tmpPreWindow$YdeltaA)
+  ftrain$PreZdeltaMaxA[i] <- max(tmpPreWindow$ZdeltaA)
+  ftrain$PreXdeltaMaxG[i] <- max(tmpPreWindow$XdeltaG)
+  ftrain$PreYdeltaMaxG[i] <- max(tmpPreWindow$XdeltaG)
+  ftrain$PreZdeltaMaxG[i] <- max(tmpPreWindow$ZdeltaG)
+  ftrain$PreXdeltaMaxO[i] <- max(tmpPreWindow$XdeltaO)
+  ftrain$PreYdeltaMaxO[i] <- max(tmpPreWindow$YdeltaO)
+  ftrain$PreZdeltaMaxO[i] <- max(tmpPreWindow$ZdeltaO)
   
   ftrain$WindowSize[i] <- length(tmpRawXWindow)
   wSize <- ftrain$WindowSize[i]
@@ -368,8 +388,8 @@ ftrain$DownTime <- varDownTime
 ftrain$EventTime <- varEventTime
 
 # time of window
-ftrain$DownTime <- floor(ftrain$DownTime / 1000000)
-ftrain$EventTime <- ftrain$EventTime / 1000000
+# ftrain$DownTime <- floor(ftrain$DownTime / 1000000)
+# ftrain$EventTime <- floor(ftrain$EventTime / 1000000)
 ftrain$TotalTime <- (ftrain$EventTime - ftrain$DownTime)
 
 ftrain$Keypress <- gsub("KEYCODE_", "KEY_", ftrain$Keypress)
