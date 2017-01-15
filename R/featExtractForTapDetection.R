@@ -763,8 +763,6 @@ for (i in 1:nrow(sensortrain)) {
       fKeyTrain$IsKeyProb[wIndex] <- 0
     }
     
-    fKeyTrain$IsKeyProb[wIndex] <- length(tmpWindowCopy$belongsToKey[tmpWindowCopy$belongsToKey == TRUE]) / wSize
-    
     # time of window
     fKeyTrain$TotalTime[wIndex] <- sensortrain$Timestamp[i + wJumper - 1] - sensortrain$Timestamp[i - wJumper - 1]
     
@@ -845,7 +843,6 @@ fKeyTrain$MskewCubInterpO <- 3 * (fKeyTrain$MmeanCubInterpO - fKeyTrain$MmedianC
 fKeyTrain$MskewMeanNormA <- 3 * (fKeyTrain$MmeanMeanNormA - fKeyTrain$MmedianMeanNormA) / fKeyTrain$MsdMeanNormA
 fKeyTrain$MskewMeanNormG <- 3 * (fKeyTrain$MmeanMeanNormG - fKeyTrain$MmedianMeanNormG) / fKeyTrain$MsdMeanNormG
 fKeyTrain$MskewMeanNormO <- 3 * (fKeyTrain$MmeanMeanNormO - fKeyTrain$MmedianMeanNormO) / fKeyTrain$MsdMeanNormO
-
 
 write.csv(
   fsd,
