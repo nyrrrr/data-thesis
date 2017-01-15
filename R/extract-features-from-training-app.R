@@ -94,6 +94,10 @@ sensortrain$XnormMeanO <- sensortrain$alpha - mean(sensortrain$alpha)
 sensortrain$YnormMeanO <- sensortrain$beta - mean(sensortrain$beta)
 sensortrain$ZnormMeanO <- sensortrain$gamma - mean(sensortrain$gamma)
 
+sensortrain$MnormMeanA <- sensortrain$MagnA - mean(sensortrain$MagnA)
+sensortrain$MnormMeanG <- sensortrain$MagnG - mean(sensortrain$MagnG)
+sensortrain$MnormMeanO <- sensortrain$MagnO - mean(sensortrain$MagnO)
+
 # # distance between Value and previous value
 # sensortrain$XdeltaA[1] <- sensortrain$xA[1]
 # sensortrain$YdeltaA[1] <- sensortrain$yA[1]
@@ -203,7 +207,7 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   tmpRawMagnOWindow <- tmpWindowCopy$MagnO
   
   # linear interpolation
-  linInterpN <- 15
+  linInterpN <- 201
   tmpRawXWindowLinInterp <- approx(tmpWindowCopy$Timestamp, tmpRawXWindow, n=linInterpN)$y
   tmpRawYWindowLinInterp <- approx(tmpWindowCopy$Timestamp, tmpRawYWindow, n=linInterpN)$y
   tmpRawZWindowLinInterp <- approx(tmpWindowCopy$Timestamp, tmpRawZWindow, n=linInterpN)$y
@@ -219,18 +223,121 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   
   # polynom (3) interpol
   polInterpN <- 3
-  tmpRawXWindowPolInterp <- predict(lm(tmpRawXWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
-  tmpRawYWindowPolInterp <- predict(lm(tmpRawYWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
-  tmpRawZWindowPolInterp <- predict(lm(tmpRawZWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
-  tmpRawAWindowPolInterp <- predict(lm(tmpRawAWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
-  tmpRawBWindowPolInterp <- predict(lm(tmpRawBWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
-  tmpRawCWindowPolInterp <- predict(lm(tmpRawCWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
-  tmpRawAlphaWindowPolInterp <- predict(lm(tmpRawAlphaWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
-  tmpRawBetaWindowPolInterp <- predict(lm(tmpRawBetaWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
-  tmpRawGammaWindowPolInterp <- predict(lm(tmpRawGammaWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
-  tmpRawMagnAWindowPolInterp <- predict(lm(tmpRawMagnAWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
-  tmpRawMagnGWindowPolInterp <- predict(lm(tmpRawMagnGWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
-  tmpRawMagnOWindowPolInterp <- predict(lm(tmpRawMagnOWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
+  
+  tmpRawPolyMod <- lm(tmpRawXWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN))
+  tmpRawXWindowPolInterp <- predict(tmpRawPolyMod)
+  ftrain$Xd0A[i] <- tmpRawPolyMod$coefficients[1]
+  ftrain$Xd1A[i] <- tmpRawPolyMod$coefficients[2]
+  ftrain$Xd2A[i] <- tmpRawPolyMod$coefficients[3]
+  ftrain$Xd3A[i] <- tmpRawPolyMod$coefficients[4]
+  
+  tmpRawPolyMod <- lm(tmpRawYWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN))
+  tmpRawYWindowPolInterp <- predict(tmpRawPolyMod)
+  ftrain$Yd0A[i] <- tmpRawPolyMod$coefficients[1]
+  ftrain$Yd1A[i] <- tmpRawPolyMod$coefficients[2]
+  ftrain$Yd2A[i] <- tmpRawPolyMod$coefficients[3]
+  ftrain$Yd3A[i] <- tmpRawPolyMod$coefficients[4]
+  
+  tmpRawPolyMod <- lm(tmpRawZWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN))
+  tmpRawZWindowPolInterp <- predict(tmpRawPolyMod)
+  ftrain$Zd0A[i] <- tmpRawPolyMod$coefficients[1]
+  ftrain$Zd1A[i] <- tmpRawPolyMod$coefficients[2]
+  ftrain$Zd2A[i] <- tmpRawPolyMod$coefficients[3]
+  ftrain$Zd3A[i] <- tmpRawPolyMod$coefficients[4]
+  
+  tmpRawPolyMod <- lm(tmpRawYWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN))
+  tmpRawAWindowPolInterp <- predict(tmpRawPolyMod)
+  ftrain$Xd0G[i] <- tmpRawPolyMod$coefficients[1]
+  ftrain$Xd1G[i] <- tmpRawPolyMod$coefficients[2]
+  ftrain$Xd2G[i] <- tmpRawPolyMod$coefficients[3]
+  ftrain$Xd3G[i] <- tmpRawPolyMod$coefficients[4]
+  
+  tmpRawPolyMod <- lm(tmpRawBWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN))
+  tmpRawBWindowPolInterp <- predict(tmpRawPolyMod)
+  ftrain$Yd0G[i] <- tmpRawPolyMod$coefficients[1]
+  ftrain$Yd1G[i] <- tmpRawPolyMod$coefficients[2]
+  ftrain$Yd2G[i] <- tmpRawPolyMod$coefficients[3]
+  ftrain$Yd3G[i] <- tmpRawPolyMod$coefficients[4]
+  
+  tmpRawPolyMod <- lm(tmpRawCWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN))
+  tmpRawCWindowPolInterp <- predict(tmpRawPolyMod)
+  ftrain$Zd0G[i] <- tmpRawPolyMod$coefficients[1]
+  ftrain$Zd1G[i] <- tmpRawPolyMod$coefficients[2]
+  ftrain$Zd2G[i] <- tmpRawPolyMod$coefficients[3]
+  ftrain$Zd3G[i] <- tmpRawPolyMod$coefficients[4]
+  
+  tmpRawPolyMod <- lm(tmpRawAlphaWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN))
+  tmpRawAlphaWindowPolInterp <- predict(tmpRawPolyMod)
+  ftrain$Xd0O[i] <- tmpRawPolyMod$coefficients[1]
+  ftrain$Xd1O[i] <- tmpRawPolyMod$coefficients[2]
+  ftrain$Xd2O[i] <- tmpRawPolyMod$coefficients[3]
+  ftrain$Xd3O[i] <- tmpRawPolyMod$coefficients[4]
+  
+  tmpRawPolyMod <- lm(tmpRawBetaWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN))
+  tmpRawBetaWindowPolInterp <- predict(tmpRawPolyMod)
+  ftrain$Yd0O[i] <- tmpRawPolyMod$coefficients[1]
+  ftrain$Yd1O[i] <- tmpRawPolyMod$coefficients[2]
+  ftrain$Yd2O[i] <- tmpRawPolyMod$coefficients[3]
+  ftrain$Yd3O[i] <- tmpRawPolyMod$coefficients[4]
+  
+  tmpRawPolyMod <- lm(tmpRawGammaWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN))
+  tmpRawGammaWindowPolInterp <- predict(tmpRawPolyMod)
+  ftrain$Zd0O[i] <- tmpRawPolyMod$coefficients[1]
+  ftrain$Zd1O[i] <- tmpRawPolyMod$coefficients[2]
+  ftrain$Zd2O[i] <- tmpRawPolyMod$coefficients[3]
+  ftrain$Zd3O[i] <- tmpRawPolyMod$coefficients[4]
+  
+  tmpRawPolyMod <- lm(tmpRawMagnAWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN))
+  tmpRawMagnAWindowPolInterp <- predict(tmpRawPolyMod)
+  ftrain$Md0A[i] <- tmpRawPolyMod$coefficients[1]
+  ftrain$Md1A[i] <- tmpRawPolyMod$coefficients[2]
+  ftrain$Md2A[i] <- tmpRawPolyMod$coefficients[3]
+  ftrain$Md3A[i] <- tmpRawPolyMod$coefficients[4]
+  
+  tmpRawPolyMod <- lm(tmpRawMagnGWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN))
+  tmpRawMagnGWindowPolInterp <- predict(tmpRawPolyMod)
+  ftrain$Md0G[i] <- tmpRawPolyMod$coefficients[1]
+  ftrain$Md1G[i] <- tmpRawPolyMod$coefficients[2]
+  ftrain$Md2G[i] <- tmpRawPolyMod$coefficients[3]
+  ftrain$Md3G[i] <- tmpRawPolyMod$coefficients[4]
+  
+  tmpRawPolyMod <- lm(tmpRawMagnOWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN))
+  tmpRawMagnOWindowPolInterp <- predict(tmpRawPolyMod)
+  ftrain$Md0O[i] <- tmpRawPolyMod$coefficients[1]
+  ftrain$Md1O[i] <- tmpRawPolyMod$coefficients[2]
+  ftrain$Md2O[i] <- tmpRawPolyMod$coefficients[3]
+  ftrain$Md3O[i] <- tmpRawPolyMod$coefficients[4]
+
+  
+  # cubic spline interpol
+  cubicInterpN <- 201
+  spar <- 0.35
+  tmpRawXWindowCubInterp <- predict(smooth.spline(tmpWindowCopy$Timestamp, tmpRawXWindow, spar=spar), seq(tmpWindowCopy$Timestamp[1], tmpWindowCopy$Timestamp[length(tmpWindowCopy$Timestamp)], length.out=cubicInterpN))$y
+  tmpRawYWindowCubInterp <- predict(smooth.spline(tmpWindowCopy$Timestamp, tmpRawYWindow, spar=spar), seq(tmpWindowCopy$Timestamp[1], tmpWindowCopy$Timestamp[length(tmpWindowCopy$Timestamp)], length.out=cubicInterpN))$y
+  tmpRawZWindowCubInterp <- predict(smooth.spline(tmpWindowCopy$Timestamp, tmpRawZWindow, spar=spar), seq(tmpWindowCopy$Timestamp[1], tmpWindowCopy$Timestamp[length(tmpWindowCopy$Timestamp)], length.out=cubicInterpN))$y
+  tmpRawAWindowCubInterp <- predict(smooth.spline(tmpWindowCopy$Timestamp, tmpRawAWindow, spar=spar), seq(tmpWindowCopy$Timestamp[1], tmpWindowCopy$Timestamp[length(tmpWindowCopy$Timestamp)], length.out=cubicInterpN))$y
+  tmpRawBWindowCubInterp <- predict(smooth.spline(tmpWindowCopy$Timestamp, tmpRawBWindow, spar=spar), seq(tmpWindowCopy$Timestamp[1], tmpWindowCopy$Timestamp[length(tmpWindowCopy$Timestamp)], length.out=cubicInterpN))$y
+  tmpRawCWindowCubInterp <- predict(smooth.spline(tmpWindowCopy$Timestamp, tmpRawCWindow, spar=spar), seq(tmpWindowCopy$Timestamp[1], tmpWindowCopy$Timestamp[length(tmpWindowCopy$Timestamp)], length.out=cubicInterpN))$y
+  tmpRawAlphaWindowCubInterp <- predict(smooth.spline(tmpWindowCopy$Timestamp, tmpRawAlphaWindow, spar=spar), seq(tmpWindowCopy$Timestamp[1], tmpWindowCopy$Timestamp[length(tmpWindowCopy$Timestamp)], length.out=cubicInterpN))$y
+  tmpRawBetaWindowCubInterp <- predict(smooth.spline(tmpWindowCopy$Timestamp, tmpRawBetaWindow, spar=spar), seq(tmpWindowCopy$Timestamp[1], tmpWindowCopy$Timestamp[length(tmpWindowCopy$Timestamp)], length.out=cubicInterpN))$y
+  tmpRawGammaWindowCubInterp <- predict(smooth.spline(tmpWindowCopy$Timestamp, tmpRawGammaWindow, spar=spar), seq(tmpWindowCopy$Timestamp[1], tmpWindowCopy$Timestamp[length(tmpWindowCopy$Timestamp)], length.out=cubicInterpN))$y
+  tmpRawMagnAWindowCubInterp <- predict(smooth.spline(tmpWindowCopy$Timestamp, tmpRawMagnAWindow, spar=spar), seq(tmpWindowCopy$Timestamp[1], tmpWindowCopy$Timestamp[length(tmpWindowCopy$Timestamp)], length.out=cubicInterpN))$y
+  tmpRawMagnGWindowCubInterp <- predict(smooth.spline(tmpWindowCopy$Timestamp, tmpRawMagnGWindow, spar=spar), seq(tmpWindowCopy$Timestamp[1], tmpWindowCopy$Timestamp[length(tmpWindowCopy$Timestamp)], length.out=cubicInterpN))$y
+  tmpRawMagnOWindowCubInterp <- predict(smooth.spline(tmpWindowCopy$Timestamp, tmpRawMagnOWindow, spar=spar), seq(tmpWindowCopy$Timestamp[1], tmpWindowCopy$Timestamp[length(tmpWindowCopy$Timestamp)], length.out=cubicInterpN))$y
+  
+  # mean norm
+  tmpRawXWindowMeanNorm <- tmpWindowCopy$XnormMeanA
+  tmpRawYWindowMeanNorm <- tmpWindowCopy$YnormMeanA
+  tmpRawZWindowMeanNorm <- tmpWindowCopy$ZnormMeanA
+  tmpRawAWindowMeanNorm <- tmpWindowCopy$XnormMeanG
+  tmpRawBWindowMeanNorm <- tmpWindowCopy$YnormMeanG
+  tmpRawCWindowMeanNorm <- tmpWindowCopy$ZnormMeanG
+  tmpRawAlphaWindowMeanNorm <- tmpWindowCopy$XnormMeanO
+  tmpRawBetaWindowMeanNorm <- tmpWindowCopy$YnormMeanO
+  tmpRawGammaWindowMeanNorm <- tmpWindowCopy$ZnormMeanO
+  tmpRawMagnAWindowMeanNorm <- tmpWindowCopy$MnormMeanA
+  tmpRawMagnGWindowMeanNorm <- tmpWindowCopy$MnormMeanG
+  tmpRawMagnOWindowMeanNorm <- tmpWindowCopy$MnormMeanO
   
   # Min Accelerometer
   ftrain$XminA[i] <- min(tmpRawXWindow)
@@ -263,10 +370,34 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   ftrain$YminPolInterpO[i] <- min(tmpRawBetaWindowPolInterp)
   ftrain$ZminPolInterpO[i] <- min(tmpRawGammaWindowPolInterp)
   
+  ftrain$XminCubInterpA[i] <- min(tmpRawXWindowCubInterp)
+  ftrain$YminCubInterpA[i] <- min(tmpRawYWindowCubInterp)
+  ftrain$ZminCubInterpA[i] <- min(tmpRawZWindowCubInterp)
+  ftrain$XminCubInterpG[i] <- min(tmpRawAWindowCubInterp)
+  ftrain$YminCubInterpG[i] <- min(tmpRawBWindowCubInterp)
+  ftrain$ZminCubInterpG[i] <- min(tmpRawCWindowCubInterp)
+  ftrain$XminCubInterpO[i] <- min(tmpRawAlphaWindowCubInterp)
+  ftrain$YminCubInterpO[i] <- min(tmpRawBetaWindowCubInterp)
+  ftrain$ZminCubInterpO[i] <- min(tmpRawGammaWindowCubInterp)
+  
+  ftrain$XminMeanNormA[i] <- min(tmpRawXWindowMeanNorm)
+  ftrain$YminMeanNormA[i] <- min(tmpRawYWindowMeanNorm)
+  ftrain$ZminMeanNormA[i] <- min(tmpRawZWindowMeanNorm)
+  ftrain$XminMeanNormG[i] <- min(tmpRawAWindowMeanNorm)
+  ftrain$YminMeanNormG[i] <- min(tmpRawBWindowMeanNorm)
+  ftrain$ZminMeanNormG[i] <- min(tmpRawCWindowMeanNorm)
+  ftrain$XminMeanNormO[i] <- min(tmpRawAlphaWindowMeanNorm)
+  ftrain$YminMeanNormO[i] <- min(tmpRawBetaWindowMeanNorm)
+  ftrain$ZminMeanNormO[i] <- min(tmpRawGammaWindowMeanNorm)
+  
   #min magnitude
   ftrain$MminA[i] <- min(tmpRawMagnAWindow)
   ftrain$MminG[i] <- min(tmpRawMagnGWindow)
   ftrain$MminO[i] <- min(tmpRawMagnOWindow)
+  
+  ftrain$MminMeanNormA[i] <- min(tmpRawMagnAWindowMeanNorm)
+  ftrain$MminMeanNormG[i] <- min(tmpRawMagnGWindowMeanNorm)
+  ftrain$MminMeanNormO[i] <- min(tmpRawMagnOWindowMeanNorm)
   
   ftrain$MminLinInterpA[i] <- min(tmpRawMagnAWindowLinInterp)
   ftrain$MminLinInterpG[i] <- min(tmpRawMagnGWindowLinInterp)
@@ -275,6 +406,10 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   ftrain$MminPolInterpA[i] <- min(tmpRawMagnAWindowPolInterp)
   ftrain$MminPolInterpG[i] <- min(tmpRawMagnGWindowPolInterp)
   ftrain$MminPolInterpO[i] <- min(tmpRawMagnOWindowPolInterp)
+  
+  ftrain$MminCubInterpA[i] <- min(tmpRawMagnAWindowCubInterp)
+  ftrain$MminCubInterpG[i] <- min(tmpRawMagnGWindowCubInterp)
+  ftrain$MminCubInterpO[i] <- min(tmpRawMagnOWindowCubInterp)
   
   # Max
   ftrain$XmaxA[i] <- max(tmpRawXWindow)
@@ -307,6 +442,26 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   ftrain$YmaxPolInterpO[i] <- max(tmpRawBetaWindowPolInterp)
   ftrain$ZmaxPolInterpO[i] <- max(tmpRawGammaWindowPolInterp)
   
+  ftrain$XmaxCubInterpA[i] <- max(tmpRawXWindowCubInterp)
+  ftrain$YmaxCubInterpA[i] <- max(tmpRawYWindowCubInterp)
+  ftrain$ZmaxCubInterpA[i] <- max(tmpRawZWindowCubInterp)
+  ftrain$XmaxCubInterpG[i] <- max(tmpRawAWindowCubInterp)
+  ftrain$YmaxCubInterpG[i] <- max(tmpRawBWindowCubInterp)
+  ftrain$ZmaxCubInterpG[i] <- max(tmpRawCWindowCubInterp)
+  ftrain$XmaxCubInterpO[i] <- max(tmpRawAlphaWindowCubInterp)
+  ftrain$YmaxCubInterpO[i] <- max(tmpRawBetaWindowCubInterp)
+  ftrain$ZmaxCubInterpO[i] <- max(tmpRawGammaWindowCubInterp)
+  
+  ftrain$XmaxMeanNormA[i] <- max(tmpRawXWindowMeanNorm)
+  ftrain$YmaxMeanNormA[i] <- max(tmpRawYWindowMeanNorm)
+  ftrain$ZmaxMeanNormA[i] <- max(tmpRawZWindowMeanNorm)
+  ftrain$XmaxMeanNormG[i] <- max(tmpRawAWindowMeanNorm)
+  ftrain$YmaxMeanNormG[i] <- max(tmpRawBWindowMeanNorm)
+  ftrain$ZmaxMeanNormG[i] <- max(tmpRawCWindowMeanNorm)
+  ftrain$XmaxMeanNormO[i] <- max(tmpRawAlphaWindowMeanNorm)
+  ftrain$YmaxMeanNormO[i] <- max(tmpRawBetaWindowMeanNorm)
+  ftrain$ZmaxMeanNormO[i] <- max(tmpRawGammaWindowMeanNorm)
+  
   #max magnitude
   ftrain$MmaxA[i] <- max(tmpRawMagnAWindow)
   ftrain$MmaxG[i] <- max(tmpRawMagnGWindow)
@@ -319,6 +474,14 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   ftrain$MmaxPolInterpA[i] <- max(tmpRawMagnAWindowPolInterp)
   ftrain$MmaxPolInterpG[i] <- max(tmpRawMagnGWindowPolInterp)
   ftrain$MmaxPolInterpO[i] <- max(tmpRawMagnOWindowPolInterp)
+  
+  ftrain$MmaxCubInterpA[i] <- max(tmpRawMagnAWindowCubInterp)
+  ftrain$MmaxCubInterpG[i] <- max(tmpRawMagnGWindowCubInterp)
+  ftrain$MmaxCubInterpO[i] <- max(tmpRawMagnOWindowCubInterp)
+  
+  ftrain$MmaxMeanNormA[i] <- max(tmpRawMagnAWindowMeanNorm)
+  ftrain$MmaxMeanNormG[i] <- max(tmpRawMagnGWindowMeanNorm)
+  ftrain$MmaxMeanNormO[i] <- max(tmpRawMagnOWindowMeanNorm)
   
   # Mean
   ftrain$XmeanA[i] <- mean(tmpRawXWindow)
@@ -351,6 +514,26 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   ftrain$YmeanPolInterpO[i] <- mean(tmpRawBetaWindowPolInterp)
   ftrain$ZmeanPolInterpO[i] <- mean(tmpRawGammaWindowPolInterp)
   
+  ftrain$XmeanCubInterpA[i] <- mean(tmpRawXWindowCubInterp)
+  ftrain$YmeanCubInterpA[i] <- mean(tmpRawYWindowCubInterp)
+  ftrain$ZmeanCubInterpA[i] <- mean(tmpRawZWindowCubInterp)
+  ftrain$XmeanCubInterpG[i] <- mean(tmpRawAWindowCubInterp)
+  ftrain$YmeanCubInterpG[i] <- mean(tmpRawBWindowCubInterp)
+  ftrain$ZmeanCubInterpG[i] <- mean(tmpRawCWindowCubInterp)
+  ftrain$XmeanCubInterpO[i] <- mean(tmpRawAlphaWindowCubInterp)
+  ftrain$YmeanCubInterpO[i] <- mean(tmpRawBetaWindowCubInterp)
+  ftrain$ZmeanCubInterpO[i] <- mean(tmpRawGammaWindowCubInterp)
+  
+  ftrain$XmeanMeanNormA[i] <- mean(tmpRawXWindowMeanNorm)
+  ftrain$YmeanMeanNormA[i] <- mean(tmpRawYWindowMeanNorm)
+  ftrain$ZmeanMeanNormA[i] <- mean(tmpRawZWindowMeanNorm)
+  ftrain$XmeanMeanNormG[i] <- mean(tmpRawAWindowMeanNorm)
+  ftrain$YmeanMeanNormG[i] <- mean(tmpRawBWindowMeanNorm)
+  ftrain$ZmeanMeanNormG[i] <- mean(tmpRawCWindowMeanNorm)
+  ftrain$XmeanMeanNormO[i] <- mean(tmpRawAlphaWindowMeanNorm)
+  ftrain$YmeanMeanNormO[i] <- mean(tmpRawBetaWindowMeanNorm)
+  ftrain$ZmeanMeanNormO[i] <- mean(tmpRawGammaWindowMeanNorm)
+  
   # mean magn
   ftrain$MmeanA[i] <- mean(tmpRawMagnAWindow)
   ftrain$MmeanG[i] <- mean(tmpRawMagnGWindow)
@@ -363,6 +546,14 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   ftrain$MmeanPolInterpA[i] <- mean(tmpRawMagnAWindowPolInterp)
   ftrain$MmeanPolInterpG[i] <- mean(tmpRawMagnGWindowPolInterp)
   ftrain$MmeanPolInterpO[i] <- mean(tmpRawMagnOWindowPolInterp)
+  
+  ftrain$MmeanCubInterpA[i] <- mean(tmpRawMagnAWindowCubInterp)
+  ftrain$MmeanCubInterpG[i] <- mean(tmpRawMagnGWindowCubInterp)
+  ftrain$MmeanCubInterpO[i] <- mean(tmpRawMagnOWindowCubInterp)
+  
+  ftrain$MmeanMeanNormA[i] <- mean(tmpRawMagnAWindowMeanNorm)
+  ftrain$MmeanMeanNormG[i] <- mean(tmpRawMagnGWindowMeanNorm)
+  ftrain$MmeanMeanNormO[i] <- mean(tmpRawMagnOWindowMeanNorm)
   
   # Median
   ftrain$XmedianA[i] <- median(tmpRawXWindow)
@@ -395,6 +586,26 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   ftrain$YmedianPolInterpO[i] <- median(tmpRawBetaWindowPolInterp)
   ftrain$ZmedianPolInterpO[i] <- median(tmpRawGammaWindowPolInterp)
   
+  ftrain$XmedianCubInterpA[i] <- median(tmpRawXWindowCubInterp)
+  ftrain$YmedianCubInterpA[i] <- median(tmpRawYWindowCubInterp)
+  ftrain$ZmedianCubInterpA[i] <- median(tmpRawZWindowCubInterp)
+  ftrain$XmedianCubInterpG[i] <- median(tmpRawAWindowCubInterp)
+  ftrain$YmedianCubInterpG[i] <- median(tmpRawBWindowCubInterp)
+  ftrain$ZmedianCubInterpG[i] <- median(tmpRawCWindowCubInterp)
+  ftrain$XmedianCubInterpO[i] <- median(tmpRawAlphaWindowCubInterp)
+  ftrain$YmedianCubInterpO[i] <- median(tmpRawBetaWindowCubInterp)
+  ftrain$ZmedianCubInterpO[i] <- median(tmpRawGammaWindowCubInterp)
+  
+  ftrain$XmedianMeanNormA[i] <- median(tmpRawXWindowMeanNorm)
+  ftrain$YmedianMeanNormA[i] <- median(tmpRawYWindowMeanNorm)
+  ftrain$ZmedianMeanNormA[i] <- median(tmpRawZWindowMeanNorm)
+  ftrain$XmedianMeanNormG[i] <- median(tmpRawAWindowMeanNorm)
+  ftrain$YmedianMeanNormG[i] <- median(tmpRawBWindowMeanNorm)
+  ftrain$ZmedianMeanNormG[i] <- median(tmpRawCWindowMeanNorm)
+  ftrain$XmedianMeanNormO[i] <- median(tmpRawAlphaWindowMeanNorm)
+  ftrain$YmedianMeanNormO[i] <- median(tmpRawBetaWindowMeanNorm)
+  ftrain$ZmedianMeanNormO[i] <- median(tmpRawGammaWindowMeanNorm)
+  
   # median magn
   ftrain$MmedianA[i] <- median(tmpRawMagnAWindow)
   ftrain$MmedianG[i] <- median(tmpRawMagnGWindow)
@@ -407,6 +618,14 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   ftrain$MmedianPolInterpA[i] <- median(tmpRawMagnAWindowPolInterp)
   ftrain$MmedianPolInterpG[i] <- median(tmpRawMagnGWindowPolInterp)
   ftrain$MmedianPolInterpO[i] <- median(tmpRawMagnOWindowPolInterp)
+  
+  ftrain$MmedianCubInterpA[i] <- median(tmpRawMagnAWindowCubInterp)
+  ftrain$MmedianCubInterpG[i] <- median(tmpRawMagnGWindowCubInterp)
+  ftrain$MmedianCubInterpO[i] <- median(tmpRawMagnOWindowCubInterp)
+  
+  ftrain$MmedianMeanNormA[i] <- median(tmpRawMagnAWindowMeanNorm)
+  ftrain$MmedianMeanNormG[i] <- median(tmpRawMagnGWindowMeanNorm)
+  ftrain$MmedianMeanNormO[i] <- median(tmpRawMagnOWindowMeanNorm)
   
   # Standard Deviation
   ftrain$XsdA[i] <- sd(tmpRawXWindow)
@@ -439,6 +658,26 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   ftrain$YsdPolInterpO[i] <- sd(tmpRawBetaWindowPolInterp)
   ftrain$ZsdPolInterpO[i] <- sd(tmpRawGammaWindowPolInterp)
   
+  ftrain$XsdCubInterpA[i] <- sd(tmpRawXWindowCubInterp)
+  ftrain$YsdCubInterpA[i] <- sd(tmpRawYWindowCubInterp)
+  ftrain$ZsdCubInterpA[i] <- sd(tmpRawZWindowCubInterp)
+  ftrain$XsdCubInterpG[i] <- sd(tmpRawAWindowCubInterp)
+  ftrain$YsdCubInterpG[i] <- sd(tmpRawBWindowCubInterp)
+  ftrain$ZsdCubInterpG[i] <- sd(tmpRawCWindowCubInterp)
+  ftrain$XsdCubInterpO[i] <- sd(tmpRawAlphaWindowCubInterp)
+  ftrain$YsdCubInterpO[i] <- sd(tmpRawBetaWindowCubInterp)
+  ftrain$ZsdCubInterpO[i] <- sd(tmpRawGammaWindowCubInterp)
+  
+  ftrain$XsdMeanNormA[i] <- sd(tmpRawXWindowMeanNorm)
+  ftrain$YsdMeanNormA[i] <- sd(tmpRawYWindowMeanNorm)
+  ftrain$ZsdMeanNormA[i] <- sd(tmpRawZWindowMeanNorm)
+  ftrain$XsdMeanNormG[i] <- sd(tmpRawAWindowMeanNorm)
+  ftrain$YsdMeanNormG[i] <- sd(tmpRawBWindowMeanNorm)
+  ftrain$ZsdMeanNormG[i] <- sd(tmpRawCWindowMeanNorm)
+  ftrain$XsdMeanNormO[i] <- sd(tmpRawAlphaWindowMeanNorm)
+  ftrain$YsdMeanNormO[i] <- sd(tmpRawBetaWindowMeanNorm)
+  ftrain$ZsdMeanNormO[i] <- sd(tmpRawGammaWindowMeanNorm)
+  
   #sd magn
   ftrain$MsdA[i] <- sd(tmpRawMagnAWindow)
   ftrain$MsdG[i] <- sd(tmpRawMagnGWindow)
@@ -452,6 +691,14 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   ftrain$MsdPolInterpG[i] <- sd(tmpRawMagnGWindowPolInterp)
   ftrain$MsdPolInterpO[i] <- sd(tmpRawMagnOWindowPolInterp)
   
+  ftrain$MsdCubInterpA[i] <- sd(tmpRawMagnAWindowCubInterp)
+  ftrain$MsdCubInterpG[i] <- sd(tmpRawMagnGWindowCubInterp)
+  ftrain$MsdCubInterpO[i] <- sd(tmpRawMagnOWindowCubInterp)
+  
+  ftrain$MsdMeanNormA[i] <- sd(tmpRawMagnAWindowMeanNorm)
+  ftrain$MsdMeanNormG[i] <- sd(tmpRawMagnGWindowMeanNorm)
+  ftrain$MsdMeanNormO[i] <- sd(tmpRawMagnOWindowMeanNorm)
+  
   # Variance
   ftrain$XvarA[i] <- var(tmpRawXWindow)
   ftrain$YvarA[i] <- var(tmpRawYWindow)
@@ -462,6 +709,16 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   ftrain$XvarO[i] <- var(tmpRawAlphaWindow)
   ftrain$YvarO[i] <- var(tmpRawBetaWindow)
   ftrain$ZvarO[i] <- var(tmpRawGammaWindow)
+  
+  ftrain$XvarMeanNormA[i] <- var(tmpRawXWindowMeanNorm)
+  ftrain$YvarMeanNormA[i] <- var(tmpRawYWindowMeanNorm)
+  ftrain$ZvarMeanNormA[i] <- var(tmpRawZWindowMeanNorm)
+  ftrain$XvarMeanNormG[i] <- var(tmpRawAWindowMeanNorm)
+  ftrain$YvarMeanNormG[i] <- var(tmpRawBWindowMeanNorm)
+  ftrain$ZvarMeanNormG[i] <- var(tmpRawCWindowMeanNorm)
+  ftrain$XvarMeanNormO[i] <- var(tmpRawAlphaWindowMeanNorm)
+  ftrain$YvarMeanNormO[i] <- var(tmpRawBetaWindowMeanNorm)
+  ftrain$ZvarMeanNormO[i] <- var(tmpRawGammaWindowMeanNorm)
   
   ftrain$XvarLinInterpA[i] <- var(tmpRawXWindowLinInterp)
   ftrain$YvarLinInterpA[i] <- var(tmpRawYWindowLinInterp)
@@ -483,6 +740,16 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   ftrain$YvarPolInterpO[i] <- var(tmpRawBetaWindowPolInterp)
   ftrain$ZvarPolInterpO[i] <- var(tmpRawGammaWindowPolInterp)
   
+  ftrain$XvarCubInterpA[i] <- var(tmpRawXWindowCubInterp)
+  ftrain$YvarCubInterpA[i] <- var(tmpRawYWindowCubInterp)
+  ftrain$ZvarCubInterpA[i] <- var(tmpRawZWindowCubInterp)
+  ftrain$XvarCubInterpG[i] <- var(tmpRawAWindowCubInterp)
+  ftrain$YvarCubInterpG[i] <- var(tmpRawBWindowCubInterp)
+  ftrain$ZvarCubInterpG[i] <- var(tmpRawCWindowCubInterp)
+  ftrain$XvarCubInterpO[i] <- var(tmpRawAlphaWindowCubInterp)
+  ftrain$YvarCubInterpO[i] <- var(tmpRawBetaWindowCubInterp)
+  ftrain$ZvarCubInterpO[i] <- var(tmpRawGammaWindowCubInterp)
+  
   #var magn
   ftrain$MvarA[i] <- var(tmpRawMagnAWindow)
   ftrain$MvarG[i] <- var(tmpRawMagnGWindow)
@@ -496,6 +763,14 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   ftrain$MvarPolInterpG[i] <- var(tmpRawMagnGWindowPolInterp)
   ftrain$MvarPolInterpO[i] <- var(tmpRawMagnOWindowPolInterp)
   
+  ftrain$MvarCubInterpA[i] <- var(tmpRawMagnAWindowCubInterp)
+  ftrain$MvarCubInterpG[i] <- var(tmpRawMagnGWindowCubInterp)
+  ftrain$MvarCubInterpO[i] <- var(tmpRawMagnOWindowCubInterp)
+  
+  ftrain$MvarMeanNormA[i] <- var(tmpRawMagnAWindowMeanNorm)
+  ftrain$MvarMeanNormG[i] <- var(tmpRawMagnGWindowMeanNorm)
+  ftrain$MvarMeanNormO[i] <- var(tmpRawMagnOWindowMeanNorm)
+  
   # RMS  Accelerometer
   ftrain$XrmsA[i] <- sqrt(sum((tmpRawXWindow) ^ 2) / wSize)
   ftrain$YrmsA[i] <- sqrt(sum((tmpRawYWindow) ^ 2) / wSize)
@@ -506,6 +781,16 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   ftrain$XrmsO[i] <- sqrt(sum((tmpRawAlphaWindow) ^ 2) / wSize)
   ftrain$YrmsO[i] <- sqrt(sum((tmpRawBetaWindow) ^ 2) / wSize)
   ftrain$ZrmsO[i] <- sqrt(sum((tmpRawGammaWindow) ^ 2) / wSize)
+  
+  ftrain$XrmsMeanNormA[i] <- sqrt(sum(((tmpRawXWindowMeanNorm) ^ 2)) / wSize)
+  ftrain$YrmsMeanNormA[i] <- sqrt(sum(((tmpRawYWindowMeanNorm) ^ 2)) / wSize)
+  ftrain$ZrmsMeanNormA[i] <- sqrt(sum(((tmpRawZWindowMeanNorm) ^ 2)) / wSize)
+  ftrain$XrmsMeanNormG[i] <- sqrt(sum(((tmpRawAWindowMeanNorm) ^ 2)) / wSize)
+  ftrain$YrmsMeanNormG[i] <- sqrt(sum(((tmpRawBWindowMeanNorm) ^ 2)) / wSize)
+  ftrain$ZrmsMeanNormG[i] <- sqrt(sum(((tmpRawCWindowMeanNorm) ^ 2)) / wSize)
+  ftrain$XrmsMeanNormO[i] <- sqrt(sum(((tmpRawAlphaWindowMeanNorm) ^ 2)) / wSize)
+  ftrain$YrmsMeanNormO[i] <- sqrt(sum(((tmpRawBetaWindowMeanNorm) ^ 2)) / wSize)
+  ftrain$ZrmsMeanNormO[i] <- sqrt(sum(((tmpRawGammaWindowMeanNorm) ^ 2)) / wSize)
   
   ftrain$XrmsLinInterpA[i] <- sqrt(sum((tmpRawXWindowLinInterp) ^ 2) / wSize)
   ftrain$YrmsLinInterpA[i] <- sqrt(sum((tmpRawYWindowLinInterp) ^ 2) / wSize)
@@ -527,6 +812,16 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   ftrain$YrmsPolInterpO[i] <- sqrt(sum((tmpRawBetaWindowPolInterp) ^ 2) / wSize)
   ftrain$ZrmsPolInterpO[i] <- sqrt(sum((tmpRawGammaWindowPolInterp) ^ 2) / wSize)
   
+  ftrain$XrmsCubInterpA[i] <- sqrt(sum((tmpRawXWindowCubInterp) ^ 2) / wSize)
+  ftrain$YrmsCubInterpA[i] <- sqrt(sum((tmpRawYWindowCubInterp) ^ 2) / wSize)
+  ftrain$ZrmsCubInterpA[i] <- sqrt(sum((tmpRawZWindowCubInterp) ^ 2) / wSize)
+  ftrain$XrmsCubInterpG[i] <- sqrt(sum((tmpRawAWindowCubInterp) ^ 2) / wSize)
+  ftrain$YrmsCubInterpG[i] <- sqrt(sum((tmpRawBWindowCubInterp) ^ 2) / wSize)
+  ftrain$ZrmsCubInterpG[i] <- sqrt(sum((tmpRawCWindowCubInterp) ^ 2) / wSize)
+  ftrain$XrmsCubInterpO[i] <- sqrt(sum((tmpRawAlphaWindowCubInterp) ^ 2) / wSize)
+  ftrain$YrmsCubInterpO[i] <- sqrt(sum((tmpRawBetaWindowCubInterp) ^ 2) / wSize)
+  ftrain$ZrmsCubInterpO[i] <- sqrt(sum((tmpRawGammaWindowCubInterp) ^ 2) / wSize)
+  
   # Root Mean Square of the magnitude
   ftrain$MagnRmsA[i] <- sqrt((sum((tmpRawMagnAWindow) ^ 2)) / wSize)
   ftrain$MagnRmsG[i] <- sqrt((sum((tmpRawMagnGWindow) ^ 2)) / wSize)
@@ -539,6 +834,14 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   ftrain$MagnRmsPolInterpA[i] <- sqrt((sum((tmpRawMagnAWindowPolInterp) ^ 2)) / wSize)
   ftrain$MagnRmsPolInterpG[i] <- sqrt((sum((tmpRawMagnGWindowPolInterp) ^ 2)) / wSize)
   ftrain$MagnRmsPolInterpO[i] <- sqrt((sum((tmpRawMagnOWindowPolInterp) ^ 2)) / wSize)
+  
+  ftrain$MagnRmsCubInterpA[i] <- sqrt((sum((tmpRawMagnAWindowCubInterp) ^ 2)) / wSize)
+  ftrain$MagnRmsCubInterpG[i] <- sqrt((sum((tmpRawMagnGWindowCubInterp) ^ 2)) / wSize)
+  ftrain$MagnRmsCubInterpO[i] <- sqrt((sum((tmpRawMagnOWindowCubInterp) ^ 2)) / wSize)
+  
+  ftrain$MrmsMeanNormA[i] <- sqrt(sum(((tmpRawMagnAWindowMeanNorm) ^ 2)) / wSize)
+  ftrain$MrmsMeanNormG[i] <- sqrt(sum(((tmpRawMagnGWindowMeanNorm) ^ 2)) / wSize)
+  ftrain$MrmsMeanNormO[i] <- sqrt(sum(((tmpRawMagnOWindowMeanNorm) ^ 2)) / wSize)
 }
 
 # Skewness 
@@ -572,6 +875,26 @@ ftrain$XskewPolInterpO <- 3 * (ftrain$XmeanPolInterpO - ftrain$XmedianPolInterpO
 ftrain$YskewPolInterpO <- 3 * (ftrain$YmeanPolInterpO - ftrain$YmedianPolInterpO) / ftrain$YsdPolInterpO
 ftrain$ZskewPolInterpO <- 3 * (ftrain$ZmeanPolInterpO - ftrain$ZmedianPolInterpO) / ftrain$ZsdPolInterpO
 
+ftrain$XskewCubInterpA <- 3 * (ftrain$XmeanCubInterpA - ftrain$XmedianCubInterpA) / ftrain$XsdCubInterpA
+ftrain$YskewCubInterpA <- 3 * (ftrain$YmeanCubInterpA - ftrain$YmedianCubInterpA) / ftrain$YsdCubInterpA
+ftrain$ZskewCubInterpA <- 3 * (ftrain$ZmeanCubInterpA - ftrain$ZmedianCubInterpA) / ftrain$ZsdCubInterpA
+ftrain$XskewCubInterpG <- 3 * (ftrain$XmeanCubInterpG - ftrain$XmedianCubInterpG) / ftrain$XsdCubInterpG
+ftrain$YskewCubInterpG <- 3 * (ftrain$YmeanCubInterpG - ftrain$YmedianCubInterpG) / ftrain$YsdCubInterpG
+ftrain$ZskewCubInterpG <- 3 * (ftrain$ZmeanCubInterpG - ftrain$ZmedianCubInterpG) / ftrain$ZsdCubInterpG
+ftrain$XskewCubInterpO <- 3 * (ftrain$XmeanCubInterpO - ftrain$XmedianCubInterpO) / ftrain$XsdCubInterpO
+ftrain$YskewCubInterpO <- 3 * (ftrain$YmeanCubInterpO - ftrain$YmedianCubInterpO) / ftrain$YsdCubInterpO
+ftrain$ZskewCubInterpO <- 3 * (ftrain$ZmeanCubInterpO - ftrain$ZmedianCubInterpO) / ftrain$ZsdCubInterpO
+
+ftrain$XskewMeanNormA <- 3 * (ftrain$XmeanMeanNormA - ftrain$XmedianMeanNormA) / ftrain$XsdMeanNormA
+ftrain$YskewMeanNormA <- 3 * (ftrain$YmeanMeanNormA - ftrain$YmedianMeanNormA) / ftrain$YsdMeanNormA
+ftrain$ZskewMeanNormA <- 3 * (ftrain$ZmeanMeanNormA - ftrain$ZmedianMeanNormA) / ftrain$ZsdMeanNormA
+ftrain$XskewMeanNormG <- 3 * (ftrain$XmeanMeanNormG - ftrain$XmedianMeanNormG) / ftrain$XsdMeanNormG
+ftrain$YskewMeanNormG <- 3 * (ftrain$YmeanMeanNormG - ftrain$YmedianMeanNormG) / ftrain$YsdMeanNormG
+ftrain$ZskewMeanNormG <- 3 * (ftrain$ZmeanMeanNormG - ftrain$ZmedianMeanNormG) / ftrain$ZsdMeanNormG
+ftrain$XskewMeanNormO <- 3 * (ftrain$XmeanMeanNormO - ftrain$XmedianMeanNormO) / ftrain$XsdMeanNormO
+ftrain$YskewMeanNormO <- 3 * (ftrain$YmeanMeanNormO - ftrain$YmedianMeanNormO) / ftrain$YsdMeanNormO
+ftrain$ZskewMeanNormO <- 3 * (ftrain$ZmeanMeanNormO - ftrain$ZmedianMeanNormO) / ftrain$ZsdMeanNormO
+
 # skewness magn
 ftrain$MskewA <- 3 * (ftrain$MmeanA - ftrain$MmedianA) / ftrain$MsdA
 ftrain$MskewG <- 3 * (ftrain$MmeanG - ftrain$MmedianG) / ftrain$MsdG
@@ -584,6 +907,14 @@ ftrain$MskewLinInterpO <- 3 * (ftrain$MmeanLinInterpO - ftrain$MmedianLinInterpO
 ftrain$MskewPolInterpA <- 3 * (ftrain$MmeanPolInterpA - ftrain$MmedianPolInterpA) / ftrain$MsdPolInterpA
 ftrain$MskewPolInterpG <- 3 * (ftrain$MmeanPolInterpG - ftrain$MmedianPolInterpG) / ftrain$MsdPolInterpG
 ftrain$MskewPolInterpO <- 3 * (ftrain$MmeanPolInterpO - ftrain$MmedianPolInterpO) / ftrain$MsdPolInterpO
+
+ftrain$MskewCubInterpA <- 3 * (ftrain$MmeanCubInterpA - ftrain$MmedianCubInterpA) / ftrain$MsdCubInterpA
+ftrain$MskewCubInterpG <- 3 * (ftrain$MmeanCubInterpG - ftrain$MmedianCubInterpG) / ftrain$MsdCubInterpG
+ftrain$MskewCubInterpO <- 3 * (ftrain$MmeanCubInterpO - ftrain$MmedianCubInterpO) / ftrain$MsdCubInterpO
+
+ftrain$MskewMeanNormA <- 3 * (ftrain$MmeanMeanNormA - ftrain$MmedianMeanNormA) / ftrain$MsdMeanNormA
+ftrain$MskewMeanNormG <- 3 * (ftrain$MmeanMeanNormG - ftrain$MmedianMeanNormG) / ftrain$MsdMeanNormG
+ftrain$MskewMeanNormO <- 3 * (ftrain$MmeanMeanNormO - ftrain$MmedianMeanNormO) / ftrain$MsdMeanNormO
 
 #fix timestamps pt. 2
 ftrain$DownTime <- varDownTime
