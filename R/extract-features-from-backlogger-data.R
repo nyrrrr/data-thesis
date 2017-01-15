@@ -1,3 +1,5 @@
+set.seed(123)
+
 rawdata <-
   read.csv(
     "C:\\git\\data-thesis\\R\\datasets\\transferred-17011020-victim-data.csv",
@@ -151,22 +153,30 @@ rawdata$MnormMeanO <- rawdata$MagnO - mean(rawdata$MagnO)
 
 # ------ DEBUG ONLY
 
-keytrain <-
+keytest <-
   read.csv(
     "C:\\git\\data-thesis\\R\\datasets\\17011020-key-dataset-test-raw.csv",
     header = TRUE
   )
-keytrain$DownTime <- keytrain$DownTime / 1000000
-keytrain$EventTime <- keytrain$EventTime / 1000000
+keytest$DownTime <- keytest$DownTime
+keytest$EventTime <- keytest$EventTime
 
 rawdata$belongsToKey <- FALSE;
 
-for (i in seq_along(keytrain$DownTime)) {
-  for (j in rawdata$Timestamp[rawdata$Timestamp >= (keytrain$DownTime[i] * 1000000) &
-                              rawdata$Timestamp <= (keytrain$EventTime[i] * 1000000)]) {
+keytest$id <- seq_along(keytest$DownTime)
+for (i in seq_along(keytest$DownTime)) {
+  for (j in rawdata$Timestamp[rawdata$Timestamp >= (keytest$DownTime[i]) &
+                              rawdata$Timestamp <= (keytest$EventTime[i])]) {
     rawdata$belongsToKey[rawdata$Timestamp == j] <- TRUE
   }
+  keytest$WindowSize[i] <- length(rawdata$Timestamp[rawdata$Timestamp >= keytest$DownTime[i] & rawdata$Timestamp <= keytest$EventTime[i]])
 }
+
+write.csv(
+  keytest,
+  "C:\\git\\data-thesis\\R\\datasets\\17011020-key-dataset-test-raw.csv",
+  row.names = FALSE
+)
 
 # ------ END DEBUG
 
@@ -178,13 +188,14 @@ write.csv(rawdata,
 
 
 # window size
-wSize <- read.csv(
-  "C:\\git\\data-thesis\\R\\datasets\\17011020-dataset-training.csv",
-  header = TRUE
-)
-wSize <- ceiling(median(wSize$WindowSize))
+# wSize <- read.csv(
+#   "C:\\git\\data-thesis\\R\\datasets\\17011020-dataset-training.csv",
+#   header = TRUE
+# )
+# wSize <- ceiling(median(wSize$WindowSize))
 # wSize <- ceiling(mean(wSize$WindowSize))
 # wSize <- ceiling(median(wSize$WindowSize[wSize$IsKey == TRUE]))
+wSize <- 61
 if(wSize %% 2 == 0) wSize <- wSize - 1
 # feature data set;
 fsd <- NULL
@@ -852,7 +863,15 @@ for (i in 1:nrow(rawdata)) {
     fsd$MrmsMeanNormG[wIndex] <- sqrt(sum(((tmpRawMagnGWindowMeanNorm) ^ 2)) / wSize)
     fsd$MrmsMeanNormO[wIndex] <- sqrt(sum(((tmpRawMagnOWindowMeanNorm) ^ 2)) / wSize)
     
-    fsd$IsKeyProb[wIndex] <- length(tmpWindowCopy$belongsToKey[tmpWindowCopy$belongsToKey == TRUE]) / wSize
+    # fsd$IsKeyProb[wIndex] <- length(tmpWindowCopy$belongsToKey[tmpWindowCopy$belongsToKey == TRUE]) / wSize
+    
+    keyCount <- length(tmpWindowCopy$belongsToKey[tmpWindowCopy$belongsToKey == TRUE])
+    if(keyCount > 0) {
+      tmpKey <- keytest[keytest$DownTime <= tmpWindowCopy$Timestamp[tmpWindowCopy$belongsToKey == TRUE][1] & keytest$EventTime >= tmpWindowCopy$Timestamp[tmpWindowCopy$belongsToKey == TRUE][1],]
+      fsd$IsKeyProb[wIndex] <- keyCount/tmpKey$WindowSize
+    } else {
+      fsd$IsKeyProb[wIndex] <- 0
+    }
     
     # time of window
     fsd$TotalTime[wIndex] <- rawdata$Timestamp[i + wJumper - 1] - rawdata$Timestamp[i - wJumper - 1]
@@ -937,6 +956,6 @@ fsd$MskewMeanNormO <- 3 * (fsd$MmeanMeanNormO - fsd$MmedianMeanNormO) / fsd$MsdM
 
 write.csv(
   fsd,
-  "C:\\git\\data-thesis\\R\\datasets\\17011020-dataset-test-wsize-median.csv",
+  "C:\\git\\data-thesis\\R\\datasets\\17011020-dataset-test-wsize-median-key-only.csv",
   row.names = FALSE
 )

@@ -1,3 +1,5 @@
+set.seed(123)
+
 sensortrain <-
   read.csv(
     "C:\\git\\data-thesis\\R\\datasets\\17011020-sensor-dataset-training-raw.csv", # 17011417, 17011205, 17011020, 16122802
