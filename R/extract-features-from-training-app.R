@@ -1,19 +1,21 @@
 sensortrain <-
   read.csv(
-    "C:\\git\\data-thesis\\R\\datasets\\17011417-sensor-dataset-training-raw.csv",
+    "C:\\git\\data-thesis\\R\\datasets\\17011020-sensor-dataset-training-raw.csv", # 17011417, 17011205, 17011020, 16122802
     header = TRUE,
     stringsAsFactors=FALSE
   )
 
 keytrain <-
   read.csv(
-    "C:\\git\\data-thesis\\R\\datasets\\17011417-key-dataset-training-raw.csv",
+    "C:\\git\\data-thesis\\R\\datasets\\17011020-key-dataset-training-raw.csv",
     header = TRUE,
     stringsAsFactors=FALSE
   )
 
 options(digits=20)
 # --- preprocessing
+
+sensortrain$id <- seq_along(sensortrain$Timestamp)
 
 # rename vars
 sensortrain$xA <- sensortrain$x
@@ -173,7 +175,7 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   } else {
     # create windows for aggregation over the sensor data between two key presses
     tmpWindowCopy <- sensortrain[sensortrain$Timestamp < ftrain$DownTime[i] & sensortrain$Timestamp > c(0, ftrain$DownTime)[i],]
-  
+    
     #fix label
     ftrain$Keypress[i] <- "NONE"
     
@@ -187,8 +189,6 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   ftrain$WindowSize[i] <- length(tmpWindowCopy$Timestamp)
   wSize <- ftrain$WindowSize[i]
   
-  # tmpWindowCopy <- tmpWindowCopy[,c(4:length(tmpWindowCopy)-1)]
-  
   tmpRawXWindow <- tmpWindowCopy$xA
   tmpRawYWindow <- tmpWindowCopy$yA
   tmpRawZWindow <- tmpWindowCopy$zA
@@ -201,119 +201,36 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   tmpRawMagnAWindow <- tmpWindowCopy$MagnA
   tmpRawMagnGWindow <- tmpWindowCopy$MagnG
   tmpRawMagnOWindow <- tmpWindowCopy$MagnO
-  tmpRawSqSumAWindow <- tmpWindowCopy$SqSumA
-  tmpRawSqSumGWindow <- tmpWindowCopy$SqSumG
-  tmpRawSqSumOWindow <- tmpWindowCopy$SqSumO
   
-  tmpRawXWindowLinInterp <- approx(tmpWindowCopy$xA, tmpWindowCopy$Timestamp, n=14)$x
-  tmpRawYWindowLinInterp <- approx(tmpWindowCopy$yA, tmpWindowCopy$Timestamp, n=14)$x
-  tmpRawZWindowLinInterp <- approx(tmpWindowCopy$zA, tmpWindowCopy$Timestamp, n=14)$x
-  tmpRawAWindowLinInterp <- approx(tmpWindowCopy$xG, tmpWindowCopy$Timestamp, n=14)$x
-  tmpRawBWindowLinInterp <- approx(tmpWindowCopy$yG, tmpWindowCopy$Timestamp, n=14)$x
-  tmpRawCWindowLinInterp <- approx(tmpWindowCopy$zG, tmpWindowCopy$Timestamp, n=14)$x
-  tmpRawAlphaWindowLinInterp <- approx(tmpWindowCopy$alpha, tmpWindowCopy$Timestamp, n=14)$x
-  tmpRawBetaWindowLinInterp <- approx(tmpWindowCopy$beta, tmpWindowCopy$Timestamp, n=14)$x
-  tmpRawGammaWindowLinInterp <- approx(tmpWindowCopy$gamma, tmpWindowCopy$Timestamp, n=14)$x
-  tmpRawMagnAWindowLinInterp <- approx(tmpWindowCopy$MagnA, tmpWindowCopy$Timestamp, n=14)$x
-  tmpRawMagnGWindowLinInterp <- approx(tmpWindowCopy$MagnG, tmpWindowCopy$Timestamp, n=14)$x
-  tmpRawMagnOWindowLinInterp <- approx(tmpWindowCopy$MagnO, tmpWindowCopy$Timestamp, n=14)$x
-  tmpRawSqSumAWindowLinInterp <- approx(tmpWindowCopy$SqSumA, tmpWindowCopy$Timestamp, n=14)$x
-  tmpRawSqSumGWindowLinInterp <- approx(tmpWindowCopy$SqSumG, tmpWindowCopy$Timestamp, n=14)$x
-  tmpRawSqSumOWindowLinInterp <- approx(tmpWindowCopy$SqSumO, tmpWindowCopy$Timestamp, n=14)$x
-
+  # linear interpolation
+  linInterpN <- 15
+  tmpRawXWindowLinInterp <- approx(tmpWindowCopy$Timestamp, tmpRawXWindow, n=linInterpN)$y
+  tmpRawYWindowLinInterp <- approx(tmpWindowCopy$Timestamp, tmpRawYWindow, n=linInterpN)$y
+  tmpRawZWindowLinInterp <- approx(tmpWindowCopy$Timestamp, tmpRawZWindow, n=linInterpN)$y
+  tmpRawAWindowLinInterp <- approx(tmpWindowCopy$Timestamp, tmpRawAWindow, n=linInterpN)$y
+  tmpRawBWindowLinInterp <- approx(tmpWindowCopy$Timestamp, tmpRawBWindow, n=linInterpN)$y
+  tmpRawCWindowLinInterp <- approx(tmpWindowCopy$Timestamp, tmpRawAWindow, n=linInterpN)$y
+  tmpRawAlphaWindowLinInterp <- approx(tmpWindowCopy$Timestamp, tmpRawAlphaWindow, n=linInterpN)$y
+  tmpRawBetaWindowLinInterp <- approx(tmpWindowCopy$Timestamp, tmpRawBetaWindow, n=linInterpN)$y
+  tmpRawGammaWindowLinInterp <- approx(tmpWindowCopy$Timestamp, tmpRawGammaWindow, n=linInterpN)$y
+  tmpRawMagnAWindowLinInterp <- approx(tmpWindowCopy$Timestamp, tmpRawMagnAWindow, n=linInterpN)$y
+  tmpRawMagnGWindowLinInterp <- approx(tmpWindowCopy$Timestamp, tmpRawMagnGWindow, n=linInterpN)$y
+  tmpRawMagnOWindowLinInterp <- approx(tmpWindowCopy$Timestamp, tmpRawMagnOWindow, n=linInterpN)$y
   
-  # # tmpPreWindowX <- sensortrain$xA[c(0, ftrain$DownTime[i-1])]
-  # 
-  # if(i == 1) {
-  #   ftrain$PreXminA[i] <- 0
-  #   ftrain$PreYminA[i] <- 0
-  #   ftrain$PreZminA[i] <- 0
-  #   ftrain$PreXminG[i] <- 0
-  #   ftrain$PreYminG[i] <- 0
-  #   ftrain$PreZminG[i] <- 0
-  #   ftrain$PreXminO[i] <- 0
-  #   ftrain$PreYminO[i] <- 0
-  #   ftrain$PreZminO[i] <- 0
-  #   
-  #   ftrain$PreXmaxA[i] <- 0
-  #   ftrain$PreYmaxA[i] <- 0
-  #   ftrain$PreZmaxA[i] <- 0
-  #   ftrain$PreXmaxG[i] <- 0
-  #   ftrain$PreYmaxG[i] <- 0
-  #   ftrain$PreZmaxG[i] <- 0
-  #   ftrain$PreXmaxO[i] <- 0
-  #   ftrain$PreYmaxO[i] <- 0
-  #   ftrain$PreZmaxO[i] <- 0
-  #   
-  #   ftrain$PreXdeltaMinA[i] <- 0
-  #   ftrain$PreYdeltaMinA[i] <- 0
-  #   ftrain$PreZdeltaMinA[i] <- 0
-  #   ftrain$PreXdeltaMinG[i] <- 0
-  #   ftrain$PreZdeltaMinG[i] <- 0
-  #   ftrain$PreYdeltaMinG[i] <- 0
-  #   ftrain$PreXdeltaMinO[i] <- 0
-  #   ftrain$PreYdeltaMinO[i] <- 0
-  #   ftrain$PreZdeltaMinO[i] <- 0
-  #   
-  #   ftrain$PreXdeltaMaxA[i] <- 0
-  #   ftrain$PreYdeltaMaxA[i] <- 0
-  #   ftrain$PreZdeltaMaxA[i] <- 0
-  #   ftrain$PreXdeltaMaxG[i] <- 0
-  #   ftrain$PreYdeltaMaxG[i] <- 0
-  #   ftrain$PreZdeltaMaxG[i] <- 0
-  #   ftrain$PreXdeltaMaxO[i] <- 0
-  #   ftrain$PreYdeltaMaxO[i] <- 0
-  #   ftrain$PreZdeltaMaxO[i] <- 0
-  # }
-  # else {
-  #   tmpPreWindow <- sensortrain[sensortrain$id < (tmpWindowCopy$id[1]) & sensortrain$id >= (tmpWindowCopy$id[1]-9),]
-  #   
-  #   # some stats of the 9 entries before the actual window
-  #   ftrain$PreXminA[i] <- min(tmpPreWindow$xA)
-  #   ftrain$PreYminA[i] <- min(tmpPreWindow$yA)
-  #   ftrain$PreZminA[i] <- min(tmpPreWindow$zA)
-  #   ftrain$PreXminG[i] <- min(tmpPreWindow$xG)
-  #   ftrain$PreYminG[i] <- min(tmpPreWindow$yG)
-  #   ftrain$PreZminG[i] <- min(tmpPreWindow$zG)
-  #   ftrain$PreXminO[i] <- min(tmpPreWindow$alpha)
-  #   ftrain$PreYminO[i] <- min(tmpPreWindow$beta)
-  #   ftrain$PreZminO[i] <- min(tmpPreWindow$gamma)
-  #   
-  #   ftrain$PreXmaxA[i] <- max(tmpPreWindow$xA)
-  #   ftrain$PreYmaxA[i] <- max(tmpPreWindow$yA)
-  #   ftrain$PreZmaxA[i] <- max(tmpPreWindow$zA)
-  #   ftrain$PreXmaxG[i] <- max(tmpPreWindow$xG)
-  #   ftrain$PreYmaxG[i] <- max(tmpPreWindow$yG)
-  #   ftrain$PreZmaxG[i] <- max(tmpPreWindow$zG)
-  #   ftrain$PreXmaxO[i] <- max(tmpPreWindow$alpha)
-  #   ftrain$PreYmaxO[i] <- max(tmpPreWindow$beta)
-  #   ftrain$PreZmaxO[i] <- max(tmpPreWindow$gamma)
-  #   
-  #   ftrain$PreXdeltaMinA[i] <- min(tmpPreWindow$XdeltaA)
-  #   ftrain$PreYdeltaMinA[i] <- min(tmpPreWindow$YdeltaA)
-  #   ftrain$PreZdeltaMinA[i] <- min(tmpPreWindow$ZdeltaA)
-  #   ftrain$PreXdeltaMinG[i] <- min(tmpPreWindow$XdeltaG)
-  #   ftrain$PreYdeltaMinG[i] <- min(tmpPreWindow$XdeltaG)
-  #   ftrain$PreZdeltaMinG[i] <- min(tmpPreWindow$ZdeltaG)
-  #   ftrain$PreXdeltaMinO[i] <- min(tmpPreWindow$XdeltaO)
-  #   ftrain$PreYdeltaMinO[i] <- min(tmpPreWindow$YdeltaO)
-  #   ftrain$PreZdeltaMinO[i] <- min(tmpPreWindow$ZdeltaO)
-  #   
-  #   ftrain$PreXdeltaMaxA[i] <- max(tmpPreWindow$XdeltaA)
-  #   ftrain$PreYdeltaMaxA[i] <- max(tmpPreWindow$YdeltaA)
-  #   ftrain$PreZdeltaMaxA[i] <- max(tmpPreWindow$ZdeltaA)
-  #   ftrain$PreXdeltaMaxG[i] <- max(tmpPreWindow$XdeltaG)
-  #   ftrain$PreYdeltaMaxG[i] <- max(tmpPreWindow$XdeltaG)
-  #   ftrain$PreZdeltaMaxG[i] <- max(tmpPreWindow$ZdeltaG)
-  #   ftrain$PreXdeltaMaxO[i] <- max(tmpPreWindow$XdeltaO)
-  #   ftrain$PreYdeltaMaxO[i] <- max(tmpPreWindow$YdeltaO)
-  #   ftrain$PreZdeltaMaxO[i] <- max(tmpPreWindow$ZdeltaO)
-  #   
-  #   #sd of SquareSUm of pre window
-  #   ftrain$PreSqSumSdA[i] <- sd(tmpPreWindow$xA^2 + tmpPreWindow$yA^2 + tmpPreWindow$zA^2)
-  #   ftrain$PreSqSumSdG[i] <- sd(tmpPreWindow$xG^2 + tmpPreWindow$yG^2 + tmpPreWindow$zG^2)
-  #   ftrain$PreSqSumSdO[i] <- sd(tmpPreWindow$alpha^2 + tmpPreWindow$beta^2 + tmpPreWindow$gamma^2)
-  # }
+  # polynom (3) interpol
+  polInterpN <- 3
+  tmpRawXWindowPolInterp <- predict(lm(tmpRawXWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
+  tmpRawYWindowPolInterp <- predict(lm(tmpRawYWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
+  tmpRawZWindowPolInterp <- predict(lm(tmpRawZWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
+  tmpRawAWindowPolInterp <- predict(lm(tmpRawAWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
+  tmpRawBWindowPolInterp <- predict(lm(tmpRawBWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
+  tmpRawCWindowPolInterp <- predict(lm(tmpRawCWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
+  tmpRawAlphaWindowPolInterp <- predict(lm(tmpRawAlphaWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
+  tmpRawBetaWindowPolInterp <- predict(lm(tmpRawBetaWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
+  tmpRawGammaWindowPolInterp <- predict(lm(tmpRawGammaWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
+  tmpRawMagnAWindowPolInterp <- predict(lm(tmpRawMagnAWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
+  tmpRawMagnGWindowPolInterp <- predict(lm(tmpRawMagnGWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
+  tmpRawMagnOWindowPolInterp <- predict(lm(tmpRawMagnOWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
   
   # Min Accelerometer
   ftrain$XminA[i] <- min(tmpRawXWindow)
@@ -335,7 +252,17 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   ftrain$XminLinInterpO[i] <- min(tmpRawAlphaWindowLinInterp)
   ftrain$YminLinInterpO[i] <- min(tmpRawBetaWindowLinInterp)
   ftrain$ZminLinInterpO[i] <- min(tmpRawGammaWindowLinInterp)
-
+  
+  ftrain$XminPolInterpA[i] <- min(tmpRawXWindowPolInterp)
+  ftrain$YminPolInterpA[i] <- min(tmpRawYWindowPolInterp)
+  ftrain$ZminPolInterpA[i] <- min(tmpRawZWindowPolInterp)
+  ftrain$XminPolInterpG[i] <- min(tmpRawAWindowPolInterp)
+  ftrain$YminPolInterpG[i] <- min(tmpRawBWindowPolInterp)
+  ftrain$ZminPolInterpG[i] <- min(tmpRawCWindowPolInterp)
+  ftrain$XminPolInterpO[i] <- min(tmpRawAlphaWindowPolInterp)
+  ftrain$YminPolInterpO[i] <- min(tmpRawBetaWindowPolInterp)
+  ftrain$ZminPolInterpO[i] <- min(tmpRawGammaWindowPolInterp)
+  
   #min magnitude
   ftrain$MminA[i] <- min(tmpRawMagnAWindow)
   ftrain$MminG[i] <- min(tmpRawMagnGWindow)
@@ -344,7 +271,11 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   ftrain$MminLinInterpA[i] <- min(tmpRawMagnAWindowLinInterp)
   ftrain$MminLinInterpG[i] <- min(tmpRawMagnGWindowLinInterp)
   ftrain$MminLinInterpO[i] <- min(tmpRawMagnOWindowLinInterp)
-
+  
+  ftrain$MminPolInterpA[i] <- min(tmpRawMagnAWindowPolInterp)
+  ftrain$MminPolInterpG[i] <- min(tmpRawMagnGWindowPolInterp)
+  ftrain$MminPolInterpO[i] <- min(tmpRawMagnOWindowPolInterp)
+  
   # Max
   ftrain$XmaxA[i] <- max(tmpRawXWindow)
   ftrain$YmaxA[i] <- max(tmpRawYWindow)
@@ -365,12 +296,30 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   ftrain$XmaxLinInterpO[i] <- max(tmpRawAlphaWindowLinInterp)
   ftrain$YmaxLinInterpO[i] <- max(tmpRawBetaWindowLinInterp)
   ftrain$ZmaxLinInterpO[i] <- max(tmpRawGammaWindowLinInterp)
-
+  
+  ftrain$XmaxPolInterpA[i] <- max(tmpRawXWindowPolInterp)
+  ftrain$YmaxPolInterpA[i] <- max(tmpRawYWindowPolInterp)
+  ftrain$ZmaxPolInterpA[i] <- max(tmpRawZWindowPolInterp)
+  ftrain$XmaxPolInterpG[i] <- max(tmpRawAWindowPolInterp)
+  ftrain$YmaxPolInterpG[i] <- max(tmpRawBWindowPolInterp)
+  ftrain$ZmaxPolInterpG[i] <- max(tmpRawCWindowPolInterp)
+  ftrain$XmaxPolInterpO[i] <- max(tmpRawAlphaWindowPolInterp)
+  ftrain$YmaxPolInterpO[i] <- max(tmpRawBetaWindowPolInterp)
+  ftrain$ZmaxPolInterpO[i] <- max(tmpRawGammaWindowPolInterp)
+  
   #max magnitude
   ftrain$MmaxA[i] <- max(tmpRawMagnAWindow)
   ftrain$MmaxG[i] <- max(tmpRawMagnGWindow)
   ftrain$MmaxO[i] <- max(tmpRawMagnOWindow)
-
+  
+  ftrain$MmaxLinInterpA[i] <- max(tmpRawMagnAWindowLinInterp)
+  ftrain$MmaxLinInterpG[i] <- max(tmpRawMagnGWindowLinInterp)
+  ftrain$MmaxLinInterpO[i] <- max(tmpRawMagnOWindowLinInterp)
+  
+  ftrain$MmaxPolInterpA[i] <- max(tmpRawMagnAWindowPolInterp)
+  ftrain$MmaxPolInterpG[i] <- max(tmpRawMagnGWindowPolInterp)
+  ftrain$MmaxPolInterpO[i] <- max(tmpRawMagnOWindowPolInterp)
+  
   # Mean
   ftrain$XmeanA[i] <- mean(tmpRawXWindow)
   ftrain$YmeanA[i] <- mean(tmpRawYWindow)
@@ -391,16 +340,30 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   ftrain$XmeanLinInterpO[i] <- mean(tmpRawAlphaWindowLinInterp)
   ftrain$YmeanLinInterpO[i] <- mean(tmpRawBetaWindowLinInterp)
   ftrain$ZmeanLinInterpO[i] <- mean(tmpRawGammaWindowLinInterp)
-
+  
+  ftrain$XmeanPolInterpA[i] <- mean(tmpRawXWindowPolInterp)
+  ftrain$YmeanPolInterpA[i] <- mean(tmpRawYWindowPolInterp)
+  ftrain$ZmeanPolInterpA[i] <- mean(tmpRawZWindowPolInterp)
+  ftrain$XmeanPolInterpG[i] <- mean(tmpRawAWindowPolInterp)
+  ftrain$YmeanPolInterpG[i] <- mean(tmpRawBWindowPolInterp)
+  ftrain$ZmeanPolInterpG[i] <- mean(tmpRawCWindowPolInterp)
+  ftrain$XmeanPolInterpO[i] <- mean(tmpRawAlphaWindowPolInterp)
+  ftrain$YmeanPolInterpO[i] <- mean(tmpRawBetaWindowPolInterp)
+  ftrain$ZmeanPolInterpO[i] <- mean(tmpRawGammaWindowPolInterp)
+  
   # mean magn
   ftrain$MmeanA[i] <- mean(tmpRawMagnAWindow)
   ftrain$MmeanG[i] <- mean(tmpRawMagnGWindow)
   ftrain$MmeanO[i] <- mean(tmpRawMagnOWindow)
   
-  ftrain$MmeanLinInterpA[i] <- mean(tmpRawMagnAWindow)
-  ftrain$MmeanLinInterpG[i] <- mean(tmpRawMagnGWindow)
-  ftrain$MmeanLinInterpO[i] <- mean(tmpRawMagnOWindow)
-
+  ftrain$MmeanLinInterpA[i] <- mean(tmpRawMagnAWindowLinInterp)
+  ftrain$MmeanLinInterpG[i] <- mean(tmpRawMagnGWindowLinInterp)
+  ftrain$MmeanLinInterpO[i] <- mean(tmpRawMagnOWindowLinInterp)
+  
+  ftrain$MmeanPolInterpA[i] <- mean(tmpRawMagnAWindowPolInterp)
+  ftrain$MmeanPolInterpG[i] <- mean(tmpRawMagnGWindowPolInterp)
+  ftrain$MmeanPolInterpO[i] <- mean(tmpRawMagnOWindowPolInterp)
+  
   # Median
   ftrain$XmedianA[i] <- median(tmpRawXWindow)
   ftrain$YmedianA[i] <- median(tmpRawYWindow)
@@ -421,16 +384,30 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   ftrain$XmedianLinInterpO[i] <- median(tmpRawAlphaWindowLinInterp)
   ftrain$YmedianLinInterpO[i] <- median(tmpRawBetaWindowLinInterp)
   ftrain$ZmedianLinInterpO[i] <- median(tmpRawGammaWindowLinInterp)
-
+  
+  ftrain$XmedianPolInterpA[i] <- median(tmpRawXWindowPolInterp)
+  ftrain$YmedianPolInterpA[i] <- median(tmpRawYWindowPolInterp)
+  ftrain$ZmedianPolInterpA[i] <- median(tmpRawZWindowPolInterp)
+  ftrain$XmedianPolInterpG[i] <- median(tmpRawAWindowPolInterp)
+  ftrain$YmedianPolInterpG[i] <- median(tmpRawBWindowPolInterp)
+  ftrain$ZmedianPolInterpG[i] <- median(tmpRawCWindowPolInterp)
+  ftrain$XmedianPolInterpO[i] <- median(tmpRawAlphaWindowPolInterp)
+  ftrain$YmedianPolInterpO[i] <- median(tmpRawBetaWindowPolInterp)
+  ftrain$ZmedianPolInterpO[i] <- median(tmpRawGammaWindowPolInterp)
+  
   # median magn
   ftrain$MmedianA[i] <- median(tmpRawMagnAWindow)
   ftrain$MmedianG[i] <- median(tmpRawMagnGWindow)
   ftrain$MmedianO[i] <- median(tmpRawMagnOWindow)
   
-  ftrain$MmedianLinInterpA[i] <- median(tmpRawMagnAWindow)
-  ftrain$MmedianLinInterpG[i] <- median(tmpRawMagnGWindow)
-  ftrain$MmedianLinInterpO[i] <- median(tmpRawMagnOWindow)
-
+  ftrain$MmedianLinInterpA[i] <- median(tmpRawMagnAWindowLinInterp)
+  ftrain$MmedianLinInterpG[i] <- median(tmpRawMagnGWindowLinInterp)
+  ftrain$MmedianLinInterpO[i] <- median(tmpRawMagnOWindowLinInterp)
+  
+  ftrain$MmedianPolInterpA[i] <- median(tmpRawMagnAWindowPolInterp)
+  ftrain$MmedianPolInterpG[i] <- median(tmpRawMagnGWindowPolInterp)
+  ftrain$MmedianPolInterpO[i] <- median(tmpRawMagnOWindowPolInterp)
+  
   # Standard Deviation
   ftrain$XsdA[i] <- sd(tmpRawXWindow)
   ftrain$YsdA[i] <- sd(tmpRawYWindow)
@@ -451,16 +428,30 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   ftrain$XsdLinInterpO[i] <- sd(tmpRawAlphaWindowLinInterp)
   ftrain$YsdLinInterpO[i] <- sd(tmpRawBetaWindowLinInterp)
   ftrain$ZsdLinInterpO[i] <- sd(tmpRawGammaWindowLinInterp)
-
+  
+  ftrain$XsdPolInterpA[i] <- sd(tmpRawXWindowPolInterp)
+  ftrain$YsdPolInterpA[i] <- sd(tmpRawYWindowPolInterp)
+  ftrain$ZsdPolInterpA[i] <- sd(tmpRawZWindowPolInterp)
+  ftrain$XsdPolInterpG[i] <- sd(tmpRawAWindowPolInterp)
+  ftrain$YsdPolInterpG[i] <- sd(tmpRawBWindowPolInterp)
+  ftrain$ZsdPolInterpG[i] <- sd(tmpRawCWindowPolInterp)
+  ftrain$XsdPolInterpO[i] <- sd(tmpRawAlphaWindowPolInterp)
+  ftrain$YsdPolInterpO[i] <- sd(tmpRawBetaWindowPolInterp)
+  ftrain$ZsdPolInterpO[i] <- sd(tmpRawGammaWindowPolInterp)
+  
   #sd magn
   ftrain$MsdA[i] <- sd(tmpRawMagnAWindow)
   ftrain$MsdG[i] <- sd(tmpRawMagnGWindow)
   ftrain$MsdO[i] <- sd(tmpRawMagnOWindow)
   
-  ftrain$MsdLinInterpA[i] <- sd(tmpRawMagnAWindow)
-  ftrain$MsdLinInterpG[i] <- sd(tmpRawMagnGWindow)
-  ftrain$MsdLinInterpO[i] <- sd(tmpRawMagnOWindow)
-
+  ftrain$MsdLinInterpA[i] <- sd(tmpRawMagnAWindowLinInterp)
+  ftrain$MsdLinInterpG[i] <- sd(tmpRawMagnGWindowLinInterp)
+  ftrain$MsdLinInterpO[i] <- sd(tmpRawMagnOWindowLinInterp)
+  
+  ftrain$MsdPolInterpA[i] <- sd(tmpRawMagnAWindowPolInterp)
+  ftrain$MsdPolInterpG[i] <- sd(tmpRawMagnGWindowPolInterp)
+  ftrain$MsdPolInterpO[i] <- sd(tmpRawMagnOWindowPolInterp)
+  
   # Variance
   ftrain$XvarA[i] <- var(tmpRawXWindow)
   ftrain$YvarA[i] <- var(tmpRawYWindow)
@@ -481,16 +472,30 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   ftrain$XvarLinInterpO[i] <- var(tmpRawAlphaWindowLinInterp)
   ftrain$YvarLinInterpO[i] <- var(tmpRawBetaWindowLinInterp)
   ftrain$ZvarLinInterpO[i] <- var(tmpRawGammaWindowLinInterp)
-
+  
+  ftrain$XvarPolInterpA[i] <- var(tmpRawXWindowPolInterp)
+  ftrain$YvarPolInterpA[i] <- var(tmpRawYWindowPolInterp)
+  ftrain$ZvarPolInterpA[i] <- var(tmpRawZWindowPolInterp)
+  ftrain$XvarPolInterpG[i] <- var(tmpRawAWindowPolInterp)
+  ftrain$YvarPolInterpG[i] <- var(tmpRawBWindowPolInterp)
+  ftrain$ZvarPolInterpG[i] <- var(tmpRawCWindowPolInterp)
+  ftrain$XvarPolInterpO[i] <- var(tmpRawAlphaWindowPolInterp)
+  ftrain$YvarPolInterpO[i] <- var(tmpRawBetaWindowPolInterp)
+  ftrain$ZvarPolInterpO[i] <- var(tmpRawGammaWindowPolInterp)
+  
   #var magn
   ftrain$MvarA[i] <- var(tmpRawMagnAWindow)
   ftrain$MvarG[i] <- var(tmpRawMagnGWindow)
   ftrain$MvarO[i] <- var(tmpRawMagnOWindow)
   
-  ftrain$MvarLinInterpA[i] <- var(tmpRawMagnAWindow)
-  ftrain$MvarLinInterpG[i] <- var(tmpRawMagnGWindow)
-  ftrain$MvarLinInterpO[i] <- var(tmpRawMagnOWindow)
-
+  ftrain$MvarLinInterpA[i] <- var(tmpRawMagnAWindowLinInterp)
+  ftrain$MvarLinInterpG[i] <- var(tmpRawMagnGWindowLinInterp)
+  ftrain$MvarLinInterpO[i] <- var(tmpRawMagnOWindowLinInterp)
+  
+  ftrain$MvarPolInterpA[i] <- var(tmpRawMagnAWindowPolInterp)
+  ftrain$MvarPolInterpG[i] <- var(tmpRawMagnGWindowPolInterp)
+  ftrain$MvarPolInterpO[i] <- var(tmpRawMagnOWindowPolInterp)
+  
   # RMS  Accelerometer
   ftrain$XrmsA[i] <- sqrt(sum((tmpRawXWindow) ^ 2) / wSize)
   ftrain$YrmsA[i] <- sqrt(sum((tmpRawYWindow) ^ 2) / wSize)
@@ -501,11 +506,39 @@ for (i in 1:length(seq_along(ftrain$DownTime))) {
   ftrain$XrmsO[i] <- sqrt(sum((tmpRawAlphaWindow) ^ 2) / wSize)
   ftrain$YrmsO[i] <- sqrt(sum((tmpRawBetaWindow) ^ 2) / wSize)
   ftrain$ZrmsO[i] <- sqrt(sum((tmpRawGammaWindow) ^ 2) / wSize)
-
+  
+  ftrain$XrmsLinInterpA[i] <- sqrt(sum((tmpRawXWindowLinInterp) ^ 2) / wSize)
+  ftrain$YrmsLinInterpA[i] <- sqrt(sum((tmpRawYWindowLinInterp) ^ 2) / wSize)
+  ftrain$ZrmsLinInterpA[i] <- sqrt(sum((tmpRawZWindowLinInterp) ^ 2) / wSize)
+  ftrain$XrmsLinInterpG[i] <- sqrt(sum((tmpRawAWindowLinInterp) ^ 2) / wSize)
+  ftrain$YrmsLinInterpG[i] <- sqrt(sum((tmpRawBWindowLinInterp) ^ 2) / wSize)
+  ftrain$ZrmsLinInterpG[i] <- sqrt(sum((tmpRawCWindowLinInterp) ^ 2) / wSize)
+  ftrain$XrmsLinInterpO[i] <- sqrt(sum((tmpRawAlphaWindowLinInterp) ^ 2) / wSize)
+  ftrain$YrmsLinInterpO[i] <- sqrt(sum((tmpRawBetaWindowLinInterp) ^ 2) / wSize)
+  ftrain$ZrmsLinInterpO[i] <- sqrt(sum((tmpRawGammaWindowLinInterp) ^ 2) / wSize)
+  
+  ftrain$XrmsPolInterpA[i] <- sqrt(sum((tmpRawXWindowPolInterp) ^ 2) / wSize)
+  ftrain$YrmsPolInterpA[i] <- sqrt(sum((tmpRawYWindowPolInterp) ^ 2) / wSize)
+  ftrain$ZrmsPolInterpA[i] <- sqrt(sum((tmpRawZWindowPolInterp) ^ 2) / wSize)
+  ftrain$XrmsPolInterpG[i] <- sqrt(sum((tmpRawAWindowPolInterp) ^ 2) / wSize)
+  ftrain$YrmsPolInterpG[i] <- sqrt(sum((tmpRawBWindowPolInterp) ^ 2) / wSize)
+  ftrain$ZrmsPolInterpG[i] <- sqrt(sum((tmpRawCWindowPolInterp) ^ 2) / wSize)
+  ftrain$XrmsPolInterpO[i] <- sqrt(sum((tmpRawAlphaWindowPolInterp) ^ 2) / wSize)
+  ftrain$YrmsPolInterpO[i] <- sqrt(sum((tmpRawBetaWindowPolInterp) ^ 2) / wSize)
+  ftrain$ZrmsPolInterpO[i] <- sqrt(sum((tmpRawGammaWindowPolInterp) ^ 2) / wSize)
+  
   # Root Mean Square of the magnitude
   ftrain$MagnRmsA[i] <- sqrt((sum((tmpRawMagnAWindow) ^ 2)) / wSize)
   ftrain$MagnRmsG[i] <- sqrt((sum((tmpRawMagnGWindow) ^ 2)) / wSize)
   ftrain$MagnRmsO[i] <- sqrt((sum((tmpRawMagnOWindow) ^ 2)) / wSize)
+  
+  ftrain$MagnRmsLinInterpA[i] <- sqrt((sum((tmpRawMagnAWindowLinInterp) ^ 2)) / wSize)
+  ftrain$MagnRmsLinInterpG[i] <- sqrt((sum((tmpRawMagnGWindowLinInterp) ^ 2)) / wSize)
+  ftrain$MagnRmsLinInterpO[i] <- sqrt((sum((tmpRawMagnOWindowLinInterp) ^ 2)) / wSize)
+  
+  ftrain$MagnRmsPolInterpA[i] <- sqrt((sum((tmpRawMagnAWindowPolInterp) ^ 2)) / wSize)
+  ftrain$MagnRmsPolInterpG[i] <- sqrt((sum((tmpRawMagnGWindowPolInterp) ^ 2)) / wSize)
+  ftrain$MagnRmsPolInterpO[i] <- sqrt((sum((tmpRawMagnOWindowPolInterp) ^ 2)) / wSize)
 }
 
 # Skewness 
@@ -529,10 +562,28 @@ ftrain$XskewLinInterpO <- 3 * (ftrain$XmeanLinInterpO - ftrain$XmedianLinInterpO
 ftrain$YskewLinInterpO <- 3 * (ftrain$YmeanLinInterpO - ftrain$YmedianLinInterpO) / ftrain$YsdLinInterpO
 ftrain$ZskewLinInterpO <- 3 * (ftrain$ZmeanLinInterpO - ftrain$ZmedianLinInterpO) / ftrain$ZsdLinInterpO
 
+ftrain$XskewPolInterpA <- 3 * (ftrain$XmeanPolInterpA - ftrain$XmedianPolInterpA) / ftrain$XsdPolInterpA
+ftrain$YskewPolInterpA <- 3 * (ftrain$YmeanPolInterpA - ftrain$YmedianPolInterpA) / ftrain$YsdPolInterpA
+ftrain$ZskewPolInterpA <- 3 * (ftrain$ZmeanPolInterpA - ftrain$ZmedianPolInterpA) / ftrain$ZsdPolInterpA
+ftrain$XskewPolInterpG <- 3 * (ftrain$XmeanPolInterpG - ftrain$XmedianPolInterpG) / ftrain$XsdPolInterpG
+ftrain$YskewPolInterpG <- 3 * (ftrain$YmeanPolInterpG - ftrain$YmedianPolInterpG) / ftrain$YsdPolInterpG
+ftrain$ZskewPolInterpG <- 3 * (ftrain$ZmeanPolInterpG - ftrain$ZmedianPolInterpG) / ftrain$ZsdPolInterpG
+ftrain$XskewPolInterpO <- 3 * (ftrain$XmeanPolInterpO - ftrain$XmedianPolInterpO) / ftrain$XsdPolInterpO
+ftrain$YskewPolInterpO <- 3 * (ftrain$YmeanPolInterpO - ftrain$YmedianPolInterpO) / ftrain$YsdPolInterpO
+ftrain$ZskewPolInterpO <- 3 * (ftrain$ZmeanPolInterpO - ftrain$ZmedianPolInterpO) / ftrain$ZsdPolInterpO
+
 # skewness magn
+ftrain$MskewA <- 3 * (ftrain$MmeanA - ftrain$MmedianA) / ftrain$MsdA
+ftrain$MskewG <- 3 * (ftrain$MmeanG - ftrain$MmedianG) / ftrain$MsdG
+ftrain$MskewO <- 3 * (ftrain$MmeanO - ftrain$MmedianO) / ftrain$MsdO
+
 ftrain$MskewLinInterpA <- 3 * (ftrain$MmeanLinInterpA - ftrain$MmedianLinInterpA) / ftrain$MsdLinInterpA
 ftrain$MskewLinInterpG <- 3 * (ftrain$MmeanLinInterpG - ftrain$MmedianLinInterpG) / ftrain$MsdLinInterpG
 ftrain$MskewLinInterpO <- 3 * (ftrain$MmeanLinInterpO - ftrain$MmedianLinInterpO) / ftrain$MsdLinInterpO
+
+ftrain$MskewPolInterpA <- 3 * (ftrain$MmeanPolInterpA - ftrain$MmedianPolInterpA) / ftrain$MsdPolInterpA
+ftrain$MskewPolInterpG <- 3 * (ftrain$MmeanPolInterpG - ftrain$MmedianPolInterpG) / ftrain$MsdPolInterpG
+ftrain$MskewPolInterpO <- 3 * (ftrain$MmeanPolInterpO - ftrain$MmedianPolInterpO) / ftrain$MsdPolInterpO
 
 #fix timestamps pt. 2
 ftrain$DownTime <- varDownTime
@@ -550,6 +601,6 @@ ftrain$Keypress <- gsub("KEYCODE_", "KEY_", ftrain$Keypress)
 
 write.csv(
   ftrain,
-  "C:\\git\\data-thesis\\R\\datasets\\17011417-dataset-training.csv",
+  "C:\\git\\data-thesis\\R\\datasets\\17011020-dataset-training.csv",
   row.names = FALSE
 )

@@ -1,13 +1,13 @@
 # this script is used for debugging and for plots
 sensortrain <-
   read.csv(
-    "C:\\git\\data-thesis\\R\\datasets\\17011417-sensor-dataset-training-preprocessed.csv",
+    "C:\\git\\data-thesis\\R\\datasets\\17011020-sensor-dataset-training-preprocessed.csv",
     header = TRUE
   )
 
 keytrain <-
   read.csv(
-    "C:\\git\\data-thesis\\R\\datasets\\17011417-key-dataset-training-raw.csv",
+    "C:\\git\\data-thesis\\R\\datasets\\17011020-key-dataset-training-raw.csv",
     header = TRUE,
     stringsAsFactors=FALSE
   )
@@ -22,5 +22,5 @@ for (i in seq_along(keytrain$DownTime)) {
 }
 
 write.csv(sensortrain,
-          "C:\\git\\data-thesis\\R\\datasets\\17011417-sensor-dataset-training-preprocessed.csv",
+          "C:\\git\\data-thesis\\R\\datasets\\17011020-sensor-dataset-training-preprocessed.csv",
           row.names = FALSE)

@@ -1,12 +1,13 @@
 rawdata <-
   read.csv(
-    "C:\\git\\data-thesis\\R\\datasets\\transferred-17011417-victim-data.csv",
+    "C:\\git\\data-thesis\\R\\datasets\\transferred-17011020-victim-data.csv",
     header = TRUE
   )
 
-
 options(digits=20)
 # --- preprocessing
+
+rawdata$id <- seq_along(rawdata$Timestamp)
 
 # rename vars
 rawdata$xA <- rawdata$x
@@ -23,35 +24,35 @@ rawdata$a <- NULL
 rawdata$b <- NULL
 rawdata$c <- NULL
 
-# slope dy/dx
-rawdata$XslopeA[1] <- rawdata$xA[1]
-rawdata$XslopeA[2:length(rawdata$Timestamp)] <- (((rawdata$Timestamp[-1] - rawdata$Timestamp[-length(rawdata$Timestamp)]))/1000000000)/(rawdata$xA[-1] - rawdata$xA[-length(rawdata$xA)])
-rawdata$YslopeA[1] <- rawdata$yA[1]
-rawdata$YslopeA[2:length(rawdata$Timestamp)] <- (((rawdata$Timestamp[-1] - rawdata$Timestamp[-length(rawdata$Timestamp)]))/1000000000)/(rawdata$yA[-1] - rawdata$yA[-length(rawdata$yA)])
-rawdata$ZslopeA[1] <- rawdata$zA[1]
-rawdata$ZslopeA[2:length(rawdata$Timestamp)] <- (((rawdata$Timestamp[-1] - rawdata$Timestamp[-length(rawdata$Timestamp)]))/1000000000)/(rawdata$zA[-1] - rawdata$zA[-length(rawdata$zA)])
-rawdata$XslopeG[1] <- rawdata$xG[1]
-rawdata$XslopeG[2:length(rawdata$Timestamp)] <- (((rawdata$Timestamp[-1] - rawdata$Timestamp[-length(rawdata$Timestamp)]))/1000000000)/(rawdata$xG[-1] - rawdata$xG[-length(rawdata$xG)])
-rawdata$YslopeG[1] <- rawdata$yG[1]
-rawdata$YslopeG[2:length(rawdata$Timestamp)] <- (((rawdata$Timestamp[-1] - rawdata$Timestamp[-length(rawdata$Timestamp)]))/1000000000)/(rawdata$yG[-1] - rawdata$yG[-length(rawdata$yG)])
-rawdata$ZslopeG[1] <- rawdata$zG[1]
-rawdata$ZslopeG[2:length(rawdata$Timestamp)] <- (((rawdata$Timestamp[-1] - rawdata$Timestamp[-length(rawdata$Timestamp)]))/1000000000)/(rawdata$zG[-1] - rawdata$zG[-length(rawdata$zG)])
-rawdata$XslopeO[1] <- rawdata$alpha[1]
-rawdata$XslopeO[2:length(rawdata$Timestamp)] <- (((rawdata$Timestamp[-1] - rawdata$Timestamp[-length(rawdata$Timestamp)]))/1000000000)/(rawdata$alpha[-1] - rawdata$alpha[-length(rawdata$alpha)])
-rawdata$YslopeO[1] <- rawdata$beta[1]
-rawdata$YslopeO[2:length(rawdata$Timestamp)] <- (((rawdata$Timestamp[-1] - rawdata$Timestamp[-length(rawdata$Timestamp)]))/1000000000)/(rawdata$beta[-1] - rawdata$beta[-length(rawdata$beta)])
-rawdata$ZslopeO[1] <- rawdata$gamma[1]
-rawdata$ZslopeO[2:length(rawdata$Timestamp)] <- (((rawdata$Timestamp[-1] - rawdata$Timestamp[-length(rawdata$Timestamp)]))/1000000000)/(rawdata$gamma[-1] - rawdata$gamma[-length(rawdata$gamma)])
-
-rawdata$XslopeA[rawdata$XslopeA == Inf] <- 0
-rawdata$YslopeA[rawdata$YslopeA == Inf] <- 0
-rawdata$ZslopeA[rawdata$ZslopeA == Inf] <- 0
-rawdata$XslopeG[rawdata$XslopeG == Inf] <- 0
-rawdata$YslopeG[rawdata$YslopeG == Inf] <- 0
-rawdata$ZslopeG[rawdata$ZslopeG == Inf] <- 0
-rawdata$XslopeO[rawdata$XslopeO == Inf] <- 0
-rawdata$YslopeO[rawdata$YslopeO == Inf] <- 0
-rawdata$ZslopeO[rawdata$ZslopeO == Inf] <- 0
+# # slope dy/dx
+# rawdata$XslopeA[1] <- rawdata$xA[1]
+# rawdata$XslopeA[2:length(rawdata$Timestamp)] <- (((rawdata$Timestamp[-1] - rawdata$Timestamp[-length(rawdata$Timestamp)]))/1000000000)/(rawdata$xA[-1] - rawdata$xA[-length(rawdata$xA)])
+# rawdata$YslopeA[1] <- rawdata$yA[1]
+# rawdata$YslopeA[2:length(rawdata$Timestamp)] <- (((rawdata$Timestamp[-1] - rawdata$Timestamp[-length(rawdata$Timestamp)]))/1000000000)/(rawdata$yA[-1] - rawdata$yA[-length(rawdata$yA)])
+# rawdata$ZslopeA[1] <- rawdata$zA[1]
+# rawdata$ZslopeA[2:length(rawdata$Timestamp)] <- (((rawdata$Timestamp[-1] - rawdata$Timestamp[-length(rawdata$Timestamp)]))/1000000000)/(rawdata$zA[-1] - rawdata$zA[-length(rawdata$zA)])
+# rawdata$XslopeG[1] <- rawdata$xG[1]
+# rawdata$XslopeG[2:length(rawdata$Timestamp)] <- (((rawdata$Timestamp[-1] - rawdata$Timestamp[-length(rawdata$Timestamp)]))/1000000000)/(rawdata$xG[-1] - rawdata$xG[-length(rawdata$xG)])
+# rawdata$YslopeG[1] <- rawdata$yG[1]
+# rawdata$YslopeG[2:length(rawdata$Timestamp)] <- (((rawdata$Timestamp[-1] - rawdata$Timestamp[-length(rawdata$Timestamp)]))/1000000000)/(rawdata$yG[-1] - rawdata$yG[-length(rawdata$yG)])
+# rawdata$ZslopeG[1] <- rawdata$zG[1]
+# rawdata$ZslopeG[2:length(rawdata$Timestamp)] <- (((rawdata$Timestamp[-1] - rawdata$Timestamp[-length(rawdata$Timestamp)]))/1000000000)/(rawdata$zG[-1] - rawdata$zG[-length(rawdata$zG)])
+# rawdata$XslopeO[1] <- rawdata$alpha[1]
+# rawdata$XslopeO[2:length(rawdata$Timestamp)] <- (((rawdata$Timestamp[-1] - rawdata$Timestamp[-length(rawdata$Timestamp)]))/1000000000)/(rawdata$alpha[-1] - rawdata$alpha[-length(rawdata$alpha)])
+# rawdata$YslopeO[1] <- rawdata$beta[1]
+# rawdata$YslopeO[2:length(rawdata$Timestamp)] <- (((rawdata$Timestamp[-1] - rawdata$Timestamp[-length(rawdata$Timestamp)]))/1000000000)/(rawdata$beta[-1] - rawdata$beta[-length(rawdata$beta)])
+# rawdata$ZslopeO[1] <- rawdata$gamma[1]
+# rawdata$ZslopeO[2:length(rawdata$Timestamp)] <- (((rawdata$Timestamp[-1] - rawdata$Timestamp[-length(rawdata$Timestamp)]))/1000000000)/(rawdata$gamma[-1] - rawdata$gamma[-length(rawdata$gamma)])
+# 
+# rawdata$XslopeA[rawdata$XslopeA == Inf] <- 0
+# rawdata$YslopeA[rawdata$YslopeA == Inf] <- 0
+# rawdata$ZslopeA[rawdata$ZslopeA == Inf] <- 0
+# rawdata$XslopeG[rawdata$XslopeG == Inf] <- 0
+# rawdata$YslopeG[rawdata$YslopeG == Inf] <- 0
+# rawdata$ZslopeG[rawdata$ZslopeG == Inf] <- 0
+# rawdata$XslopeO[rawdata$XslopeO == Inf] <- 0
+# rawdata$YslopeO[rawdata$YslopeO == Inf] <- 0
+# rawdata$ZslopeO[rawdata$ZslopeO == Inf] <- 0
 
 # Square Sum of 3D vectors
 rawdata$SqSumA <- rawdata$xA ^ 2 + rawdata$yA ^ 2 + rawdata$zA ^ 2
@@ -85,70 +86,70 @@ rawdata$XnormMeanO <- rawdata$alpha - mean(rawdata$alpha)
 rawdata$YnormMeanO <- rawdata$beta - mean(rawdata$beta)
 rawdata$ZnormMeanO <- rawdata$gamma - mean(rawdata$gamma)
 
-# distance between Value and previous value
-rawdata$XdeltaA[1] <- rawdata$xA[1]
-rawdata$YdeltaA[1] <- rawdata$yA[1]
-rawdata$ZdeltaA[1] <- rawdata$zA[1]
-rawdata$XdeltaG[1] <- rawdata$xG[1]
-rawdata$YdeltaG[1] <- rawdata$yG[1]
-rawdata$ZdeltaG[1] <- rawdata$zG[1]
-rawdata$XdeltaO[1] <- rawdata$alpha[1]
-rawdata$YdeltaO[1] <- rawdata$beta[1]
-rawdata$ZdeltaO[1] <- rawdata$gamma[1]
-rawdata$XdeltaA[2:length(rawdata$xA)] <- rawdata$xA[-1] - rawdata$xA[-length(rawdata$xA)]
-rawdata$YdeltaA[2:length(rawdata$xA)] <- rawdata$yA[-1] - rawdata$yA[-length(rawdata$yA)]
-rawdata$ZdeltaA[2:length(rawdata$xA)] <- rawdata$zA[-1] - rawdata$zA[-length(rawdata$zA)]
-rawdata$XdeltaG[2:length(rawdata$xA)] <- rawdata$xG[-1] - rawdata$xG[-length(rawdata$xG)]
-rawdata$YdeltaG[2:length(rawdata$xA)] <- rawdata$yG[-1] - rawdata$yG[-length(rawdata$yG)]
-rawdata$ZdeltaG[2:length(rawdata$xA)] <- rawdata$zG[-1] - rawdata$zG[-length(rawdata$zG)]
-rawdata$XdeltaO[2:length(rawdata$xA)] <- rawdata$alpha[-1] - rawdata$alpha[-length(rawdata$alpha)]
-rawdata$YdeltaO[2:length(rawdata$xA)] <- rawdata$beta[-1] - rawdata$beta[-length(rawdata$beta)]
-rawdata$ZdeltaO[2:length(rawdata$xA)] <- rawdata$gamma[-1] - rawdata$gamma[-length(rawdata$gamma)]
+# # distance between Value and previous value
+# rawdata$XdeltaA[1] <- rawdata$xA[1]
+# rawdata$YdeltaA[1] <- rawdata$yA[1]
+# rawdata$ZdeltaA[1] <- rawdata$zA[1]
+# rawdata$XdeltaG[1] <- rawdata$xG[1]
+# rawdata$YdeltaG[1] <- rawdata$yG[1]
+# rawdata$ZdeltaG[1] <- rawdata$zG[1]
+# rawdata$XdeltaO[1] <- rawdata$alpha[1]
+# rawdata$YdeltaO[1] <- rawdata$beta[1]
+# rawdata$ZdeltaO[1] <- rawdata$gamma[1]
+# rawdata$XdeltaA[2:length(rawdata$xA)] <- rawdata$xA[-1] - rawdata$xA[-length(rawdata$xA)]
+# rawdata$YdeltaA[2:length(rawdata$xA)] <- rawdata$yA[-1] - rawdata$yA[-length(rawdata$yA)]
+# rawdata$ZdeltaA[2:length(rawdata$xA)] <- rawdata$zA[-1] - rawdata$zA[-length(rawdata$zA)]
+# rawdata$XdeltaG[2:length(rawdata$xA)] <- rawdata$xG[-1] - rawdata$xG[-length(rawdata$xG)]
+# rawdata$YdeltaG[2:length(rawdata$xA)] <- rawdata$yG[-1] - rawdata$yG[-length(rawdata$yG)]
+# rawdata$ZdeltaG[2:length(rawdata$xA)] <- rawdata$zG[-1] - rawdata$zG[-length(rawdata$zG)]
+# rawdata$XdeltaO[2:length(rawdata$xA)] <- rawdata$alpha[-1] - rawdata$alpha[-length(rawdata$alpha)]
+# rawdata$YdeltaO[2:length(rawdata$xA)] <- rawdata$beta[-1] - rawdata$beta[-length(rawdata$beta)]
+# rawdata$ZdeltaO[2:length(rawdata$xA)] <- rawdata$gamma[-1] - rawdata$gamma[-length(rawdata$gamma)]
+# 
+# rawdata$MdeltaA[1] <- rawdata$MagnA[1]
+# rawdata$MdeltaG[1] <- rawdata$MagnG[1]
+# rawdata$MdeltaO[1] <- rawdata$MagnO[1]
+# rawdata$MdeltaA[2:length(rawdata$MagnA)] <- rawdata$MagnA[-1] - rawdata$MagnA[-length(rawdata$MagnA)]
+# rawdata$MdeltaG[2:length(rawdata$MagnG)] <- rawdata$MagnG[-1] - rawdata$MagnG[-length(rawdata$MagnG)]
+# rawdata$MdeltaO[2:length(rawdata$MagnO)] <- rawdata$MagnO[-1] - rawdata$MagnO[-length(rawdata$MagnO)]
 
-rawdata$MdeltaA[1] <- rawdata$MagnA[1]
-rawdata$MdeltaG[1] <- rawdata$MagnG[1]
-rawdata$MdeltaO[1] <- rawdata$MagnO[1]
-rawdata$MdeltaA[2:length(rawdata$MagnA)] <- rawdata$MagnA[-1] - rawdata$MagnA[-length(rawdata$MagnA)]
-rawdata$MdeltaG[2:length(rawdata$MagnG)] <- rawdata$MagnG[-1] - rawdata$MagnG[-length(rawdata$MagnG)]
-rawdata$MdeltaO[2:length(rawdata$MagnO)] <- rawdata$MagnO[-1] - rawdata$MagnO[-length(rawdata$MagnO)]
-
-# low pass filter: y[i] := y[i-1] + α * (x[i] - x[i-1])
-filterfactor <- 0.9
-for(i in seq_along(rawdata$xA)) {
-  if(i == 1) {
-    rawdata$XlpA[1] <- rawdata$xA[1]
-    rawdata$YlpA[1] <- rawdata$yA[1]
-    rawdata$ZlpA[1] <- rawdata$zA[1]
-    rawdata$XlpG[1] <- rawdata$xG[1]
-    rawdata$YlpG[1] <- rawdata$yG[1]
-    rawdata$ZlpG[1] <- rawdata$zG[1]
-    rawdata$XlpO[1] <- rawdata$alpha[1]
-    rawdata$YlpO[1] <- rawdata$beta[1]
-    rawdata$ZlpO[1] <- rawdata$gamma[1]
-  }
-  else {
-    rawdata$XlpA[i] <- rawdata$XlpA[i-1] + filterfactor * rawdata$XdeltaA[i]
-    rawdata$YlpA[i] <- rawdata$YlpA[i-1] + filterfactor * rawdata$YdeltaA[i]
-    rawdata$ZlpA[i] <- rawdata$ZlpA[i-1] + filterfactor * rawdata$ZdeltaA[i]
-    rawdata$XlpG[i] <- rawdata$XlpG[i-1] + filterfactor * rawdata$XdeltaG[i]
-    rawdata$YlpG[i] <- rawdata$YlpG[i-1] + filterfactor * rawdata$YdeltaG[i]
-    rawdata$ZlpG[i] <- rawdata$ZlpG[i-1] + filterfactor * rawdata$ZdeltaG[i]
-    rawdata$XlpO[i] <- rawdata$XlpO[i-1] + filterfactor * rawdata$XdeltaO[i]
-    rawdata$YlpO[i] <- rawdata$YlpO[i-1] + filterfactor * rawdata$YdeltaO[i]
-    rawdata$ZlpO[i] <- rawdata$ZlpO[i-1] + filterfactor * rawdata$ZdeltaO[i]
-  }
-  rawdata$id[i] <- i
-}
-# magnitude of low pass filtered values
-rawdata$MagnLpA <- sqrt(rawdata$XlpA^2 + rawdata$YlpA^2 + rawdata$ZlpA^2)
-rawdata$MagnLpG <- sqrt(rawdata$XlpG^2 + rawdata$YlpG^2 + rawdata$ZlpG^2)
-rawdata$MagnLpO <- sqrt(rawdata$XlpO^2 + rawdata$YlpO^2 + rawdata$ZlpO^2)
+# # low pass filter: y[i] := y[i-1] + α * (x[i] - x[i-1])
+# filterfactor <- 0.9
+# for(i in seq_along(rawdata$xA)) {
+#   if(i == 1) {
+#     rawdata$XlpA[1] <- rawdata$xA[1]
+#     rawdata$YlpA[1] <- rawdata$yA[1]
+#     rawdata$ZlpA[1] <- rawdata$zA[1]
+#     rawdata$XlpG[1] <- rawdata$xG[1]
+#     rawdata$YlpG[1] <- rawdata$yG[1]
+#     rawdata$ZlpG[1] <- rawdata$zG[1]
+#     rawdata$XlpO[1] <- rawdata$alpha[1]
+#     rawdata$YlpO[1] <- rawdata$beta[1]
+#     rawdata$ZlpO[1] <- rawdata$gamma[1]
+#   }
+#   else {
+#     rawdata$XlpA[i] <- rawdata$XlpA[i-1] + filterfactor * rawdata$XdeltaA[i]
+#     rawdata$YlpA[i] <- rawdata$YlpA[i-1] + filterfactor * rawdata$YdeltaA[i]
+#     rawdata$ZlpA[i] <- rawdata$ZlpA[i-1] + filterfactor * rawdata$ZdeltaA[i]
+#     rawdata$XlpG[i] <- rawdata$XlpG[i-1] + filterfactor * rawdata$XdeltaG[i]
+#     rawdata$YlpG[i] <- rawdata$YlpG[i-1] + filterfactor * rawdata$YdeltaG[i]
+#     rawdata$ZlpG[i] <- rawdata$ZlpG[i-1] + filterfactor * rawdata$ZdeltaG[i]
+#     rawdata$XlpO[i] <- rawdata$XlpO[i-1] + filterfactor * rawdata$XdeltaO[i]
+#     rawdata$YlpO[i] <- rawdata$YlpO[i-1] + filterfactor * rawdata$YdeltaO[i]
+#     rawdata$ZlpO[i] <- rawdata$ZlpO[i-1] + filterfactor * rawdata$ZdeltaO[i]
+#   }
+#   rawdata$id[i] <- i
+# }
+# # magnitude of low pass filtered values
+# rawdata$MagnLpA <- sqrt(rawdata$XlpA^2 + rawdata$YlpA^2 + rawdata$ZlpA^2)
+# rawdata$MagnLpG <- sqrt(rawdata$XlpG^2 + rawdata$YlpG^2 + rawdata$ZlpG^2)
+# rawdata$MagnLpO <- sqrt(rawdata$XlpO^2 + rawdata$YlpO^2 + rawdata$ZlpO^2)
 
 # ------ DEBUG ONLY
 
 keytrain <-
   read.csv(
-    "C:\\git\\data-thesis\\R\\datasets\\17011417-key-dataset-test-raw.csv",
+    "C:\\git\\data-thesis\\R\\datasets\\17011020-key-dataset-test-raw.csv",
     header = TRUE
   )
 keytrain$DownTime <- keytrain$DownTime / 1000000
@@ -165,15 +166,16 @@ for (i in seq_along(keytrain$DownTime)) {
 
 # ------ END DEBUG
 
-
 write.csv(rawdata,
-          "C:\\git\\data-thesis\\R\\datasets\\transferred-17011417-victim-data-preprocessed.csv",
+          "C:\\git\\data-thesis\\R\\datasets\\transferred-17011020-victim-data-preprocessed.csv",
           row.names = FALSE)
+
+# --- feature extraction
 
 
 # window size
 wSize <- read.csv(
-  "C:\\git\\data-thesis\\R\\datasets\\17011417-dataset-training.csv",
+  "C:\\git\\data-thesis\\R\\datasets\\17011020-dataset-training.csv",
   header = TRUE
 )
 # wSize <- ceiling(median(wSize$WindowSize))
@@ -195,6 +197,8 @@ for (i in 1:nrow(rawdata)) {
     tmpWindowCopy <- rawdata[rawdata$id >= i - wJumper - 1 &
                                  rawdata$id < i + wJumper,]
     
+    fsd$WindowSize[wIndex] <- wSize
+    
     tmpRawXWindow <- tmpWindowCopy$xA
     tmpRawYWindow <- tmpWindowCopy$yA
     tmpRawZWindow <- tmpWindowCopy$zA
@@ -207,107 +211,37 @@ for (i in 1:nrow(rawdata)) {
     tmpRawMagnAWindow <- tmpWindowCopy$MagnA
     tmpRawMagnGWindow <- tmpWindowCopy$MagnG
     tmpRawMagnOWindow <- tmpWindowCopy$MagnO
-    tmpRawSqSumAWindow <- tmpWindowCopy$SqSumA
-    tmpRawSqSumGWindow <- tmpWindowCopy$SqSumG
-    tmpRawSqSumOWindow <- tmpWindowCopy$SqSumO
     
+    # linear interpolation
+    linInterpN <- 15
+    tmpRawXWindowLinInterp <- approx(tmpWindowCopy$Timestamp, tmpRawXWindow, n=linInterpN)$y
+    tmpRawYWindowLinInterp <- approx(tmpWindowCopy$Timestamp, tmpRawYWindow, n=linInterpN)$y
+    tmpRawZWindowLinInterp <- approx(tmpWindowCopy$Timestamp, tmpRawZWindow, n=linInterpN)$y
+    tmpRawAWindowLinInterp <- approx(tmpWindowCopy$Timestamp, tmpRawAWindow, n=linInterpN)$y
+    tmpRawBWindowLinInterp <- approx(tmpWindowCopy$Timestamp, tmpRawBWindow, n=linInterpN)$y
+    tmpRawCWindowLinInterp <- approx(tmpWindowCopy$Timestamp, tmpRawAWindow, n=linInterpN)$y
+    tmpRawAlphaWindowLinInterp <- approx(tmpWindowCopy$Timestamp, tmpRawAlphaWindow, n=linInterpN)$y
+    tmpRawBetaWindowLinInterp <- approx(tmpWindowCopy$Timestamp, tmpRawBetaWindow, n=linInterpN)$y
+    tmpRawGammaWindowLinInterp <- approx(tmpWindowCopy$Timestamp, tmpRawGammaWindow, n=linInterpN)$y
+    tmpRawMagnAWindowLinInterp <- approx(tmpWindowCopy$Timestamp, tmpRawMagnAWindow, n=linInterpN)$y
+    tmpRawMagnGWindowLinInterp <- approx(tmpWindowCopy$Timestamp, tmpRawMagnGWindow, n=linInterpN)$y
+    tmpRawMagnOWindowLinInterp <- approx(tmpWindowCopy$Timestamp, tmpRawMagnOWindow, n=linInterpN)$y
     
-    if(i == 1) {
-      fsd$PreXminA[wIndex] <- 0
-      fsd$PreYminA[wIndex] <- 0
-      fsd$PreZminA[wIndex] <- 0
-      fsd$PreXminG[wIndex] <- 0
-      fsd$PreYminG[wIndex] <- 0
-      fsd$PreZminG[wIndex] <- 0
-      fsd$PreXminO[wIndex] <- 0
-      fsd$PreYminO[wIndex] <- 0
-      fsd$PreZminO[wIndex] <- 0
-      
-      fsd$PreXmaxA[wIndex] <- 0
-      fsd$PreYmaxA[wIndex] <- 0
-      fsd$PreZmaxA[wIndex] <- 0
-      fsd$PreXmaxG[wIndex] <- 0
-      fsd$PreYmaxG[wIndex] <- 0
-      fsd$PreZmaxG[wIndex] <- 0
-      fsd$PreXmaxO[wIndex] <- 0
-      fsd$PreYmaxO[wIndex] <- 0
-      fsd$PreZmaxO[wIndex] <- 0
-      
-      fsd$PreXdeltaMinA[wIndex] <- 0
-      fsd$PreYdeltaMinA[wIndex] <- 0
-      fsd$PreZdeltaMinA[wIndex] <- 0
-      fsd$PreXdeltaMinG[wIndex] <- 0
-      fsd$PreZdeltaMinG[wIndex] <- 0
-      fsd$PreYdeltaMinG[wIndex] <- 0
-      fsd$PreXdeltaMinO[wIndex] <- 0
-      fsd$PreYdeltaMinO[wIndex] <- 0
-      fsd$PreZdeltaMinO[wIndex] <- 0
-      
-      fsd$PreXdeltaMaxA[wIndex] <- 0
-      fsd$PreYdeltaMaxA[wIndex] <- 0
-      fsd$PreZdeltaMaxA[wIndex] <- 0
-      fsd$PreXdeltaMaxG[wIndex] <- 0
-      fsd$PreYdeltaMaxG[wIndex] <- 0
-      fsd$PreZdeltaMaxG[wIndex] <- 0
-      fsd$PreXdeltaMaxO[wIndex] <- 0
-      fsd$PreYdeltaMaxO[wIndex] <- 0
-      fsd$PreZdeltaMaxO[wIndex] <- 0
-    }
-    else {
-      tmpPreWindow <- rawdata[rawdata$id < (tmpWindowCopy$id[1]) & rawdata$id >= (tmpWindowCopy$id[1]-9),]
-      
-      # some stats of the 9 entries before the actual window
-      fsd$PreXminA[wIndex] <- min(tmpPreWindow$xA)
-      fsd$PreYminA[wIndex] <- min(tmpPreWindow$yA)
-      fsd$PreZminA[wIndex] <- min(tmpPreWindow$zA)
-      fsd$PreXminG[wIndex] <- min(tmpPreWindow$xG)
-      fsd$PreYminG[wIndex] <- min(tmpPreWindow$yG)
-      fsd$PreZminG[wIndex] <- min(tmpPreWindow$zG)
-      fsd$PreXminO[wIndex] <- min(tmpPreWindow$alpha)
-      fsd$PreYminO[wIndex] <- min(tmpPreWindow$beta)
-      fsd$PreZminO[wIndex] <- min(tmpPreWindow$gamma)
-      
-      fsd$PreXmaxA[wIndex] <- max(tmpPreWindow$xA)
-      fsd$PreYmaxA[wIndex] <- max(tmpPreWindow$yA)
-      fsd$PreZmaxA[wIndex] <- max(tmpPreWindow$zA)
-      fsd$PreXmaxG[wIndex] <- max(tmpPreWindow$xG)
-      fsd$PreYmaxG[wIndex] <- max(tmpPreWindow$yG)
-      fsd$PreZmaxG[wIndex] <- max(tmpPreWindow$zG)
-      fsd$PreXmaxO[wIndex] <- max(tmpPreWindow$alpha)
-      fsd$PreYmaxO[wIndex] <- max(tmpPreWindow$beta)
-      fsd$PreZmaxO[wIndex] <- max(tmpPreWindow$gamma)
-      
-      fsd$PreXdeltaMinA[wIndex] <- min(tmpPreWindow$XdeltaA)
-      fsd$PreYdeltaMinA[wIndex] <- min(tmpPreWindow$YdeltaA)
-      fsd$PreZdeltaMinA[wIndex] <- min(tmpPreWindow$ZdeltaA)
-      fsd$PreXdeltaMinG[wIndex] <- min(tmpPreWindow$XdeltaG)
-      fsd$PreYdeltaMinG[wIndex] <- min(tmpPreWindow$XdeltaG)
-      fsd$PreZdeltaMinG[wIndex] <- min(tmpPreWindow$ZdeltaG)
-      fsd$PreXdeltaMinO[wIndex] <- min(tmpPreWindow$XdeltaO)
-      fsd$PreYdeltaMinO[wIndex] <- min(tmpPreWindow$YdeltaO)
-      fsd$PreZdeltaMinO[wIndex] <- min(tmpPreWindow$ZdeltaO)
-      
-      fsd$PreXdeltaMaxA[wIndex] <- max(tmpPreWindow$XdeltaA)
-      fsd$PreYdeltaMaxA[wIndex] <- max(tmpPreWindow$YdeltaA)
-      fsd$PreZdeltaMaxA[wIndex] <- max(tmpPreWindow$ZdeltaA)
-      fsd$PreXdeltaMaxG[wIndex] <- max(tmpPreWindow$XdeltaG)
-      fsd$PreYdeltaMaxG[wIndex] <- max(tmpPreWindow$XdeltaG)
-      fsd$PreZdeltaMaxG[wIndex] <- max(tmpPreWindow$ZdeltaG)
-      fsd$PreXdeltaMaxO[wIndex] <- max(tmpPreWindow$XdeltaO)
-      fsd$PreYdeltaMaxO[wIndex] <- max(tmpPreWindow$YdeltaO)
-      fsd$PreZdeltaMaxO[wIndex] <- max(tmpPreWindow$ZdeltaO)
-      
-      
-      #sd of SquareSUm of pre window
-      fsd$PreSqSumSdA[wIndex] <- sd(tmpPreWindow$xA^2 + tmpPreWindow$yA^2 + tmpPreWindow$zA^2)
-      fsd$PreSqSumSdG[wIndex] <- sd(tmpPreWindow$xG^2 + tmpPreWindow$yG^2 + tmpPreWindow$zG^2)
-      fsd$PreSqSumSdO[wIndex] <- sd(tmpPreWindow$alpha^2 + tmpPreWindow$beta^2 + tmpPreWindow$gamma^2)
-    }
-    
-    # number of samples in window
-    fsd$WindowSize[wIndex] <- wSize
-    
-    
+    # polynom (3) interpol
+    polInterpN <- 3
+    tmpRawXWindowPolInterp <- predict(lm(tmpRawXWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
+    tmpRawYWindowPolInterp <- predict(lm(tmpRawYWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
+    tmpRawZWindowPolInterp <- predict(lm(tmpRawZWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
+    tmpRawAWindowPolInterp <- predict(lm(tmpRawAWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
+    tmpRawBWindowPolInterp <- predict(lm(tmpRawBWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
+    tmpRawCWindowPolInterp <- predict(lm(tmpRawCWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
+    tmpRawAlphaWindowPolInterp <- predict(lm(tmpRawAlphaWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
+    tmpRawBetaWindowPolInterp <- predict(lm(tmpRawBetaWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
+    tmpRawGammaWindowPolInterp <- predict(lm(tmpRawGammaWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
+    tmpRawMagnAWindowPolInterp <- predict(lm(tmpRawMagnAWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
+    tmpRawMagnGWindowPolInterp <- predict(lm(tmpRawMagnGWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
+    tmpRawMagnOWindowPolInterp <- predict(lm(tmpRawMagnOWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN)))
+  
     # Min Accelerometer
     fsd$XminA[wIndex] <- min(tmpRawXWindow)
     fsd$YminA[wIndex] <- min(tmpRawYWindow)
@@ -319,10 +253,38 @@ for (i in 1:nrow(rawdata)) {
     fsd$YminO[wIndex] <- min(tmpRawBetaWindow)
     fsd$ZminO[wIndex] <- min(tmpRawGammaWindow)
     
+    fsd$XminLinInterpA[wIndex] <- min(tmpRawXWindowLinInterp)
+    fsd$YminLinInterpA[wIndex] <- min(tmpRawYWindowLinInterp)
+    fsd$ZminLinInterpA[wIndex] <- min(tmpRawZWindowLinInterp)
+    fsd$XminLinInterpG[wIndex] <- min(tmpRawAWindowLinInterp)
+    fsd$YminLinInterpG[wIndex] <- min(tmpRawBWindowLinInterp)
+    fsd$ZminLinInterpG[wIndex] <- min(tmpRawCWindowLinInterp)
+    fsd$XminLinInterpO[wIndex] <- min(tmpRawAlphaWindowLinInterp)
+    fsd$YminLinInterpO[wIndex] <- min(tmpRawBetaWindowLinInterp)
+    fsd$ZminLinInterpO[wIndex] <- min(tmpRawGammaWindowLinInterp)
+    
+    fsd$XminPolInterpA[wIndex] <- min(tmpRawXWindowPolInterp)
+    fsd$YminPolInterpA[wIndex] <- min(tmpRawYWindowPolInterp)
+    fsd$ZminPolInterpA[wIndex] <- min(tmpRawZWindowPolInterp)
+    fsd$XminPolInterpG[wIndex] <- min(tmpRawAWindowPolInterp)
+    fsd$YminPolInterpG[wIndex] <- min(tmpRawBWindowPolInterp)
+    fsd$ZminPolInterpG[wIndex] <- min(tmpRawCWindowPolInterp)
+    fsd$XminPolInterpO[wIndex] <- min(tmpRawAlphaWindowPolInterp)
+    fsd$YminPolInterpO[wIndex] <- min(tmpRawBetaWindowPolInterp)
+    fsd$ZminPolInterpO[wIndex] <- min(tmpRawGammaWindowPolInterp)
+    
     #min magnitude
     fsd$MminA[wIndex] <- min(tmpRawMagnAWindow)
     fsd$MminG[wIndex] <- min(tmpRawMagnGWindow)
     fsd$MminO[wIndex] <- min(tmpRawMagnOWindow)
+    
+    fsd$MminLinInterpA[wIndex] <- min(tmpRawMagnAWindowLinInterp)
+    fsd$MminLinInterpG[wIndex] <- min(tmpRawMagnGWindowLinInterp)
+    fsd$MminLinInterpO[wIndex] <- min(tmpRawMagnOWindowLinInterp)
+    
+    fsd$MminPolInterpA[wIndex] <- min(tmpRawMagnAWindowPolInterp)
+    fsd$MminPolInterpG[wIndex] <- min(tmpRawMagnGWindowPolInterp)
+    fsd$MminPolInterpO[wIndex] <- min(tmpRawMagnOWindowPolInterp)
     
     # Max
     fsd$XmaxA[wIndex] <- max(tmpRawXWindow)
@@ -335,10 +297,38 @@ for (i in 1:nrow(rawdata)) {
     fsd$YmaxO[wIndex] <- max(tmpRawBetaWindow)
     fsd$ZmaxO[wIndex] <- max(tmpRawGammaWindow)
     
+    fsd$XmaxLinInterpA[wIndex] <- max(tmpRawXWindowLinInterp)
+    fsd$YmaxLinInterpA[wIndex] <- max(tmpRawYWindowLinInterp)
+    fsd$ZmaxLinInterpA[wIndex] <- max(tmpRawZWindowLinInterp)
+    fsd$XmaxLinInterpG[wIndex] <- max(tmpRawAWindowLinInterp)
+    fsd$YmaxLinInterpG[wIndex] <- max(tmpRawBWindowLinInterp)
+    fsd$ZmaxLinInterpG[wIndex] <- max(tmpRawCWindowLinInterp)
+    fsd$XmaxLinInterpO[wIndex] <- max(tmpRawAlphaWindowLinInterp)
+    fsd$YmaxLinInterpO[wIndex] <- max(tmpRawBetaWindowLinInterp)
+    fsd$ZmaxLinInterpO[wIndex] <- max(tmpRawGammaWindowLinInterp)
+    
+    fsd$XmaxPolInterpA[wIndex] <- max(tmpRawXWindowPolInterp)
+    fsd$YmaxPolInterpA[wIndex] <- max(tmpRawYWindowPolInterp)
+    fsd$ZmaxPolInterpA[wIndex] <- max(tmpRawZWindowPolInterp)
+    fsd$XmaxPolInterpG[wIndex] <- max(tmpRawAWindowPolInterp)
+    fsd$YmaxPolInterpG[wIndex] <- max(tmpRawBWindowPolInterp)
+    fsd$ZmaxPolInterpG[wIndex] <- max(tmpRawCWindowPolInterp)
+    fsd$XmaxPolInterpO[wIndex] <- max(tmpRawAlphaWindowPolInterp)
+    fsd$YmaxPolInterpO[wIndex] <- max(tmpRawBetaWindowPolInterp)
+    fsd$ZmaxPolInterpO[wIndex] <- max(tmpRawGammaWindowPolInterp)
+    
     #max magnitude
     fsd$MmaxA[wIndex] <- max(tmpRawMagnAWindow)
     fsd$MmaxG[wIndex] <- max(tmpRawMagnGWindow)
     fsd$MmaxO[wIndex] <- max(tmpRawMagnOWindow)
+    
+    fsd$MmaxLinInterpA[wIndex] <- max(tmpRawMagnAWindowLinInterp)
+    fsd$MmaxLinInterpG[wIndex] <- max(tmpRawMagnGWindowLinInterp)
+    fsd$MmaxLinInterpO[wIndex] <- max(tmpRawMagnOWindowLinInterp)
+    
+    fsd$MmaxPolInterpA[wIndex] <- max(tmpRawMagnAWindowPolInterp)
+    fsd$MmaxPolInterpG[wIndex] <- max(tmpRawMagnGWindowPolInterp)
+    fsd$MmaxPolInterpO[wIndex] <- max(tmpRawMagnOWindowPolInterp)
     
     # Mean
     fsd$XmeanA[wIndex] <- mean(tmpRawXWindow)
@@ -351,10 +341,38 @@ for (i in 1:nrow(rawdata)) {
     fsd$YmeanO[wIndex] <- mean(tmpRawBetaWindow)
     fsd$ZmeanO[wIndex] <- mean(tmpRawGammaWindow)
     
+    fsd$XmeanLinInterpA[wIndex] <- mean(tmpRawXWindowLinInterp)
+    fsd$YmeanLinInterpA[wIndex] <- mean(tmpRawYWindowLinInterp)
+    fsd$ZmeanLinInterpA[wIndex] <- mean(tmpRawZWindowLinInterp)
+    fsd$XmeanLinInterpG[wIndex] <- mean(tmpRawAWindowLinInterp)
+    fsd$YmeanLinInterpG[wIndex] <- mean(tmpRawBWindowLinInterp)
+    fsd$ZmeanLinInterpG[wIndex] <- mean(tmpRawCWindowLinInterp)
+    fsd$XmeanLinInterpO[wIndex] <- mean(tmpRawAlphaWindowLinInterp)
+    fsd$YmeanLinInterpO[wIndex] <- mean(tmpRawBetaWindowLinInterp)
+    fsd$ZmeanLinInterpO[wIndex] <- mean(tmpRawGammaWindowLinInterp)
+    
+    fsd$XmeanPolInterpA[wIndex] <- mean(tmpRawXWindowPolInterp)
+    fsd$YmeanPolInterpA[wIndex] <- mean(tmpRawYWindowPolInterp)
+    fsd$ZmeanPolInterpA[wIndex] <- mean(tmpRawZWindowPolInterp)
+    fsd$XmeanPolInterpG[wIndex] <- mean(tmpRawAWindowPolInterp)
+    fsd$YmeanPolInterpG[wIndex] <- mean(tmpRawBWindowPolInterp)
+    fsd$ZmeanPolInterpG[wIndex] <- mean(tmpRawCWindowPolInterp)
+    fsd$XmeanPolInterpO[wIndex] <- mean(tmpRawAlphaWindowPolInterp)
+    fsd$YmeanPolInterpO[wIndex] <- mean(tmpRawBetaWindowPolInterp)
+    fsd$ZmeanPolInterpO[wIndex] <- mean(tmpRawGammaWindowPolInterp)
+    
     # mean magn
     fsd$MmeanA[wIndex] <- mean(tmpRawMagnAWindow)
     fsd$MmeanG[wIndex] <- mean(tmpRawMagnGWindow)
     fsd$MmeanO[wIndex] <- mean(tmpRawMagnOWindow)
+    
+    fsd$MmeanLinInterpA[wIndex] <- mean(tmpRawMagnAWindowLinInterp)
+    fsd$MmeanLinInterpG[wIndex] <- mean(tmpRawMagnGWindowLinInterp)
+    fsd$MmeanLinInterpO[wIndex] <- mean(tmpRawMagnOWindowLinInterp)
+    
+    fsd$MmeanPolInterpA[wIndex] <- mean(tmpRawMagnAWindowPolInterp)
+    fsd$MmeanPolInterpG[wIndex] <- mean(tmpRawMagnGWindowPolInterp)
+    fsd$MmeanPolInterpO[wIndex] <- mean(tmpRawMagnOWindowPolInterp)
     
     # Median
     fsd$XmedianA[wIndex] <- median(tmpRawXWindow)
@@ -367,10 +385,38 @@ for (i in 1:nrow(rawdata)) {
     fsd$YmedianO[wIndex] <- median(tmpRawBetaWindow)
     fsd$ZmedianO[wIndex] <- median(tmpRawGammaWindow)
     
+    fsd$XmedianLinInterpA[wIndex] <- median(tmpRawXWindowLinInterp)
+    fsd$YmedianLinInterpA[wIndex] <- median(tmpRawYWindowLinInterp)
+    fsd$ZmedianLinInterpA[wIndex] <- median(tmpRawZWindowLinInterp)
+    fsd$XmedianLinInterpG[wIndex] <- median(tmpRawAWindowLinInterp)
+    fsd$YmedianLinInterpG[wIndex] <- median(tmpRawBWindowLinInterp)
+    fsd$ZmedianLinInterpG[wIndex] <- median(tmpRawCWindowLinInterp)
+    fsd$XmedianLinInterpO[wIndex] <- median(tmpRawAlphaWindowLinInterp)
+    fsd$YmedianLinInterpO[wIndex] <- median(tmpRawBetaWindowLinInterp)
+    fsd$ZmedianLinInterpO[wIndex] <- median(tmpRawGammaWindowLinInterp)
+    
+    fsd$XmedianPolInterpA[wIndex] <- median(tmpRawXWindowPolInterp)
+    fsd$YmedianPolInterpA[wIndex] <- median(tmpRawYWindowPolInterp)
+    fsd$ZmedianPolInterpA[wIndex] <- median(tmpRawZWindowPolInterp)
+    fsd$XmedianPolInterpG[wIndex] <- median(tmpRawAWindowPolInterp)
+    fsd$YmedianPolInterpG[wIndex] <- median(tmpRawBWindowPolInterp)
+    fsd$ZmedianPolInterpG[wIndex] <- median(tmpRawCWindowPolInterp)
+    fsd$XmedianPolInterpO[wIndex] <- median(tmpRawAlphaWindowPolInterp)
+    fsd$YmedianPolInterpO[wIndex] <- median(tmpRawBetaWindowPolInterp)
+    fsd$ZmedianPolInterpO[wIndex] <- median(tmpRawGammaWindowPolInterp)
+    
     # median magn
     fsd$MmedianA[wIndex] <- median(tmpRawMagnAWindow)
     fsd$MmedianG[wIndex] <- median(tmpRawMagnGWindow)
     fsd$MmedianO[wIndex] <- median(tmpRawMagnOWindow)
+    
+    fsd$MmedianLinInterpA[wIndex] <- median(tmpRawMagnAWindowLinInterp)
+    fsd$MmedianLinInterpG[wIndex] <- median(tmpRawMagnGWindowLinInterp)
+    fsd$MmedianLinInterpO[wIndex] <- median(tmpRawMagnOWindowLinInterp)
+    
+    fsd$MmedianPolInterpA[wIndex] <- median(tmpRawMagnAWindowPolInterp)
+    fsd$MmedianPolInterpG[wIndex] <- median(tmpRawMagnGWindowPolInterp)
+    fsd$MmedianPolInterpO[wIndex] <- median(tmpRawMagnOWindowPolInterp)
     
     # Standard Deviation
     fsd$XsdA[wIndex] <- sd(tmpRawXWindow)
@@ -383,10 +429,38 @@ for (i in 1:nrow(rawdata)) {
     fsd$YsdO[wIndex] <- sd(tmpRawBetaWindow)
     fsd$ZsdO[wIndex] <- sd(tmpRawGammaWindow)
     
+    fsd$XsdLinInterpA[wIndex] <- sd(tmpRawXWindowLinInterp)
+    fsd$YsdLinInterpA[wIndex] <- sd(tmpRawYWindowLinInterp)
+    fsd$ZsdLinInterpA[wIndex] <- sd(tmpRawZWindowLinInterp)
+    fsd$XsdLinInterpG[wIndex] <- sd(tmpRawAWindowLinInterp)
+    fsd$YsdLinInterpG[wIndex] <- sd(tmpRawBWindowLinInterp)
+    fsd$ZsdLinInterpG[wIndex] <- sd(tmpRawCWindowLinInterp)
+    fsd$XsdLinInterpO[wIndex] <- sd(tmpRawAlphaWindowLinInterp)
+    fsd$YsdLinInterpO[wIndex] <- sd(tmpRawBetaWindowLinInterp)
+    fsd$ZsdLinInterpO[wIndex] <- sd(tmpRawGammaWindowLinInterp)
+    
+    fsd$XsdPolInterpA[wIndex] <- sd(tmpRawXWindowPolInterp)
+    fsd$YsdPolInterpA[wIndex] <- sd(tmpRawYWindowPolInterp)
+    fsd$ZsdPolInterpA[wIndex] <- sd(tmpRawZWindowPolInterp)
+    fsd$XsdPolInterpG[wIndex] <- sd(tmpRawAWindowPolInterp)
+    fsd$YsdPolInterpG[wIndex] <- sd(tmpRawBWindowPolInterp)
+    fsd$ZsdPolInterpG[wIndex] <- sd(tmpRawCWindowPolInterp)
+    fsd$XsdPolInterpO[wIndex] <- sd(tmpRawAlphaWindowPolInterp)
+    fsd$YsdPolInterpO[wIndex] <- sd(tmpRawBetaWindowPolInterp)
+    fsd$ZsdPolInterpO[wIndex] <- sd(tmpRawGammaWindowPolInterp)
+    
     #sd magn
     fsd$MsdA[wIndex] <- sd(tmpRawMagnAWindow)
     fsd$MsdG[wIndex] <- sd(tmpRawMagnGWindow)
     fsd$MsdO[wIndex] <- sd(tmpRawMagnOWindow)
+    
+    fsd$MsdLinInterpA[wIndex] <- sd(tmpRawMagnAWindowLinInterp)
+    fsd$MsdLinInterpG[wIndex] <- sd(tmpRawMagnGWindowLinInterp)
+    fsd$MsdLinInterpO[wIndex] <- sd(tmpRawMagnOWindowLinInterp)
+    
+    fsd$MsdPolInterpA[wIndex] <- sd(tmpRawMagnAWindowPolInterp)
+    fsd$MsdPolInterpG[wIndex] <- sd(tmpRawMagnGWindowPolInterp)
+    fsd$MsdPolInterpO[wIndex] <- sd(tmpRawMagnOWindowPolInterp)
     
     # Variance
     fsd$XvarA[wIndex] <- var(tmpRawXWindow)
@@ -399,11 +473,38 @@ for (i in 1:nrow(rawdata)) {
     fsd$YvarO[wIndex] <- var(tmpRawBetaWindow)
     fsd$ZvarO[wIndex] <- var(tmpRawGammaWindow)
     
+    fsd$XvarLinInterpA[wIndex] <- var(tmpRawXWindowLinInterp)
+    fsd$YvarLinInterpA[wIndex] <- var(tmpRawYWindowLinInterp)
+    fsd$ZvarLinInterpA[wIndex] <- var(tmpRawZWindowLinInterp)
+    fsd$XvarLinInterpG[wIndex] <- var(tmpRawAWindowLinInterp)
+    fsd$YvarLinInterpG[wIndex] <- var(tmpRawBWindowLinInterp)
+    fsd$ZvarLinInterpG[wIndex] <- var(tmpRawCWindowLinInterp)
+    fsd$XvarLinInterpO[wIndex] <- var(tmpRawAlphaWindowLinInterp)
+    fsd$YvarLinInterpO[wIndex] <- var(tmpRawBetaWindowLinInterp)
+    fsd$ZvarLinInterpO[wIndex] <- var(tmpRawGammaWindowLinInterp)
+    
+    fsd$XvarPolInterpA[wIndex] <- var(tmpRawXWindowPolInterp)
+    fsd$YvarPolInterpA[wIndex] <- var(tmpRawYWindowPolInterp)
+    fsd$ZvarPolInterpA[wIndex] <- var(tmpRawZWindowPolInterp)
+    fsd$XvarPolInterpG[wIndex] <- var(tmpRawAWindowPolInterp)
+    fsd$YvarPolInterpG[wIndex] <- var(tmpRawBWindowPolInterp)
+    fsd$ZvarPolInterpG[wIndex] <- var(tmpRawCWindowPolInterp)
+    fsd$XvarPolInterpO[wIndex] <- var(tmpRawAlphaWindowPolInterp)
+    fsd$YvarPolInterpO[wIndex] <- var(tmpRawBetaWindowPolInterp)
+    fsd$ZvarPolInterpO[wIndex] <- var(tmpRawGammaWindowPolInterp)
+    
     #var magn
     fsd$MvarA[wIndex] <- var(tmpRawMagnAWindow)
     fsd$MvarG[wIndex] <- var(tmpRawMagnGWindow)
     fsd$MvarO[wIndex] <- var(tmpRawMagnOWindow)
     
+    fsd$MvarLinInterpA[wIndex] <- var(tmpRawMagnAWindowLinInterp)
+    fsd$MvarLinInterpG[wIndex] <- var(tmpRawMagnGWindowLinInterp)
+    fsd$MvarLinInterpO[wIndex] <- var(tmpRawMagnOWindowLinInterp)
+    
+    fsd$MvarPolInterpA[wIndex] <- var(tmpRawMagnAWindowPolInterp)
+    fsd$MvarPolInterpG[wIndex] <- var(tmpRawMagnGWindowPolInterp)
+    fsd$MvarPolInterpO[wIndex] <- var(tmpRawMagnOWindowPolInterp)
     
     # RMS  Accelerometer
     fsd$XrmsA[wIndex] <- sqrt(sum((tmpRawXWindow) ^ 2) / wSize)
@@ -416,20 +517,38 @@ for (i in 1:nrow(rawdata)) {
     fsd$YrmsO[wIndex] <- sqrt(sum((tmpRawBetaWindow) ^ 2) / wSize)
     fsd$ZrmsO[wIndex] <- sqrt(sum((tmpRawGammaWindow) ^ 2) / wSize)
     
+    fsd$XrmsLinInterpA[wIndex] <- sqrt(sum((tmpRawXWindowLinInterp) ^ 2) / wSize)
+    fsd$YrmsLinInterpA[wIndex] <- sqrt(sum((tmpRawYWindowLinInterp) ^ 2) / wSize)
+    fsd$ZrmsLinInterpA[wIndex] <- sqrt(sum((tmpRawZWindowLinInterp) ^ 2) / wSize)
+    fsd$XrmsLinInterpG[wIndex] <- sqrt(sum((tmpRawAWindowLinInterp) ^ 2) / wSize)
+    fsd$YrmsLinInterpG[wIndex] <- sqrt(sum((tmpRawBWindowLinInterp) ^ 2) / wSize)
+    fsd$ZrmsLinInterpG[wIndex] <- sqrt(sum((tmpRawCWindowLinInterp) ^ 2) / wSize)
+    fsd$XrmsLinInterpO[wIndex] <- sqrt(sum((tmpRawAlphaWindowLinInterp) ^ 2) / wSize)
+    fsd$YrmsLinInterpO[wIndex] <- sqrt(sum((tmpRawBetaWindowLinInterp) ^ 2) / wSize)
+    fsd$ZrmsLinInterpO[wIndex] <- sqrt(sum((tmpRawGammaWindowLinInterp) ^ 2) / wSize)
+    
+    fsd$XrmsPolInterpA[wIndex] <- sqrt(sum((tmpRawXWindowPolInterp) ^ 2) / wSize)
+    fsd$YrmsPolInterpA[wIndex] <- sqrt(sum((tmpRawYWindowPolInterp) ^ 2) / wSize)
+    fsd$ZrmsPolInterpA[wIndex] <- sqrt(sum((tmpRawZWindowPolInterp) ^ 2) / wSize)
+    fsd$XrmsPolInterpG[wIndex] <- sqrt(sum((tmpRawAWindowPolInterp) ^ 2) / wSize)
+    fsd$YrmsPolInterpG[wIndex] <- sqrt(sum((tmpRawBWindowPolInterp) ^ 2) / wSize)
+    fsd$ZrmsPolInterpG[wIndex] <- sqrt(sum((tmpRawCWindowPolInterp) ^ 2) / wSize)
+    fsd$XrmsPolInterpO[wIndex] <- sqrt(sum((tmpRawAlphaWindowPolInterp) ^ 2) / wSize)
+    fsd$YrmsPolInterpO[wIndex] <- sqrt(sum((tmpRawBetaWindowPolInterp) ^ 2) / wSize)
+    fsd$ZrmsPolInterpO[wIndex] <- sqrt(sum((tmpRawGammaWindowPolInterp) ^ 2) / wSize)
+    
     # Root Mean Square of the magnitude
     fsd$MagnRmsA[wIndex] <- sqrt((sum((tmpRawMagnAWindow) ^ 2)) / wSize)
     fsd$MagnRmsG[wIndex] <- sqrt((sum((tmpRawMagnGWindow) ^ 2)) / wSize)
     fsd$MagnRmsO[wIndex] <- sqrt((sum((tmpRawMagnOWindow) ^ 2)) / wSize)
     
-    # Root Mean Square of the square sum of
-    fsd$SqSumRmsA[wIndex] <- sqrt((sum((tmpRawSqSumAWindow) ^ 2)) / wSize)
-    fsd$SqSumRmsG[wIndex] <- sqrt((sum((tmpRawSqSumGWindow) ^ 2)) / wSize)
-    fsd$SqSumRmsO[wIndex] <- sqrt((sum((tmpRawSqSumOWindow) ^ 2)) / wSize)
+    fsd$MagnRmsLinInterpA[wIndex] <- sqrt((sum((tmpRawMagnAWindowLinInterp) ^ 2)) / wSize)
+    fsd$MagnRmsLinInterpG[wIndex] <- sqrt((sum((tmpRawMagnGWindowLinInterp) ^ 2)) / wSize)
+    fsd$MagnRmsLinInterpO[wIndex] <- sqrt((sum((tmpRawMagnOWindowLinInterp) ^ 2)) / wSize)
     
-    #sd of SquareSUm
-    fsd$SqSumSdA[wIndex] <- sd(tmpRawSqSumAWindow)
-    fsd$SqSumSdG[wIndex] <- sd(tmpRawSqSumGWindow)
-    fsd$SqSumSdO[wIndex] <- sd(tmpRawSqSumOWindow)
+    fsd$MagnRmsPolInterpA[wIndex] <- sqrt((sum((tmpRawMagnAWindowPolInterp) ^ 2)) / wSize)
+    fsd$MagnRmsPolInterpG[wIndex] <- sqrt((sum((tmpRawMagnGWindowPolInterp) ^ 2)) / wSize)
+    fsd$MagnRmsPolInterpO[wIndex] <- sqrt((sum((tmpRawMagnOWindowPolInterp) ^ 2)) / wSize)
     
     fsd$IsKeyProb[wIndex] <- length(tmpWindowCopy$belongsToKey[tmpWindowCopy$belongsToKey == TRUE]) / wSize
     
@@ -452,13 +571,42 @@ fsd$ZskewG <- 3 * (fsd$ZmeanG - fsd$ZmedianG) / fsd$ZsdG
 fsd$XskewO <- 3 * (fsd$XmeanO - fsd$XmedianO) / fsd$XsdO
 fsd$YskewO <- 3 * (fsd$YmeanO - fsd$YmedianO) / fsd$YsdO
 fsd$ZskewO <- 3 * (fsd$ZmeanO - fsd$ZmedianO) / fsd$ZsdO
+
+fsd$XskewLinInterpA <- 3 * (fsd$XmeanLinInterpA - fsd$XmedianLinInterpA) / fsd$XsdLinInterpA
+fsd$YskewLinInterpA <- 3 * (fsd$YmeanLinInterpA - fsd$YmedianLinInterpA) / fsd$YsdLinInterpA
+fsd$ZskewLinInterpA <- 3 * (fsd$ZmeanLinInterpA - fsd$ZmedianLinInterpA) / fsd$ZsdLinInterpA
+fsd$XskewLinInterpG <- 3 * (fsd$XmeanLinInterpG - fsd$XmedianLinInterpG) / fsd$XsdLinInterpG
+fsd$YskewLinInterpG <- 3 * (fsd$YmeanLinInterpG - fsd$YmedianLinInterpG) / fsd$YsdLinInterpG
+fsd$ZskewLinInterpG <- 3 * (fsd$ZmeanLinInterpG - fsd$ZmedianLinInterpG) / fsd$ZsdLinInterpG
+fsd$XskewLinInterpO <- 3 * (fsd$XmeanLinInterpO - fsd$XmedianLinInterpO) / fsd$XsdLinInterpO
+fsd$YskewLinInterpO <- 3 * (fsd$YmeanLinInterpO - fsd$YmedianLinInterpO) / fsd$YsdLinInterpO
+fsd$ZskewLinInterpO <- 3 * (fsd$ZmeanLinInterpO - fsd$ZmedianLinInterpO) / fsd$ZsdLinInterpO
+
+fsd$XskewPolInterpA <- 3 * (fsd$XmeanPolInterpA - fsd$XmedianPolInterpA) / fsd$XsdPolInterpA
+fsd$YskewPolInterpA <- 3 * (fsd$YmeanPolInterpA - fsd$YmedianPolInterpA) / fsd$YsdPolInterpA
+fsd$ZskewPolInterpA <- 3 * (fsd$ZmeanPolInterpA - fsd$ZmedianPolInterpA) / fsd$ZsdPolInterpA
+fsd$XskewPolInterpG <- 3 * (fsd$XmeanPolInterpG - fsd$XmedianPolInterpG) / fsd$XsdPolInterpG
+fsd$YskewPolInterpG <- 3 * (fsd$YmeanPolInterpG - fsd$YmedianPolInterpG) / fsd$YsdPolInterpG
+fsd$ZskewPolInterpG <- 3 * (fsd$ZmeanPolInterpG - fsd$ZmedianPolInterpG) / fsd$ZsdPolInterpG
+fsd$XskewPolInterpO <- 3 * (fsd$XmeanPolInterpO - fsd$XmedianPolInterpO) / fsd$XsdPolInterpO
+fsd$YskewPolInterpO <- 3 * (fsd$YmeanPolInterpO - fsd$YmedianPolInterpO) / fsd$YsdPolInterpO
+fsd$ZskewPolInterpO <- 3 * (fsd$ZmeanPolInterpO - fsd$ZmedianPolInterpO) / fsd$ZsdPolInterpO
+
 # skewness magn
 fsd$MskewA <- 3 * (fsd$MmeanA - fsd$MmedianA) / fsd$MsdA
 fsd$MskewG <- 3 * (fsd$MmeanG - fsd$MmedianG) / fsd$MsdG
 fsd$MskewO <- 3 * (fsd$MmeanO - fsd$MmedianO) / fsd$MsdO
 
+fsd$MskewLinInterpA <- 3 * (fsd$MmeanLinInterpA - fsd$MmedianLinInterpA) / fsd$MsdLinInterpA
+fsd$MskewLinInterpG <- 3 * (fsd$MmeanLinInterpG - fsd$MmedianLinInterpG) / fsd$MsdLinInterpG
+fsd$MskewLinInterpO <- 3 * (fsd$MmeanLinInterpO - fsd$MmedianLinInterpO) / fsd$MsdLinInterpO
+
+fsd$MskewPolInterpA <- 3 * (fsd$MmeanPolInterpA - fsd$MmedianPolInterpA) / fsd$MsdPolInterpA
+fsd$MskewPolInterpG <- 3 * (fsd$MmeanPolInterpG - fsd$MmedianPolInterpG) / fsd$MsdPolInterpG
+fsd$MskewPolInterpO <- 3 * (fsd$MmeanPolInterpO - fsd$MmedianPolInterpO) / fsd$MsdPolInterpO
+
 write.csv(
   fsd,
-  "C:\\git\\data-thesis\\R\\datasets\\17011417-dataset-test-wsize-median-key-only.csv",
+  "C:\\Users\\nyrrrr\\Desktop\\17011020-dataset-test-wsize-median-key-only.csv",
   row.names = FALSE
 )

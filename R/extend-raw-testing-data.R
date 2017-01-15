@@ -1,12 +1,12 @@
 rawdata <-
   read.csv(
-    "C:\\git\\data-thesis\\R\\datasets\\transferred-17011417-victim-data-preprocessed.csv",
+    "C:\\git\\data-thesis\\R\\datasets\\transferred-17011205-victim-data-preprocessed.csv",
     header = TRUE
   )
 
 keytrain <-
   read.csv(
-    "C:\\git\\data-thesis\\R\\datasets\\17011417-key-dataset-test-raw.csv",
+    "C:\\git\\data-thesis\\R\\datasets\\17011205-key-dataset-test-raw.csv",
     header = TRUE
   )
 keytrain$DownTime <- keytrain$DownTime / 1000000
@@ -22,5 +22,5 @@ for (i in seq_along(keytrain$DownTime)) {
 }
 
 write.csv(rawdata,
-          "C:\\git\\data-thesis\\R\\datasets\\transferred-17011417-victim-data-preprocessed.csv",
+          "C:\\git\\data-thesis\\R\\datasets\\transferred-17011205-victim-data-preprocessed.csv",
           row.names = FALSE)
