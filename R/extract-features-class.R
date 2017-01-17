@@ -1,6 +1,3 @@
-set.seed(123)
-options(digits=20)
-
 feature.extraction <- function(boolTraining, stringFileTimestamp, boolLabeled) {
   start.time <- proc.time()
   
@@ -678,6 +675,13 @@ feature.extraction <- function(boolTraining, stringFileTimestamp, boolLabeled) {
       paste(getwd(),"/datasets/", stringFileTimestamp, "-dataset-training-", wSize, ".csv", sep=""),
       row.names = FALSE
     )
+    # # write extra feature set with no "NONE" values
+    # ftest <- fKeyTrain[-which(fKeyTrain$Keypress == "NONE"),]
+    # write.csv(
+    #   ftest,
+    #   paste(getwd(),"/datasets/", stringFileTimestamp, "-dataset-training-", wSize, ".csv", sep=""),
+    #   row.names = FALSE
+    # )
   } else if(boolLabeled) {
     write.csv(
       fKeyTrain,
@@ -691,16 +695,7 @@ feature.extraction <- function(boolTraining, stringFileTimestamp, boolLabeled) {
       row.names = FALSE
     )
   }
-  
-  # write extra feature set with no "NONE" values
-  ftest <- fKeyTrain[-which(fKeyTrain == "NONE"),]
-  
-  write.csv(
-    ftest,
-    paste(getwd(),"/datasets/", stringFileTimestamp, "-dataset-training-keys-only", wSize, ".csv", sep=""),
-    row.names = FALSE
-  )
-  
+
   end.time <- proc.time()
   print(paste("DONE in ", end.time[3] - start.time[3],"s",sep=""))
   return(fKeyTrain)
