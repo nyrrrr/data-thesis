@@ -671,6 +671,7 @@ feature.extraction <- function(boolTraining, stringFileTimestamp, boolLabeled) {
   fKeyTrain$MskewMeanNormA <- 3 * (fKeyTrain$MmeanMeanNormA - fKeyTrain$MmedianMeanNormA) / fKeyTrain$MsdMeanNormA
   fKeyTrain$MskewMeanNormG <- 3 * (fKeyTrain$MmeanMeanNormG - fKeyTrain$MmedianMeanNormG) / fKeyTrain$MsdMeanNormG
   
+  # write files
   if(boolTraining) {
     write.csv(
       fKeyTrain,
@@ -690,6 +691,16 @@ feature.extraction <- function(boolTraining, stringFileTimestamp, boolLabeled) {
       row.names = FALSE
     )
   }
+  
+  # write extra feature set with no "NONE" values
+  ftest <- fKeyTrain[-which(fKeyTrain == "NONE"),]
+  
+  write.csv(
+    ftest,
+    paste(getwd(),"/datasets/", stringFileTimestamp, "-dataset-training-keys-only", wSize, ".csv", sep=""),
+    row.names = FALSE
+  )
+  
   end.time <- proc.time()
   print(paste("DONE in ", end.time[3] - start.time[3],"s",sep=""))
   return(fKeyTrain)
