@@ -156,7 +156,8 @@ rawdata$MnormMeanO <- rawdata$MagnO - mean(rawdata$MagnO)
 keytest <-
   read.csv(
     "C:\\git\\data-thesis\\R\\datasets\\17011020-key-dataset-test-raw.csv",
-    header = TRUE
+    header = TRUE,
+    stringsAsFactors=FALSE
   )
 keytest$DownTime <- keytest$DownTime
 keytest$EventTime <- keytest$EventTime
@@ -195,8 +196,10 @@ write.csv(rawdata,
 # wSize <- ceiling(median(wSize$WindowSize))
 # wSize <- ceiling(mean(wSize$WindowSize))
 # wSize <- ceiling(median(wSize$WindowSize[wSize$IsKey == TRUE]))
-wSize <- 61
-if(wSize %% 2 == 0) wSize <- wSize - 1
+# wSize <- 61
+# wSize <- 35
+wSize <- 25
+if(wSize %% 2 == 0) wSize <- wSize + 1
 # feature data set;
 fsd <- NULL
 
@@ -868,9 +871,20 @@ for (i in 1:nrow(rawdata)) {
     keyCount <- length(tmpWindowCopy$belongsToKey[tmpWindowCopy$belongsToKey == TRUE])
     if(keyCount > 0) {
       tmpKey <- keytest[keytest$DownTime <= tmpWindowCopy$Timestamp[tmpWindowCopy$belongsToKey == TRUE][1] & keytest$EventTime >= tmpWindowCopy$Timestamp[tmpWindowCopy$belongsToKey == TRUE][1],]
+      
       fsd$IsKeyProb[wIndex] <- keyCount/tmpKey$WindowSize
+      if(fsd$IsKeyProb[wIndex] > 0.85) {
+        fsd$IsKey[wIndex] <- TRUE
+        fsd$Keypress[wIndex] <- tmpKey$Keypress
+      }
+      else {
+        fsd$IsKey[wIndex] <- FALSE
+        fsd$Keypress[wIndex] <- "NONE"
+      }
     } else {
       fsd$IsKeyProb[wIndex] <- 0
+      fsd$IsKey[wIndex] <- FALSE
+      fsd$Keypress[wIndex] <- "NONE"
     }
     
     # time of window
@@ -956,6 +970,6 @@ fsd$MskewMeanNormO <- 3 * (fsd$MmeanMeanNormO - fsd$MmedianMeanNormO) / fsd$MsdM
 
 write.csv(
   fsd,
-  "C:\\git\\data-thesis\\R\\datasets\\17011020-dataset-test-wsize-61.csv",
+  "C:\\git\\data-thesis\\R\\datasets\\17011020-dataset-test-wsize-25.csv",
   row.names = FALSE
 )
