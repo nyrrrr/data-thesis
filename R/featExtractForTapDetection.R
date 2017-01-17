@@ -170,6 +170,20 @@ for (i in 1:nrow(sensortrain)) {
     fKeyTrain$Zd2G[wIndex] <- tmpRawPolyMod$coefficients[3]
     fKeyTrain$Zd3G[wIndex] <- tmpRawPolyMod$coefficients[4]
     
+    tmpRawPolyMod <- lm(tmpRawMagnAWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN))
+    tmpRawMagnAWindowPolInterp <- predict(tmpRawPolyMod)
+    fKeyTrain$Md0A[wIndex] <- tmpRawPolyMod$coefficients[1]
+    fKeyTrain$Md1A[wIndex] <- tmpRawPolyMod$coefficients[2]
+    fKeyTrain$Md2A[wIndex] <- tmpRawPolyMod$coefficients[3]
+    fKeyTrain$Md3A[wIndex] <- tmpRawPolyMod$coefficients[4]
+    
+    tmpRawPolyMod <- lm(tmpRawMagnGWindow ~ poly(tmpWindowCopy$Timestamp, polInterpN))
+    tmpRawMagnGWindowPolInterp <- predict(tmpRawPolyMod)
+    fKeyTrain$Md0G[wIndex] <- tmpRawPolyMod$coefficients[1]
+    fKeyTrain$Md1G[wIndex] <- tmpRawPolyMod$coefficients[2]
+    fKeyTrain$Md2G[wIndex] <- tmpRawPolyMod$coefficients[3]
+    fKeyTrain$Md3G[wIndex] <- tmpRawPolyMod$coefficients[4]
+    
     # cubic spline interpol
     cubicInterpN <- 201
     spar <- 0.35
