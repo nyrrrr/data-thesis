@@ -481,7 +481,7 @@ feature.extraction <- function(boolTraining, stringFileTimestamp, boolLabeled) {
       fKeyTrain$YsdMeanNormG[wIndex] <- sd(tmpRawBWindowMeanNorm)
       fKeyTrain$ZsdMeanNormG[wIndex] <- sd(tmpRawCWindowMeanNorm)
   
-      #sd magn
+      # sd magn
       fKeyTrain$MsdA[wIndex] <- sd(tmpRawMagnAWindow)
       fKeyTrain$MsdG[wIndex] <- sd(tmpRawMagnGWindow)
   
@@ -496,7 +496,59 @@ feature.extraction <- function(boolTraining, stringFileTimestamp, boolLabeled) {
   
       fKeyTrain$MsdMeanNormA[wIndex] <- sd(tmpRawMagnAWindowMeanNorm)
       fKeyTrain$MsdMeanNormG[wIndex] <- sd(tmpRawMagnGWindowMeanNorm)
+      
+      # kurtosis
+      fKeyTrain$XkurtA <- (sum((tmpRawXWindow - mean(tmpRawXWindow))^4)/length(tmpRawXWindow))/fKeyTrain$XsdA^4 - 3
+      fKeyTrain$YkurtA <- (sum((tmpRawYWindow - mean(tmpRawYWindow))^4)/length(tmpRawYWindow))/fKeyTrain$YsdA^4 - 3
+      fKeyTrain$ZkurtA <- (sum((tmpRawZWindow - mean(tmpRawZWindow))^4)/length(tmpRawZWindow))/fKeyTrain$ZsdA^4 - 3
+      fKeyTrain$XkurtG <- (sum((tmpRawAWindow - mean(tmpRawAWindow))^4)/length(tmpRawAWindow))/fKeyTrain$XsdG^4 - 3
+      fKeyTrain$YkurtG <- (sum((tmpRawBWindow - mean(tmpRawBWindow))^4)/length(tmpRawBWindow))/fKeyTrain$YsdG^4 - 3
+      fKeyTrain$ZkurtG <- (sum((tmpRawCWindow - mean(tmpRawCWindow))^4)/length(tmpRawCWindow))/fKeyTrain$ZsdG^4 - 3
+      
+      fKeyTrain$XkurtLinInterpA <- (sum((tmpRawXWindowLinInterp - mean(tmpRawXWindowLinInterp))^4)/length(tmpRawXWindowLinInterp))/fKeyTrain$XsdLinInterpA^4 - 3
+      fKeyTrain$YkurtLinInterpA <- (sum((tmpRawYWindowLinInterp - mean(tmpRawYWindowLinInterp))^4)/length(tmpRawYWindowLinInterp))/fKeyTrain$YsdLinInterpA^4 - 3
+      fKeyTrain$ZkurtLinInterpA <- (sum((tmpRawZWindowLinInterp - mean(tmpRawZWindowLinInterp))^4)/length(tmpRawZWindowLinInterp))/fKeyTrain$ZsdLinInterpA^4 - 3
+      fKeyTrain$XkurtLinInterpG <- (sum((tmpRawAWindowLinInterp - mean(tmpRawAWindowLinInterp))^4)/length(tmpRawAWindowLinInterp))/fKeyTrain$XsdLinInterpG^4 - 3
+      fKeyTrain$YkurtLinInterpG <- (sum((tmpRawBWindowLinInterp - mean(tmpRawBWindowLinInterp))^4)/length(tmpRawBWindowLinInterp))/fKeyTrain$YsdLinInterpG^4 - 3
+      fKeyTrain$ZkurtLinInterpG <- (sum((tmpRawCWindowLinInterp - mean(tmpRawCWindowLinInterp))^4)/length(tmpRawCWindowLinInterp))/fKeyTrain$ZsdLinInterpG^4 - 3
+      
+      fKeyTrain$XkurtPoly3DInterpA <- (sum((tmpRawXWindowPoly3DInterp - mean(tmpRawXWindowPoly3DInterp))^4)/length(tmpRawXWindowPoly3DInterp))/fKeyTrain$XsdPoly3DInterpA^4 - 3
+      fKeyTrain$YkurtPoly3DInterpA <- (sum((tmpRawYWindowPoly3DInterp - mean(tmpRawYWindowPoly3DInterp))^4)/length(tmpRawYWindowPoly3DInterp))/fKeyTrain$YsdPoly3DInterpA^4 - 3
+      fKeyTrain$ZkurtPoly3DInterpA <- (sum((tmpRawZWindowPoly3DInterp - mean(tmpRawZWindowPoly3DInterp))^4)/length(tmpRawZWindowPoly3DInterp))/fKeyTrain$ZsdPoly3DInterpA^4 - 3
+      fKeyTrain$XkurtPoly3DInterpG <- (sum((tmpRawAWindowPoly3DInterp - mean(tmpRawAWindowPoly3DInterp))^4)/length(tmpRawAWindowPoly3DInterp))/fKeyTrain$XsdPoly3DInterpG^4 - 3
+      fKeyTrain$YkurtPoly3DInterpG <- (sum((tmpRawBWindowPoly3DInterp - mean(tmpRawBWindowPoly3DInterp))^4)/length(tmpRawBWindowPoly3DInterp))/fKeyTrain$YsdPoly3DInterpG^4 - 3
+      fKeyTrain$ZkurtPoly3DInterpG <- (sum((tmpRawCWindowPoly3DInterp - mean(tmpRawCWindowPoly3DInterp))^4)/length(tmpRawCWindowPoly3DInterp))/fKeyTrain$ZsdPoly3DInterpG^4 - 3
+      
+      fKeyTrain$XkurtCubInterpA <- (sum((tmpRawXWindowCubInterp - mean(tmpRawXWindowCubInterp))^4)/length(tmpRawXWindowCubInterp))/fKeyTrain$XsdCubInterpA^4 - 3
+      fKeyTrain$YkurtCubInterpA <- (sum((tmpRawYWindowCubInterp - mean(tmpRawYWindowCubInterp))^4)/length(tmpRawYWindowCubInterp))/fKeyTrain$YsdCubInterpA^4 - 3
+      fKeyTrain$ZkurtCubInterpA <- (sum((tmpRawZWindowCubInterp - mean(tmpRawZWindowCubInterp))^4)/length(tmpRawZWindowCubInterp))/fKeyTrain$ZsdCubInterpA^4 - 3
+      fKeyTrain$XkurtCubInterpG <- (sum((tmpRawAWindowCubInterp - mean(tmpRawAWindowCubInterp))^4)/length(tmpRawAWindowCubInterp))/fKeyTrain$XsdCubInterpG^4 - 3
+      fKeyTrain$YkurtCubInterpG <- (sum((tmpRawBWindowCubInterp - mean(tmpRawBWindowCubInterp))^4)/length(tmpRawBWindowCubInterp))/fKeyTrain$YsdCubInterpG^4 - 3
+      fKeyTrain$ZkurtCubInterpG <- (sum((tmpRawCWindowCubInterp - mean(tmpRawCWindowCubInterp))^4)/length(tmpRawCWindowCubInterp))/fKeyTrain$ZsdCubInterpG^4 - 3
+      
+      fKeyTrain$XkurtMeanNormA <- (sum((tmpRawXWindowMeanNorm - mean(tmpRawXWindowMeanNorm))^4)/length(tmpRawXWindowMeanNorm))/fKeyTrain$XsdMeanNormA^4 - 3
+      fKeyTrain$YkurtMeanNormA <- (sum((tmpRawYWindowMeanNorm - mean(tmpRawYWindowMeanNorm))^4)/length(tmpRawYWindowMeanNorm))/fKeyTrain$YsdMeanNormA^4 - 3
+      fKeyTrain$ZkurtMeanNormA <- (sum((tmpRawZWindowMeanNorm - mean(tmpRawZWindowMeanNorm))^4)/length(tmpRawZWindowMeanNorm))/fKeyTrain$ZsdMeanNormA^4 - 3
+      fKeyTrain$XkurtMeanNormG <- (sum((tmpRawAWindowMeanNorm - mean(tmpRawAWindowMeanNorm))^4)/length(tmpRawAWindowMeanNorm))/fKeyTrain$XsdMeanNormG^4 - 3
+      fKeyTrain$YkurtMeanNormG <- (sum((tmpRawBWindowMeanNorm - mean(tmpRawBWindowMeanNorm))^4)/length(tmpRawBWindowMeanNorm))/fKeyTrain$YsdMeanNormG^4 - 3
+      fKeyTrain$ZkurtMeanNormG <- (sum((tmpRawCWindowMeanNorm - mean(tmpRawCWindowMeanNorm))^4)/length(tmpRawCWindowMeanNorm))/fKeyTrain$ZsdMeanNormG^4 - 3
   
+      # kurtosis magn
+      fKeyTrain$MkurtA <- (sum((tmpRawMagnAWindow - mean(tmpRawMagnAWindow))^4)/length(tmpRawMagnAWindow))/fKeyTrain$MsdA^4 - 3
+      fKeyTrain$MkurtG <- (sum((tmpRawMagnGWindow - mean(tmpRawMagnGWindow))^4)/length(tmpRawMagnGWindow))/fKeyTrain$MsdG^4 - 3
+      
+      fKeyTrain$MkurtA <- (sum((tmpRawMagnAWindowLinInterp - mean(tmpRawMagnAWindowLinInterp))^4)/length(tmpRawMagnAWindowLinInterp))/fKeyTrain$MsdLinInterpA^4 - 3
+      fKeyTrain$MkurtG <- (sum((tmpRawMagnGWindowLinInterp - mean(tmpRawMagnGWindowLinInterp))^4)/length(tmpRawMagnGWindowLinInterp))/fKeyTrain$MsdLinInterpG^4 - 3
+      
+      fKeyTrain$MkurtA <- (sum((tmpRawMagnAWindowPoly3DInterp - mean(tmpRawMagnAWindowPoly3DInterp))^4)/length(tmpRawMagnAWindowPoly3DInterp))/fKeyTrain$MsdPoly3DInterpA^4 - 3
+      fKeyTrain$MkurtG <- (sum((tmpRawMagnGWindowPoly3DInterp - mean(tmpRawMagnGWindowPoly3DInterp))^4)/length(tmpRawMagnGWindowPoly3DInterp))/fKeyTrain$MsdPoly3DInterpG^4 - 3
+      
+      fKeyTrain$MkurtA <- (sum((tmpRawMagnAWindowCubInterp - mean(tmpRawMagnAWindowCubInterp))^4)/length(tmpRawMagnAWindowCubInterp))/fKeyTrain$MsdCubInterpA^4 - 3
+      fKeyTrain$MkurtG <- (sum((tmpRawMagnGWindowCubInterp - mean(tmpRawMagnGWindowCubInterp))^4)/length(tmpRawMagnGWindowCubInterp))/fKeyTrain$MsdCubInterpG^4 - 3
+      
+      fKeyTrain$MkurtA <- (sum((tmpRawMagnAWindowMeanNorm - mean(tmpRawMagnAWindowMeanNorm))^4)/length(tmpRawMagnAWindowMeanNorm))/fKeyTrain$MsdMeanNormA^4 - 3
+      fKeyTrain$MkurtG <- (sum((tmpRawMagnGWindowMeanNorm - mean(tmpRawMagnGWindowMeanNorm))^4)/length(tmpRawMagnGWindowMeanNorm))/fKeyTrain$MsdMeanNormG^4 - 3
+      
       # RMS  Accelerometer
       fKeyTrain$XrmsA[wIndex] <- sqrt(sum((tmpRawXWindow) ^ 2) / wSize)
       fKeyTrain$YrmsA[wIndex] <- sqrt(sum((tmpRawYWindow) ^ 2) / wSize)
