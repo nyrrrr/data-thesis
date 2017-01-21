@@ -196,9 +196,9 @@ write.csv(rawdata,
 # wSize <- ceiling(median(wSize$WindowSize))
 # wSize <- ceiling(mean(wSize$WindowSize))
 # wSize <- ceiling(median(wSize$WindowSize[wSize$IsKey == TRUE]))
-# wSize <- 61
+wSize <- 61
 # wSize <- 35
-wSize <- 25
+
 if(wSize %% 2 == 0) wSize <- wSize + 1
 # feature data set;
 fsd <- NULL
@@ -970,6 +970,6 @@ fsd$MskewMeanNormO <- 3 * (fsd$MmeanMeanNormO - fsd$MmedianMeanNormO) / fsd$MsdM
 
 write.csv(
   fsd,
-  "C:\\git\\data-thesis\\R\\datasets\\17011020-dataset-test-wsize-25.csv",
+  "C:\\git\\data-thesis\\R\\datasets\\17011020-dataset-test-wsize-61.csv",
   row.names = FALSE
 )
