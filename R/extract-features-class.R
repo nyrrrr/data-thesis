@@ -602,11 +602,27 @@ feature.extraction <- function(boolTraining, stringFileTimestamp, boolLabeled) {
       fKeyTrain$MrmsMeanNormG[wIndex] <- sqrt(sum(((tmpRawMagnGWindowMeanNorm) ^ 2)) / wSize)
   
       # matrix 1-norm
-      fKeyTrain$OnenormA <- max(sum(abs(tmpRawXWindow)), sum(abs(tmpRawYWindow)), sum(abs(tmpRawZWindow)))
-      fKeyTrain$OnenormG <- max(sum(abs(tmpRawAWindow)), sum(abs(tmpRawBWindow)), sum(abs(tmpRawCWindow)))
+      fKeyTrain$OnenormA[wIndex] <- max(sum(abs(tmpRawXWindow)), sum(abs(tmpRawYWindow)), sum(abs(tmpRawZWindow)))
+      fKeyTrain$OnenormG[wIndex] <- max(sum(abs(tmpRawAWindow)), sum(abs(tmpRawBWindow)), sum(abs(tmpRawCWindow)))
       
-      fKeyTrain$OnenormLinInterpA <- max(sum(abs(tmpRawXWindowLinInterp)), sum(abs(tmpRawYWindowLinInterp)), sum(abs(tmpRawZWindowLinInterp)))
-      fKeyTrain$OnenormLinInterpG <- max(sum(abs(tmpRawAWindowLinInterp)), sum(abs(tmpRawBWindowLinInterp)), sum(abs(tmpRawCWindowLinInterp)))
+      fKeyTrain$OnenormLinInterpA[wIndex] <- max(sum(abs(tmpRawXWindowLinInterp)), sum(abs(tmpRawYWindowLinInterp)), sum(abs(tmpRawZWindowLinInterp)))
+      fKeyTrain$OnenormLinInterpG[wIndex] <- max(sum(abs(tmpRawAWindowLinInterp)), sum(abs(tmpRawBWindowLinInterp)), sum(abs(tmpRawCWindowLinInterp)))
+      
+      fKeyTrain$OnenormPoly3DInterpA[wIndex] <- max(sum(abs(tmpRawXWindowPoly3DInterp)), sum(abs(tmpRawYWindowPoly3DInterp)), sum(abs(tmpRawZWindowPoly3DInterp)))
+      fKeyTrain$OnenormPoly3DInterpG[wIndex] <- max(sum(abs(tmpRawAWindowPoly3DInterp)), sum(abs(tmpRawBWindowPoly3DInterp)), sum(abs(tmpRawCWindowPoly3DInterp)))
+      
+      fKeyTrain$OnenormCubInterpA[wIndex] <- max(sum(abs(tmpRawXWindowCubInterp)), sum(abs(tmpRawYWindowCubInterp)), sum(abs(tmpRawZWindowCubInterp)))
+      fKeyTrain$OnenormCubInterpG[wIndex] <- max(sum(abs(tmpRawAWindowCubInterp)), sum(abs(tmpRawBWindowCubInterp)), sum(abs(tmpRawCWindowCubInterp)))
+      
+      fKeyTrain$OnenormMeanNormA[wIndex] <- max(sum(abs(tmpRawXWindowMeanNorm)), sum(abs(tmpRawYWindowMeanNorm)), sum(abs(tmpRawZWindowMeanNorm)))
+      fKeyTrain$OnenormMeanNormG[wIndex] <- max(sum(abs(tmpRawAWindowMeanNorm)), sum(abs(tmpRawBWindowMeanNorm)), sum(abs(tmpRawCWindowMeanNorm)))
+      
+      # matrix infinity-norm
+      fKeyTrain$OnenormA[wIndex] <- max(sum(abs(tmpRawXWindow)), sum(abs(tmpRawYWindow)), sum(abs(tmpRawZWindow)))
+      fKeyTrain$OnenormG[wIndex] <- max(sum(abs(tmpRawAWindow)), sum(abs(tmpRawBWindow)), sum(abs(tmpRawCWindow)))
+      
+      fKeyTrain$OnenormLinInterpA[wIndex] <- max(sum(abs(tmpRawXWindowLinInterp)), sum(abs(tmpRawYWindowLinInterp)), sum(abs(tmpRawZWindowLinInterp)))
+      fKeyTrain$OnenormLinInterpG[wIndex] <- max(sum(abs(tmpRawAWindowLinInterp)), sum(abs(tmpRawBWindowLinInterp)), sum(abs(tmpRawCWindowLinInterp)))
       
       fKeyTrain$OnenormPoly3DInterpA <- max(sum(abs(tmpRawXWindowPoly3DInterp)), sum(abs(tmpRawYWindowPoly3DInterp)), sum(abs(tmpRawZWindowPoly3DInterp)))
       fKeyTrain$OnenormPoly3DInterpG <- max(sum(abs(tmpRawAWindowPoly3DInterp)), sum(abs(tmpRawBWindowPoly3DInterp)), sum(abs(tmpRawCWindowPoly3DInterp)))
