@@ -730,6 +730,22 @@ feature.extraction <- function(boolTraining, stringFileTimestamp, boolLabeled) {
       fKeyTrain$YarocMeanNormG[wIndex] <- sum(abs(tmpRawBWindowMeanNorm[-1] - tmpRawBWindowMeanNorm[-length(tmpWindowCopy$Timestamp)])/(tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))
       fKeyTrain$ZarocMeanNormG[wIndex] <- sum(abs(tmpRawCWindowMeanNorm[-1] - tmpRawCWindowMeanNorm[-length(tmpWindowCopy$Timestamp)])/(tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))
 
+      # magnitude accumulated rate of change (1st order derivation)
+      fKeyTrain$MarocA[wIndex] <- sum(abs(tmpRawMagnAWindow[-1] - tmpRawMagnAWindow[-length(tmpWindowCopy$Timestamp)])/(tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))
+      fKeyTrain$MarocG[wIndex] <- sum(abs(tmpRawMagnGWindow[-1] - tmpRawMagnGWindow[-length(tmpWindowCopy$Timestamp)])/(tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))
+      
+      fKeyTrain$MarocLinInterpA[wIndex] <- sum(abs(tmpRawMagnAWindowLinInterp[-1] - tmpRawMagnAWindowLinInterp[-length(tmpWindowCopy$Timestamp)])/(tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))
+      fKeyTrain$MarocLinInterpG[wIndex] <- sum(abs(tmpRawMagnGWindowLinInterp[-1] - tmpRawMagnGWindowLinInterp[-length(tmpWindowCopy$Timestamp)])/(tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))
+      
+      fKeyTrain$MarocPoly3DInterpA[wIndex] <- sum(abs(tmpRawMagnAWindowPoly3DInterp[-1] - tmpRawMagnAWindowPoly3DInterp[-length(tmpWindowCopy$Timestamp)])/(tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))
+      fKeyTrain$MarocPoly3DInterpG[wIndex] <- sum(abs(tmpRawMagnGWindowPoly3DInterp[-1] - tmpRawMagnGWindowPoly3DInterp[-length(tmpWindowCopy$Timestamp)])/(tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))
+      
+      fKeyTrain$MarocCubInterpA[wIndex] <- sum(abs(tmpRawMagnAWindowCubInterp$y[-1] - tmpRawMagnAWindowCubInterp$y[-length(tmpRawMagnAWindowCubInterp$x)])/(tmpRawMagnAWindowCubInterp$x[-1] - tmpRawMagnAWindowCubInterp$x[-length(tmpRawMagnAWindowCubInterp$x)]))
+      fKeyTrain$MarocCubInterpG[wIndex] <- sum(abs(tmpRawMagnGWindowCubInterp$y[-1] - tmpRawMagnGWindowCubInterp$y[-length(tmpRawMagnGWindowCubInterp$x)])/(tmpRawMagnGWindowCubInterp$x[-1] - tmpRawMagnGWindowCubInterp$x[-length(tmpRawMagnGWindowCubInterp$x)]))
+      
+      fKeyTrain$MarocMeanNormA[wIndex] <- sum(abs(tmpRawMagnAWindowMeanNorm[-1] - tmpRawMagnAWindowMeanNorm[-length(tmpWindowCopy$Timestamp)])/(tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))
+      fKeyTrain$MarocMeanNormG[wIndex] <- sum(abs(tmpRawMagnGWindowMeanNorm[-1] - tmpRawMagnGWindowMeanNorm[-length(tmpWindowCopy$Timestamp)])/(tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))
+      
       # key labels
       if(boolLabeled) {
         keyCount <- length(tmpWindowCopy$belongsToKey[tmpWindowCopy$belongsToKey == TRUE])
@@ -804,8 +820,6 @@ feature.extraction <- function(boolTraining, stringFileTimestamp, boolLabeled) {
   fKeyTrain$MskewMeanNormA <- 3 * (fKeyTrain$MmeanMeanNormA - fKeyTrain$MmedianMeanNormA) / fKeyTrain$MsdMeanNormA
   fKeyTrain$MskewMeanNormG <- 3 * (fKeyTrain$MmeanMeanNormG - fKeyTrain$MmedianMeanNormG) / fKeyTrain$MsdMeanNormG
   
-  # fKeyTrain <- as.data.frame(fKeyTrain)
-  
   # write files
   if(boolTraining) {
     write.csv(
@@ -813,13 +827,6 @@ feature.extraction <- function(boolTraining, stringFileTimestamp, boolLabeled) {
       paste(getwd(),"/datasets/", stringFileTimestamp, "-feature-dataset-TRAINING-", wSize, ".csv", sep=""),
       row.names = FALSE
     )
-    # # write extra feature set with no "NONE" values
-    # ftest <- fKeyTrain[-which(fKeyTrain$Keypress == "NONE"),]
-    # write.csv(
-    #   ftest,
-    #   paste(getwd(),"/datasets/", stringFileTimestamp, "-dataset-training-", wSize, ".csv", sep=""),
-    #   row.names = FALSE
-    # )
   } else if(boolLabeled) {
     write.csv(
       fKeyTrain,
