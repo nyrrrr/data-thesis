@@ -1,5 +1,5 @@
 # feature processing function
-feature.extraction <- function(boolTraining, stringFileTimestamp, boolLabeled) {
+feature.extraction <- function(boolTraining, stringFileTimestamp, boolLabeled, windowSize) {
   start.time <- proc.time()
   
   if(boolTraining) print(paste("Generate features from ", stringFileTimestamp, "-sensor-dataset-training-raw.csv", sep=""))
@@ -76,7 +76,7 @@ feature.extraction <- function(boolTraining, stringFileTimestamp, boolLabeled) {
   sensortrain$MagnA <- sqrt(sensortrain$SqSumA)
   sensortrain$MagnG <- sqrt(sensortrain$SqSumG)
   
-  wSize <- 61
+  wSize <- windowSize
   if(wSize %% 2 == 0) wSize <- wSize + 1
   
   fKeyTrain <- NULL
