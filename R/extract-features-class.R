@@ -601,6 +601,26 @@ feature.extraction <- function(boolTraining, stringFileTimestamp, boolLabeled) {
       fKeyTrain$MrmsMeanNormA[wIndex] <- sqrt(sum(((tmpRawMagnAWindowMeanNorm) ^ 2)) / wSize)
       fKeyTrain$MrmsMeanNormG[wIndex] <- sqrt(sum(((tmpRawMagnGWindowMeanNorm) ^ 2)) / wSize)
   
+      # matrix 1-norm
+      fKeyTrain$OnenormA <- max(sum(abs(tmpRawXWindow)), sum(abs(tmpRawYWindow)), sum(abs(tmpRawZWindow)))
+      fKeyTrain$OnenormG <- max(sum(abs(tmpRawAWindow)), sum(abs(tmpRawBWindow)), sum(abs(tmpRawCWindow)))
+      
+      fKeyTrain$OnenormLinInterpA <- max(sum(abs(tmpRawXWindowLinInterp)), sum(abs(tmpRawYWindowLinInterp)), sum(abs(tmpRawZWindowLinInterp)))
+      fKeyTrain$OnenormLinInterpG <- max(sum(abs(tmpRawAWindowLinInterp)), sum(abs(tmpRawBWindowLinInterp)), sum(abs(tmpRawCWindowLinInterp)))
+      
+      fKeyTrain$OnenormPoly3DInterpA <- max(sum(abs(tmpRawXWindowPoly3DInterp)), sum(abs(tmpRawYWindowPoly3DInterp)), sum(abs(tmpRawZWindowPoly3DInterp)))
+      fKeyTrain$OnenormPoly3DInterpG <- max(sum(abs(tmpRawAWindowPoly3DInterp)), sum(abs(tmpRawBWindowPoly3DInterp)), sum(abs(tmpRawCWindowPoly3DInterp)))
+      
+      fKeyTrain$OnenormCubInterpA <- max(sum(abs(tmpRawXWindowCubInterp)), sum(abs(tmpRawYWindowCubInterp)), sum(abs(tmpRawZWindowCubInterp)))
+      fKeyTrain$OnenormCubInterpG <- max(sum(abs(tmpRawAWindowCubInterp)), sum(abs(tmpRawBWindowCubInterp)), sum(abs(tmpRawCWindowCubInterp)))
+      
+      fKeyTrain$OnenormMeanNormA <- max(sum(abs(tmpRawXWindowMeanNorm)), sum(abs(tmpRawYWindowMeanNorm)), sum(abs(tmpRawZWindowMeanNorm)))
+      fKeyTrain$OnenormMeanNormG <- max(sum(abs(tmpRawAWindowMeanNorm)), sum(abs(tmpRawBWindowMeanNorm)), sum(abs(tmpRawCWindowMeanNorm)))
+      
+      #vector magn 1-norm
+      fKeyTrain$OnenormMagnA <- sum(abs(tmpRawMagnAWindow))
+      fKeyTrain$OnenormMagnG <- sum(abs(tmpRawMagnGWindow))
+      
       if(boolLabeled) {
         keyCount <- length(tmpWindowCopy$belongsToKey[tmpWindowCopy$belongsToKey == TRUE])
         if(keyCount > 0) {
