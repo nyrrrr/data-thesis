@@ -833,7 +833,11 @@ feature.extraction <- function(boolTraining, stringFileTimestamp, boolLabeled, w
       header = TRUE,
       stringsAsFactors=FALSE
     )
-    fKeyTrain <- fKeyTrain[, c(which(names(fKeyTrain) == "Timestamp"), which(names(fKeyTrain) == "Keypress"), which(names(fKeyTrain) == "IsKey"), which(names(fKeyTrain) == "IsKeyProb"), order(names(fKeyTrain[,!(colnames(fKeyTrain) == "IsKey"|colnames(fKeyTrain) == "IsKeyProb"|colnames(fKeyTrain) == "Keypress"|colnames(fKeyTrain) == "Timestamp")])))]
+    fKeyTrain <- fKeyTrain[, c(which(names(fKeyTrain) == "Timestamp"), which(names(fKeyTrain) == "Keypress"), which(names(fKeyTrain) == "IsKey"), which(names(fKeyTrain) == "IsKeyProb"), order(names(fKeyTrain[,!(names(fKeyTrain) == "IsKey"|names(fKeyTrain) == "IsKeyProb"|names(fKeyTrain) == "Keypress"|names(fKeyTrain) == "Timestamp")])))]
+    fKeyTrain$IsKey.1 <- NULL
+    fKeyTrain$IsKeyProb.1 <- NULL
+    fKeyTrain$Keypress.1 <- NULL
+    fKeyTrain$Timestamp.1 <- NULL
     write.csv(
       fKeyTrain,
       paste(getwd(),"/datasets/", stringFileTimestamp, "-feature-dataset-TRAINING-", wSize, ".csv", sep=""),
@@ -851,7 +855,11 @@ feature.extraction <- function(boolTraining, stringFileTimestamp, boolLabeled, w
       header = TRUE,
       stringsAsFactors=FALSE
     )
-    fKeyTrain <- fKeyTrain[, c(which(names(fKeyTrain) == "Timestamp"), which(names(fKeyTrain) == "Keypress"), which(names(fKeyTrain) == "IsKey"), which(names(fKeyTrain) == "IsKeyProb"), order(names(fKeyTrain[,!(colnames(fKeyTrain) == "IsKey"|colnames(fKeyTrain) == "IsKeyProb"|colnames(fKeyTrain) == "Keypress"|colnames(fKeyTrain) == "Timestamp")])))]
+    fKeyTrain <- fKeyTrain[, c(which(names(fKeyTrain) == "Timestamp"), which(names(fKeyTrain) == "Keypress"), which(names(fKeyTrain) == "IsKey"), which(names(fKeyTrain) == "IsKeyProb"), order(names(fKeyTrain[,!(names(fKeyTrain) == "IsKey"|names(fKeyTrain) == "IsKeyProb"|names(fKeyTrain) == "Keypress"|names(fKeyTrain) == "Timestamp")])))]
+    fKeyTrain$IsKey.1 <- NULL
+    fKeyTrain$IsKeyProb.1 <- NULL
+    fKeyTrain$Keypress.1 <- NULL
+    fKeyTrain$Timestamp.1 <- NULL
     write.csv(
       fKeyTrain,
       paste(getwd(),"/datasets/", stringFileTimestamp, "-feature-dataset-TEST-", wSize, ".csv", sep=""),
@@ -869,8 +877,12 @@ feature.extraction <- function(boolTraining, stringFileTimestamp, boolLabeled, w
       header = TRUE,
       stringsAsFactors=FALSE
     )
-    fKeyTrain <- fKeyTrain[, c(which(names(fKeyTrain) == "Timestamp"), which(names(fKeyTrain) == "Keypress"), which(names(fKeyTrain) == "IsKey"), which(names(fKeyTrain) == "IsKeyProb"), order(names(fKeyTrain[,!(colnames(fKeyTrain) == "IsKey"|colnames(fKeyTrain) == "IsKeyProb"|colnames(fKeyTrain) == "Keypress"|colnames(fKeyTrain) == "Timestamp")])))]
-    write.csv(
+    fKeyTrain <- fKeyTrain[, c(which(names(fKeyTrain) == "Timestamp"), which(names(fKeyTrain) == "Keypress"), which(names(fKeyTrain) == "IsKey"), which(names(fKeyTrain) == "IsKeyProb"), order(names(fKeyTrain[,!(names(fKeyTrain) == "IsKey"|names(fKeyTrain) == "IsKeyProb"|names(fKeyTrain) == "Keypress"|names(fKeyTrain) == "Timestamp")])))]
+    fKeyTrain$IsKey.1 <- NULL
+    fKeyTrain$IsKeyProb.1 <- NULL
+    fKeyTrain$Keypress.1 <- NULL
+    fKeyTrain$Timestamp.1 <- NULL
+     write.csv(
       fKeyTrain,
       paste(getwd(),"/datasets/", stringFileTimestamp, "-feature-dataset-TEST-unlabeled-", wSize, ".csv", sep=""),
       row.names = FALSE
