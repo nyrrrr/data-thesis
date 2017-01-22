@@ -9,4 +9,3 @@ for ( i in flist ) {
   # feature.extraction(boolTraining = TRUE,stringFileTimestamp = i,boolLabeled = TRUE)
   fKeyTrain <- feature.extraction(boolTraining = FALSE,stringFileTimestamp = i,boolLabeled = TRUE)
 }
-
