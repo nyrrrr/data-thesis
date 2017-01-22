@@ -2,7 +2,7 @@
 feature.extraction <- function(boolTraining, stringFileTimestamp, boolLabeled, windowSize) {
   start.time <- proc.time()
   
-  if(boolTraining) print(paste("Generate features from ", stringFileTimestamp, "-sensor-dataset-training-raw.csv", sep=""))
+  if(boolTraining) print(paste("Generate features from ", stringFileTimestamp, "-sensor-dataset-training-RAW.csv", sep=""))
   else print(paste("Generate features from ","transferred-", stringFileTimestamp, "-victim-data",", labeled=", boolLabeled, sep=""))
 
   
@@ -23,7 +23,7 @@ feature.extraction <- function(boolTraining, stringFileTimestamp, boolLabeled, w
   } else {
     sensortrain <-
       read.csv(
-        paste(getwd(),"/datasets/", "transferred-", stringFileTimestamp, "-victim-data-RAW.csv", sep=""), # 17011417, 17011205, 17011020, 16122802
+        paste(getwd(),"/datasets/", "transferred-", stringFileTimestamp, "-victim-data.csv", sep=""), # 17011417, 17011205, 17011020, 16122802
         header = TRUE,
         stringsAsFactors=FALSE
       )
@@ -86,7 +86,7 @@ feature.extraction <- function(boolTraining, stringFileTimestamp, boolLabeled, w
   wJumper <- as.integer(wSize / 2) 
   
   for (i in 1:length(sensortrain$xA)) {
-    if (i > (length(sensortrain$id) %% wJumper) & i %% wJumper == (length(sensortrain$id) %% wJumper) & i <= length(sensortrain$xA) - wJumper) {
+    if (i > (length(sensortrain$id) %% wJumper)+1 & i %% wJumper == (length(sensortrain$id) %% wJumper)+1 & i <= length(sensortrain$xA) - wJumper) {
       fKeyTrain$Timestamp[wIndex] <- as.character(sensortrain$Timestamp[i - wJumper - 1])
       
       tmpWindowCopy <- sensortrain[sensortrain$id >= i - wJumper & sensortrain$id < i + wJumper + 1,]
@@ -615,8 +615,8 @@ feature.extraction <- function(boolTraining, stringFileTimestamp, boolLabeled, w
       fKeyTrain$InfnormLinInterpA[wIndex] <- max(abs(tmpRawXWindowLinInterp) + abs(tmpRawYWindowLinInterp) + abs(tmpRawZWindowLinInterp))
       fKeyTrain$InfnormLinInterpG[wIndex] <- max(abs(tmpRawAWindowLinInterp) + abs(tmpRawBWindowLinInterp) + abs(tmpRawCWindowLinInterp))
       
-      fKeyTrain$Infnormoly3DInterpA[wIndex] <- max(abs(tmpRawXWindowPoly3DInterp) + abs(tmpRawYWindowPoly3DInterp) + abs(tmpRawZWindowPoly3DInterp))
-      fKeyTrain$Infnormoly3DInterpG[wIndex] <- max(abs(tmpRawAWindowPoly3DInterp) + abs(tmpRawBWindowPoly3DInterp) + abs(tmpRawCWindowPoly3DInterp))
+      fKeyTrain$InfnormPoly3DInterpA[wIndex] <- max(abs(tmpRawXWindowPoly3DInterp) + abs(tmpRawYWindowPoly3DInterp) + abs(tmpRawZWindowPoly3DInterp))
+      fKeyTrain$InfnormPoly3DInterpG[wIndex] <- max(abs(tmpRawAWindowPoly3DInterp) + abs(tmpRawBWindowPoly3DInterp) + abs(tmpRawCWindowPoly3DInterp))
       
       fKeyTrain$InfnormCubInterpA[wIndex] <- max(abs(tmpRawXWindowCubInterp$y) + abs(tmpRawYWindowCubInterp$y) + abs(tmpRawZWindowCubInterp$y))
       fKeyTrain$InfnormCubInterpG[wIndex] <- max(abs(tmpRawAWindowCubInterp$y) + abs(tmpRawBWindowCubInterp$y) + abs(tmpRawCWindowCubInterp$y))
@@ -642,6 +642,8 @@ feature.extraction <- function(boolTraining, stringFileTimestamp, boolLabeled, w
       fKeyTrain$FrobeniusNormMeanNormA[wIndex] <- sum(c(tmpRawXWindowMeanNorm, tmpRawYWindowMeanNorm, tmpRawZWindowMeanNorm)^2)
       fKeyTrain$FrobeniusNormMeanNormG[wIndex] <- sum(c(tmpRawAWindowMeanNorm, tmpRawBWindowMeanNorm, tmpRawCWindowMeanNorm)^2)
       
+      
+      # print(paste(i, length(tmpRawXWindow), tmpRawXWindow[wSize], tmpRawXWindow[1], fKeyTrain$TotalTime[wIndex]))
       # total rate of change(first order derivative)
       fKeyTrain$XrocA[wIndex] <- as.numeric((tmpRawXWindow[wSize] - tmpRawXWindow[1])/(fKeyTrain$TotalTime[wIndex]/1000000000))
       fKeyTrain$YrocA[wIndex] <- as.numeric((tmpRawYWindow[wSize] - tmpRawYWindow[1])/(fKeyTrain$TotalTime[wIndex]/1000000000))
@@ -695,26 +697,26 @@ feature.extraction <- function(boolTraining, stringFileTimestamp, boolLabeled, w
       fKeyTrain$MrocMeanNormG[wIndex] <- as.numeric((tmpRawMagnGWindowMeanNorm[wSize] - tmpRawMagnGWindowMeanNorm[1])/(fKeyTrain$TotalTime[wIndex]/1000000000))
       
       # accumulated rate of change (1st order derivation)
-      fKeyTrain$XarocA[wIndex] <- as.numeric(sum(abs(tmpRawXWindow[-1] - tmpRawXWindow[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
-      fKeyTrain$YarocA[wIndex] <- as.numeric(sum(abs(tmpRawYWindow[-1] - tmpRawYWindow[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
-      fKeyTrain$ZarocA[wIndex] <- as.numeric(sum(abs(tmpRawZWindow[-1] - tmpRawZWindow[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
-      fKeyTrain$XarocG[wIndex] <- as.numeric(sum(abs(tmpRawAWindow[-1] - tmpRawAWindow[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
-      fKeyTrain$YarocG[wIndex] <- as.numeric(sum(abs(tmpRawBWindow[-1] - tmpRawBWindow[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
-      fKeyTrain$ZarocG[wIndex] <- as.numeric(sum(abs(tmpRawCWindow[-1] - tmpRawCWindow[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
+      fKeyTrain$XarocA[wIndex] <- as.numeric(sum(abs(tmpRawXWindow[-1] - tmpRawXWindow[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
+      fKeyTrain$YarocA[wIndex] <- as.numeric(sum(abs(tmpRawYWindow[-1] - tmpRawYWindow[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
+      fKeyTrain$ZarocA[wIndex] <- as.numeric(sum(abs(tmpRawZWindow[-1] - tmpRawZWindow[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
+      fKeyTrain$XarocG[wIndex] <- as.numeric(sum(abs(tmpRawAWindow[-1] - tmpRawAWindow[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
+      fKeyTrain$YarocG[wIndex] <- as.numeric(sum(abs(tmpRawBWindow[-1] - tmpRawBWindow[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
+      fKeyTrain$ZarocG[wIndex] <- as.numeric(sum(abs(tmpRawCWindow[-1] - tmpRawCWindow[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
 
-      fKeyTrain$XarocLinInterpA[wIndex] <- as.numeric(sum(abs(tmpRawXWindowLinInterp[-1] - tmpRawXWindowLinInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
-      fKeyTrain$YarocLinInterpA[wIndex] <- as.numeric(sum(abs(tmpRawYWindowLinInterp[-1] - tmpRawYWindowLinInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
-      fKeyTrain$ZarocLinInterpA[wIndex] <- as.numeric(sum(abs(tmpRawZWindowLinInterp[-1] - tmpRawZWindowLinInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
-      fKeyTrain$XarocLinInterpG[wIndex] <- as.numeric(sum(abs(tmpRawAWindowLinInterp[-1] - tmpRawAWindowLinInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
-      fKeyTrain$YarocLinInterpG[wIndex] <- as.numeric(sum(abs(tmpRawBWindowLinInterp[-1] - tmpRawBWindowLinInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
-      fKeyTrain$ZarocLinInterpG[wIndex] <- as.numeric(sum(abs(tmpRawCWindowLinInterp[-1] - tmpRawCWindowLinInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
+      fKeyTrain$XarocLinInterpA[wIndex] <- as.numeric(sum(abs(tmpRawXWindowLinInterp[-1] - tmpRawXWindowLinInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
+      fKeyTrain$YarocLinInterpA[wIndex] <- as.numeric(sum(abs(tmpRawYWindowLinInterp[-1] - tmpRawYWindowLinInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
+      fKeyTrain$ZarocLinInterpA[wIndex] <- as.numeric(sum(abs(tmpRawZWindowLinInterp[-1] - tmpRawZWindowLinInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
+      fKeyTrain$XarocLinInterpG[wIndex] <- as.numeric(sum(abs(tmpRawAWindowLinInterp[-1] - tmpRawAWindowLinInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
+      fKeyTrain$YarocLinInterpG[wIndex] <- as.numeric(sum(abs(tmpRawBWindowLinInterp[-1] - tmpRawBWindowLinInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
+      fKeyTrain$ZarocLinInterpG[wIndex] <- as.numeric(sum(abs(tmpRawCWindowLinInterp[-1] - tmpRawCWindowLinInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
 
-      fKeyTrain$XarocPoly3DInterpA[wIndex] <- as.numeric(sum(abs(tmpRawXWindowPoly3DInterp[-1] - tmpRawXWindowPoly3DInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
-      fKeyTrain$YarocPoly3DInterpA[wIndex] <- as.numeric(sum(abs(tmpRawYWindowPoly3DInterp[-1] - tmpRawYWindowPoly3DInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
-      fKeyTrain$ZarocPoly3DInterpA[wIndex] <- as.numeric(sum(abs(tmpRawZWindowPoly3DInterp[-1] - tmpRawZWindowPoly3DInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
-      fKeyTrain$XarocPoly3DInterpG[wIndex] <- as.numeric(sum(abs(tmpRawAWindowPoly3DInterp[-1] - tmpRawAWindowPoly3DInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
-      fKeyTrain$YarocPoly3DInterpG[wIndex] <- as.numeric(sum(abs(tmpRawBWindowPoly3DInterp[-1] - tmpRawBWindowPoly3DInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
-      fKeyTrain$ZarocPoly3DInterpG[wIndex] <- as.numeric(sum(abs(tmpRawCWindowPoly3DInterp[-1] - tmpRawCWindowPoly3DInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
+      fKeyTrain$XarocPoly3DInterpA[wIndex] <- as.numeric(sum(abs(tmpRawXWindowPoly3DInterp[-1] - tmpRawXWindowPoly3DInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
+      fKeyTrain$YarocPoly3DInterpA[wIndex] <- as.numeric(sum(abs(tmpRawYWindowPoly3DInterp[-1] - tmpRawYWindowPoly3DInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
+      fKeyTrain$ZarocPoly3DInterpA[wIndex] <- as.numeric(sum(abs(tmpRawZWindowPoly3DInterp[-1] - tmpRawZWindowPoly3DInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
+      fKeyTrain$XarocPoly3DInterpG[wIndex] <- as.numeric(sum(abs(tmpRawAWindowPoly3DInterp[-1] - tmpRawAWindowPoly3DInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
+      fKeyTrain$YarocPoly3DInterpG[wIndex] <- as.numeric(sum(abs(tmpRawBWindowPoly3DInterp[-1] - tmpRawBWindowPoly3DInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
+      fKeyTrain$ZarocPoly3DInterpG[wIndex] <- as.numeric(sum(abs(tmpRawCWindowPoly3DInterp[-1] - tmpRawCWindowPoly3DInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
 
       fKeyTrain$XarocCubInterpA[wIndex] <- as.numeric(sum(abs(tmpRawXWindowCubInterp$y[-1] - tmpRawXWindowCubInterp$y[-length(tmpRawXWindowCubInterp$x)])/((tmpRawXWindowCubInterp$x[-1] - tmpRawXWindowCubInterp$x[-length(tmpRawXWindowCubInterp$x)]))/1000000000))
       fKeyTrain$YarocCubInterpA[wIndex] <- as.numeric(sum(abs(tmpRawYWindowCubInterp$y[-1] - tmpRawYWindowCubInterp$y[-length(tmpRawYWindowCubInterp$x)])/((tmpRawYWindowCubInterp$x[-1] - tmpRawYWindowCubInterp$x[-length(tmpRawYWindowCubInterp$x)]))/1000000000))
@@ -723,28 +725,28 @@ feature.extraction <- function(boolTraining, stringFileTimestamp, boolLabeled, w
       fKeyTrain$YarocCubInterpG[wIndex] <- as.numeric(sum(abs(tmpRawBWindowCubInterp$y[-1] - tmpRawBWindowCubInterp$y[-length(tmpRawBWindowCubInterp$x)])/((tmpRawBWindowCubInterp$x[-1] - tmpRawBWindowCubInterp$x[-length(tmpRawBWindowCubInterp$x)]))/1000000000))
       fKeyTrain$ZarocCubInterpG[wIndex] <- as.numeric(sum(abs(tmpRawCWindowCubInterp$y[-1] - tmpRawCWindowCubInterp$y[-length(tmpRawCWindowCubInterp$x)])/((tmpRawCWindowCubInterp$x[-1] - tmpRawCWindowCubInterp$x[-length(tmpRawCWindowCubInterp$x)]))/1000000000))
 
-      fKeyTrain$XarocMeanNormA[wIndex] <- as.numeric(sum(abs(tmpRawXWindowMeanNorm[-1] - tmpRawXWindowMeanNorm[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
-      fKeyTrain$YarocMeanNormA[wIndex] <- as.numeric(sum(abs(tmpRawYWindowMeanNorm[-1] - tmpRawYWindowMeanNorm[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
-      fKeyTrain$ZarocMeanNormA[wIndex] <- as.numeric(sum(abs(tmpRawZWindowMeanNorm[-1] - tmpRawZWindowMeanNorm[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
-      fKeyTrain$XarocMeanNormG[wIndex] <- as.numeric(sum(abs(tmpRawAWindowMeanNorm[-1] - tmpRawAWindowMeanNorm[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
-      fKeyTrain$YarocMeanNormG[wIndex] <- as.numeric(sum(abs(tmpRawBWindowMeanNorm[-1] - tmpRawBWindowMeanNorm[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
-      fKeyTrain$ZarocMeanNormG[wIndex] <- as.numeric(sum(abs(tmpRawCWindowMeanNorm[-1] - tmpRawCWindowMeanNorm[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
+      fKeyTrain$XarocMeanNormA[wIndex] <- as.numeric(sum(abs(tmpRawXWindowMeanNorm[-1] - tmpRawXWindowMeanNorm[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
+      fKeyTrain$YarocMeanNormA[wIndex] <- as.numeric(sum(abs(tmpRawYWindowMeanNorm[-1] - tmpRawYWindowMeanNorm[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
+      fKeyTrain$ZarocMeanNormA[wIndex] <- as.numeric(sum(abs(tmpRawZWindowMeanNorm[-1] - tmpRawZWindowMeanNorm[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
+      fKeyTrain$XarocMeanNormG[wIndex] <- as.numeric(sum(abs(tmpRawAWindowMeanNorm[-1] - tmpRawAWindowMeanNorm[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
+      fKeyTrain$YarocMeanNormG[wIndex] <- as.numeric(sum(abs(tmpRawBWindowMeanNorm[-1] - tmpRawBWindowMeanNorm[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
+      fKeyTrain$ZarocMeanNormG[wIndex] <- as.numeric(sum(abs(tmpRawCWindowMeanNorm[-1] - tmpRawCWindowMeanNorm[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
 
       # magnitude accumulated rate of change (1st order derivation)
-      fKeyTrain$MarocA[wIndex] <- as.numeric(sum(abs(tmpRawMagnAWindow[-1] - tmpRawMagnAWindow[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
-      fKeyTrain$MarocG[wIndex] <- as.numeric(sum(abs(tmpRawMagnGWindow[-1] - tmpRawMagnGWindow[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
+      fKeyTrain$MarocA[wIndex] <- as.numeric(sum(abs(tmpRawMagnAWindow[-1] - tmpRawMagnAWindow[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
+      fKeyTrain$MarocG[wIndex] <- as.numeric(sum(abs(tmpRawMagnGWindow[-1] - tmpRawMagnGWindow[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
       
-      fKeyTrain$MarocLinInterpA[wIndex] <- as.numeric(sum(abs(tmpRawMagnAWindowLinInterp[-1] - tmpRawMagnAWindowLinInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
-      fKeyTrain$MarocLinInterpG[wIndex] <- as.numeric(sum(abs(tmpRawMagnGWindowLinInterp[-1] - tmpRawMagnGWindowLinInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
+      fKeyTrain$MarocLinInterpA[wIndex] <- as.numeric(sum(abs(tmpRawMagnAWindowLinInterp[-1] - tmpRawMagnAWindowLinInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
+      fKeyTrain$MarocLinInterpG[wIndex] <- as.numeric(sum(abs(tmpRawMagnGWindowLinInterp[-1] - tmpRawMagnGWindowLinInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
       
-      fKeyTrain$MarocPoly3DInterpA[wIndex] <- as.numeric(sum(abs(tmpRawMagnAWindowPoly3DInterp[-1] - tmpRawMagnAWindowPoly3DInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
-      fKeyTrain$MarocPoly3DInterpG[wIndex] <- as.numeric(sum(abs(tmpRawMagnGWindowPoly3DInterp[-1] - tmpRawMagnGWindowPoly3DInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
+      fKeyTrain$MarocPoly3DInterpA[wIndex] <- as.numeric(sum(abs(tmpRawMagnAWindowPoly3DInterp[-1] - tmpRawMagnAWindowPoly3DInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
+      fKeyTrain$MarocPoly3DInterpG[wIndex] <- as.numeric(sum(abs(tmpRawMagnGWindowPoly3DInterp[-1] - tmpRawMagnGWindowPoly3DInterp[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
       
       fKeyTrain$MarocCubInterpA[wIndex] <- as.numeric(sum(abs(tmpRawMagnAWindowCubInterp$y[-1] - tmpRawMagnAWindowCubInterp$y[-length(tmpRawMagnAWindowCubInterp$x)])/((tmpRawMagnAWindowCubInterp$x[-1] - tmpRawMagnAWindowCubInterp$x[-length(tmpRawMagnAWindowCubInterp$x)]))/1000000000))
       fKeyTrain$MarocCubInterpG[wIndex] <- as.numeric(sum(abs(tmpRawMagnGWindowCubInterp$y[-1] - tmpRawMagnGWindowCubInterp$y[-length(tmpRawMagnGWindowCubInterp$x)])/((tmpRawMagnGWindowCubInterp$x[-1] - tmpRawMagnGWindowCubInterp$x[-length(tmpRawMagnGWindowCubInterp$x)]))/1000000000))
       
-      fKeyTrain$MarocMeanNormA[wIndex] <- as.numeric(sum(abs(tmpRawMagnAWindowMeanNorm[-1] - tmpRawMagnAWindowMeanNorm[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
-      fKeyTrain$MarocMeanNormG[wIndex] <- as.numeric(sum(abs(tmpRawMagnGWindowMeanNorm[-1] - tmpRawMagnGWindowMeanNorm[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))/1000000000))
+      fKeyTrain$MarocMeanNormA[wIndex] <- as.numeric(sum(abs(tmpRawMagnAWindowMeanNorm[-1] - tmpRawMagnAWindowMeanNorm[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
+      fKeyTrain$MarocMeanNormG[wIndex] <- as.numeric(sum(abs(tmpRawMagnGWindowMeanNorm[-1] - tmpRawMagnGWindowMeanNorm[-length(tmpWindowCopy$Timestamp)])/((tmpWindowCopy$Timestamp[-1] - tmpWindowCopy$Timestamp[-length(tmpWindowCopy$Timestamp)]))*1000000000))
       
       # key labels
       if(boolLabeled) {
